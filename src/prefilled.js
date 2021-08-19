@@ -1,18 +1,60 @@
-// SYSTEM FLOW Prefilled Form Inputs Value
+// SYSTEM FLOW Form Prefill
 (() => {
-  const forms = document.querySelectorAll('form');
+  class Query {
+    constructor(initialQuery) {
+      this.query = [];
 
-  if (forms.length) {
-    forms.forEach((form) => {
-      const inputs = form.querySelectorAll('input');
+      if (initialQuery) {
+        this.parse(initialQuery);
+      }
+    }
 
-      if (inputs) {
-        inputs.forEach((input) => {
-          if (input.type != 'submit') {
-            const prefilled = input.getAttribute('data-sysflow-prefilled');
-            input.value = prefilled != '0' ? prefilled : '';
-          }
-        });
+    parse(queryString) {
+      const parts = (
+        queryString.charAt(0) === '?' ? queryString.slice(1) : queryString
+      ).split('&');
+
+      parts.forEach((part) => {
+        const [key, val] = part.split('=');
+        this.set(key, decodeURIComponent(val));
+      });
+    }
+
+    get(keyToCheck) {
+      const item = this.query.find(({ key }) => key === keyToCheck);
+
+      return item ? item.value : null;
+    }
+
+    set(keyToSet, value) {
+      this.remove(keyToSet);
+      this.query.push({ key: keyToSet, value });
+    }
+
+    remove(keyToRemove) {
+      this.query = this.query.filter(({ key }) => key !== keyToRemove);
+    }
+  }
+
+  const form = document.querySelector('[data-sysflow-form-prefill]');
+  console.log(form);
+
+  if (form) {
+    const query = new Query(window.location.search);
+    console.log(query);
+    const inputs = form.querySelectorAll('input');
+    console.log(inputs);
+
+    inputs.forEach((input) => {
+      console.log(input.id);
+      const queryKey = input.id;
+      console.log(queryKey);
+      const queryValue = query.get(queryKey);
+      console.log(queryValue);
+
+      //set input value to matched query value
+      if (queryValue) {
+        input.value = queryValue;
       }
     });
   }
