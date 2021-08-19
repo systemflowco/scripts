@@ -1,0 +1,1 @@
+(()=>{const a=document.querySelectorAll("form");a.length&&a.forEach(a=>{const b=a.querySelectorAll("input");b&&b.forEach(a=>{if("submit"!=a.type){const b=a.getAttribute("data-sysflow-prefilled");a.value="0"==b?"":b}})})})();
