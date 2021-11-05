@@ -32,10 +32,10 @@
             const error = this.age.querySelector("[data-sysflow-age-error]");
             if (error) {
                 error.innerHTML = msg || "Błąd";
-                error.style.visibility = "visible";
+                error.style.opacity = "100%";
 
                 setTimeout(() => {
-                    error.style.visibility = "hidden";
+                    error.style.opacity = "0%";
                 }, 3000);
             }
         }
@@ -73,9 +73,7 @@
         }
 
         verifyAge() {
-            console.log("jestem");
             this.getData();
-            console.log(this.year);
             if (this.validateForm()) {
                 if (this.calculateAge() >= this.limit) {
                     this.age.remove();
