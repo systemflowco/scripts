@@ -5,15 +5,36 @@
             this.age = elem;
             this.limit = +this.age.getAttribute("data-sysflow-age") || 18;
             this.btn = this.age.querySelector("[data-sysflow-age-check]");
+            this.KEY_COOKIE = "SYSFLOW.AGE";
+            this.cookieStatus = localStorage.getItem(this.KEY_COOKIE);
 
             this.assignEvents();
         }
 
         assignEvents() {
+            if (!this.cookieStatus) {
+                this.showAgeForm();
+            } else {
+                this.hideAgeForm();
+            }
+        }
+
+        showAgeForm() {
+            setTimeout(() => {
+                this.age.style.opacity = "100%";
+            }, 100);
+
             this.btn.addEventListener("click", (e) => {
                 e.preventDefault();
                 this.verifyAge();
             });
+        }
+
+        hideAgeForm() {
+            this.age.style.opacity = "0%";
+            setTimeout(() => {
+                this.age.remove();
+            }, 200);
         }
 
         getData() {
@@ -76,7 +97,8 @@
             this.getData();
             if (this.validateForm()) {
                 if (this.calculateAge() >= this.limit) {
-                    this.age.remove();
+                    localStorage.setItem(this.KEY_COOKIE, true);
+                    this.hideAgeForm();
                 } else {
                     this.showError(`Nie masz ukończone ${this.limit} lat`);
                 }
