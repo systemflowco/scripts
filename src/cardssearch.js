@@ -10,8 +10,8 @@
         }
 
         assignEvents() {
+            console.log(this.cards);
             if (this.cards) {
-                console.log(this.cards);
                 this.searchInput.addEventListener("keyup", this.searchResults.bind(this));
             }
         }
