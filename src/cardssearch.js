@@ -58,7 +58,7 @@
         }
     }
 
-    const searches = document.querySelectorAll("[data-sysflow-cards-search");
+    const searches = document.querySelectorAll("[data-sysflow-cards-search]");
 
     if (searches) {
         searches.forEach((search) => {
