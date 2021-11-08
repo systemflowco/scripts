@@ -61,11 +61,13 @@
         }
     }
 
-    const searches = document.querySelectorAll("[data-sysflow-cards-search]");
+    document.addEventListener("DOMContentLoaded", function (event) {
+        const searches = document.querySelectorAll("[data-sysflow-cards-search]");
 
-    if (searches) {
-        searches.forEach((search) => {
-            new CardsSearch(search);
-        });
-    }
+        if (searches) {
+            searches.forEach((search) => {
+                new CardsSearch(search);
+            });
+        }
+    });
 })();
