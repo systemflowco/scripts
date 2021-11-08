@@ -4,13 +4,14 @@
         constructor(elem) {
             this.searchInput = elem;
             this.container = this.searchInput.closest(".container");
-            this.cards = this.container.querySelectorAll(".card");
+            this.cards = this.container ? this.container.querySelectorAll(".card") : null;
             this.textSelectors = "h1, h2, h3, h4, h5, h6, p";
             this.assignEvents();
         }
 
         assignEvents() {
-            this.searchInput.addEventListener("keyup", this.searchResults.bind(this));
+            if (this.cards)
+                this.searchInput.addEventListener("keyup", this.searchResults.bind(this));
         }
 
         searchResults() {
