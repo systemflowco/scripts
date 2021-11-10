@@ -41,15 +41,17 @@
         }
 
         toggleOption(option, index) {
-            if (this.selected.indexOf(index) > -1) {
-                this.selected.splice(this.selected.indexOf(index), 1);
+            const text = option.innerText;
+            if (this.selected.indexOf(text) > -1) {
+                this.selected.splice(this.selected.indexOf(text), 1);
                 option.classList.remove("selected");
                 this.removeFromTags(index);
             } else {
-                this.selected.push(index);
+                this.selected.push(text);
                 option.classList.add("selected");
                 this.addToTags(option, index);
             }
+            this.filterResults();
         }
 
         removeFromTags(index) {
@@ -84,6 +86,28 @@
             );
 
             this.tags.append(tag);
+        }
+
+        filterResults() {
+            console.log(this.selected);
+            if (this.selected.length > 0) {
+                this.cards.forEach((card) => {
+                    const tagline = card.querySelector(".tagline");
+                    if (this.selected.toLowerCase().indexOf(tagline) > -1) {
+                        card.style.display = "flex";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            } else {
+                this.clearSearch();
+            }
+        }
+
+        clearFilter() {
+            this.cards.forEach((card) => {
+                card.style.display = "flex";
+            });
         }
     }
 
