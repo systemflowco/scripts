@@ -94,7 +94,9 @@
                     const tagline = card.querySelector(".tagline").innerText;
                     if (this.selected.indexOf(tagline) > -1) {
                         card.style.display = "flex";
+                        delete card.dataset.filterHide;
                     } else {
+                        card.dataset.filterHide = true;
                         card.style.display = "none";
                     }
                 });
@@ -104,7 +106,7 @@
         }
 
         clearFilter() {
-            this.cards.forEach((card) => {
+            this.cards.querySelectorAll("[data-filter-hide]]").forEach((card) => {
                 card.style.display = "flex";
             });
         }
