@@ -16,8 +16,10 @@
         }
 
         assignEvents() {
-            this.clearTags();
-            this.createList();
+            if (this.cards && this.taglines) {
+                this.clearTags();
+                this.createList();
+            }
         }
 
         createList() {
