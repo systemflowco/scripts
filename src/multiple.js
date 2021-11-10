@@ -35,11 +35,9 @@
         }
 
         toggleOption(option, index) {
-            const text = option.innerText;
-            const i = this.selected.indexOf(index);
-            if (i > -1) {
+            if (this.selected.indexOf(index) > -1) {
                 this.options[index].selected = false;
-                this.selected.splice(i, 1);
+                this.selected.splice(this.selected.indexOf(index), 1);
                 option.classList.remove("selected");
                 this.removeFromTags(index);
             } else {
