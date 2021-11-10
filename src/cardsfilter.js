@@ -89,10 +89,9 @@
         }
 
         filterResults() {
-            console.log(this.selected);
             if (this.selected.length > 0) {
                 this.cards.forEach((card) => {
-                    const tagline = card.querySelector(".tagline");
+                    const tagline = card.querySelector(".tagline").innerText;
                     if (this.selected.indexOf(tagline) > -1) {
                         card.style.display = "flex";
                     } else {
@@ -100,7 +99,7 @@
                     }
                 });
             } else {
-                this.clearSearch();
+                this.clearFilter();
             }
         }
 
