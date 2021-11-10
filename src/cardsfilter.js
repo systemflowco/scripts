@@ -9,7 +9,7 @@
                 this.filter.dataset.sysflowCardsFilter == "0"
                     ? ".tagline"
                     : this.filter.dataset.sysflowCardsFilter;
-            this.taglines = this.container ? this.container.querySelectorAll(this.filterBy) : null;
+            this.taglines = this.cards ? this.cards.querySelectorAll(this.filterBy) : null;
             this.tags = this.filter.querySelector("[data-sysflow-multiple-tags]");
             this.list = this.filter.querySelector("[data-sysflow-multiple-list]");
             this.placeholder = this.filter.querySelector("[data-sysflow-multiple-placeholder]");
