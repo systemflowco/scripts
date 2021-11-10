@@ -21,7 +21,10 @@
             if (this.queryText.length > 0) {
                 this.cards.forEach((card) => {
                     const fullText = card.textContent;
-                    if (fullText.toLowerCase().indexOf(this.queryText) > -1) {
+                    if (
+                        fullText.toLowerCase().indexOf(this.queryText) > -1 &&
+                        !card.dataset.filterHide
+                    ) {
                         card.style.display = "flex";
                         delete card.dataset.searchHide;
                         this.showResult(card);
@@ -53,6 +56,7 @@
             this.cards.forEach((card) => {
                 if (card.dataset.searchHide && !card.dataset.filterHide) {
                     card.style.display = "flex";
+                    delete card.dataset.searchHide;
                     this.hideResult(card);
                 }
             });
