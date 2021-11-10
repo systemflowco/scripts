@@ -5,7 +5,9 @@
             this.filter = elem;
             this.container = this.filter.closest(".container");
             this.cards = this.container ? this.container.querySelectorAll(".card") : null;
-            this.taglines = this.cards ? this.cards.querySelectorAll(".tagline") : null;
+            this.taglines = this.container
+                ? this.container.querySelectorAll(".card .tagline")
+                : null;
             this.tags = this.multiple.querySelector("[data-sysflow-multiple-tags]");
             this.list = this.multiple.querySelector("[data-sysflow-multiple-list]");
             this.selected = [];
