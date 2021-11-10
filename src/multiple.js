@@ -7,7 +7,7 @@
             this.options = this.select.querySelectorAll("option");
             this.tags = this.multiple.querySelector("[data-sysflow-multiple-tags]");
             this.list = this.multiple.querySelector("[data-sysflow-multiple-list]");
-            this.placeholder = this.filter.querySelector("[data-sysflow-multiple-placeholder]");
+            this.placeholder = this.multiple.querySelector("[data-sysflow-multiple-placeholder]");
             this.placeholderText = this.placeholder ? this.placeholder.innerText : "";
             this.selected = [];
 
