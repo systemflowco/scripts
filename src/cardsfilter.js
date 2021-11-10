@@ -10,6 +10,8 @@
                 : null;
             this.tags = this.filter.querySelector("[data-sysflow-multiple-tags]");
             this.list = this.filter.querySelector("[data-sysflow-multiple-list]");
+            this.placeholder = this.filter.querySelector("[data-sysflow-multiple-placeholder]");
+            this.placeholderText = this.placeholder.innerText;
             this.selected = [];
 
             this.assignEvents();
@@ -42,6 +44,14 @@
             this.tags.innerHTML = "";
         }
 
+        clearPlaceholder() {
+            this.placeholder.innerText = "";
+        }
+
+        showPlaceholder() {
+            this.placeholder.innerText = this.placeholderText;
+        }
+
         toggleOption(option, index) {
             const text = option.innerText;
             if (this.selected.indexOf(text) > -1) {
@@ -52,6 +62,7 @@
                 this.selected.push(text);
                 option.classList.add("selected");
                 this.addToTags(option, index);
+                this.clearPlaceholder();
             }
             this.filterResults();
         }
@@ -114,6 +125,7 @@
                     if (!card.dataset.searchHide) card.style.display = "flex";
                 }
             });
+            this.showPlaceholder();
         }
     }
 
