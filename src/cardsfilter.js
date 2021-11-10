@@ -8,8 +8,8 @@
             this.taglines = this.container
                 ? this.container.querySelectorAll(".card .tagline")
                 : null;
-            this.tags = this.multiple.querySelector("[data-sysflow-multiple-tags]");
-            this.list = this.multiple.querySelector("[data-sysflow-multiple-list]");
+            this.tags = this.filter.querySelector("[data-sysflow-multiple-tags]");
+            this.list = this.filter.querySelector("[data-sysflow-multiple-list]");
             this.selected = [];
 
             this.assignEvents();
