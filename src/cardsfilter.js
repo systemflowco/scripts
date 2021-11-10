@@ -11,7 +11,7 @@
             this.tags = this.filter.querySelector("[data-sysflow-multiple-tags]");
             this.list = this.filter.querySelector("[data-sysflow-multiple-list]");
             this.placeholder = this.filter.querySelector("[data-sysflow-multiple-placeholder]");
-            this.placeholderText = this.placeholder.innerText;
+            this.placeholderText = this.placeholder ? this.placeholder.innerText : "";
             this.selected = [];
 
             this.assignEvents();
@@ -45,11 +45,11 @@
         }
 
         clearPlaceholder() {
-            this.placeholder.innerText = "";
+            if (this.placeholder) this.placeholder.innerText = "";
         }
 
         showPlaceholder() {
-            this.placeholder.innerText = this.placeholderText;
+            if (this.placeholder) this.placeholder.innerText = this.placeholderText;
         }
 
         toggleOption(option, index) {
