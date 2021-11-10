@@ -92,9 +92,9 @@
             if (this.selected.length > 0) {
                 this.cards.forEach((card) => {
                     const tagline = card.querySelector(".tagline").innerText;
-                    if (this.selected.indexOf(tagline) > -1 && !card.dataset.searchHide) {
-                        card.style.display = "flex";
+                    if (this.selected.indexOf(tagline) > -1) {
                         delete card.dataset.filterHide;
+                        if (!card.dataset.searchHide) card.style.display = "flex";
                     } else {
                         card.style.display = "none";
                         card.dataset.filterHide = true;
@@ -107,9 +107,9 @@
 
         clearFilter() {
             this.cards.forEach((card) => {
-                if (card.dataset.filterHide && !card.dataset.searchHide) {
-                    card.style.display = "flex";
+                if (card.dataset.filterHide) {
                     delete card.dataset.filterHide;
+                    if (!card.dataset.searchHide) card.style.display = "flex";
                 }
             });
         }

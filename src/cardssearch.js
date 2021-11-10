@@ -21,12 +21,9 @@
             if (this.queryText.length > 0) {
                 this.cards.forEach((card) => {
                     const fullText = card.textContent;
-                    if (
-                        fullText.toLowerCase().indexOf(this.queryText) > -1 &&
-                        !card.dataset.filterHide
-                    ) {
-                        card.style.display = "flex";
+                    if (fullText.toLowerCase().indexOf(this.queryText) > -1) {
                         delete card.dataset.searchHide;
+                        if (!card.dataset.filterHide) card.style.display = "flex";
                         this.showResult(card);
                     } else {
                         card.style.display = "none";
@@ -54,9 +51,10 @@
 
         clearSearch() {
             this.cards.forEach((card) => {
-                if (card.dataset.searchHide && !card.dataset.filterHide) {
+                if (card.dataset.searchHide) {
                     card.style.display = "flex";
                     delete card.dataset.searchHide;
+                    if (!card.dataset.filterHide) card.style.display = "flex";
                     this.hideResult(card);
                 }
             });
