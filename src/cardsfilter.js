@@ -18,8 +18,8 @@
         }
 
         assignEvents() {
+            this.clearTags();
             if (this.cards && this.taglines) {
-                this.clearTags();
                 this.createList();
             }
         }

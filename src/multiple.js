@@ -7,6 +7,8 @@
             this.options = this.select.querySelectorAll("option");
             this.tags = this.multiple.querySelector("[data-sysflow-multiple-tags]");
             this.list = this.multiple.querySelector("[data-sysflow-multiple-list]");
+            this.placeholder = this.filter.querySelector("[data-sysflow-multiple-placeholder]");
+            this.placeholderText = this.placeholder ? this.placeholder.innerText : "";
             this.selected = [];
 
             this.assignEvents();
@@ -34,6 +36,14 @@
             this.tags.innerHTML = "";
         }
 
+        clearPlaceholder() {
+            if (this.placeholder) this.placeholder.innerText = "";
+        }
+
+        showPlaceholder() {
+            if (this.placeholder) this.placeholder.innerText = this.placeholderText;
+        }
+
         toggleOption(option, index) {
             if (this.selected.indexOf(index) > -1) {
                 this.options[index].selected = false;
@@ -45,11 +55,15 @@
                 this.selected.push(index);
                 option.classList.add("selected");
                 this.addToTags(option, index);
+                this.clearPlaceholder();
             }
         }
 
         removeFromTags(index) {
             this.tags.querySelector(`[data-index="${index}"]`).remove();
+            if (!this.tags.length) {
+                this.showPlaceholder();
+            }
         }
 
         addToTags(option, index) {
