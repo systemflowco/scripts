@@ -7,7 +7,7 @@
             this.cards = this.container ? this.container.querySelectorAll(".card") : null;
             this.filterBy =
                 this.filter.dataset.sysflowCardsFilter == "0"
-                    ? ".card .tagline"
+                    ? ".tagline"
                     : this.filter.dataset.sysflowCardsFilter;
             this.taglines = this.container ? this.container.querySelectorAll(this.filterBy) : null;
             this.tags = this.filter.querySelector("[data-sysflow-multiple-tags]");
@@ -106,7 +106,7 @@
         filterResults() {
             if (this.selected.length > 0) {
                 this.cards.forEach((card) => {
-                    const tagline = card.querySelector(".tagline").innerText;
+                    const tagline = card.querySelector(this.filterBy).innerText;
                     if (this.selected.indexOf(tagline) > -1) {
                         delete card.dataset.filterHide;
                         if (!card.dataset.searchHide) card.style.display = "flex";
