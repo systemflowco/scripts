@@ -52,11 +52,10 @@
         clearSearch() {
             this.cards.forEach((card) => {
                 if (card.dataset.searchHide) {
-                    card.style.display = "flex";
                     delete card.dataset.searchHide;
                     if (!card.dataset.filterHide) card.style.display = "flex";
-                    this.hideResult(card);
                 }
+                this.hideResult(card);
             });
         }
 
