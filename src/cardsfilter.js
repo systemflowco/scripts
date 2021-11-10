@@ -96,8 +96,8 @@
                         card.style.display = "flex";
                         delete card.dataset.filterHide;
                     } else {
-                        card.dataset.filterHide = true;
                         card.style.display = "none";
+                        card.dataset.filterHide = true;
                     }
                 });
             } else {
@@ -106,8 +106,10 @@
         }
 
         clearFilter() {
-            this.cards.querySelectorAll("[data-filter-hide]]").forEach((card) => {
-                card.style.display = "flex";
+            this.cards.forEach((card) => {
+                if (card.dataset.filterHide && !card.dataset.searchHide) {
+                    card.style.display = "flex";
+                }
             });
         }
     }

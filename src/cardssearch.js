@@ -23,9 +23,11 @@
                     const fullText = card.textContent;
                     if (fullText.toLowerCase().indexOf(this.queryText) > -1) {
                         card.style.display = "flex";
+                        delete card.dataset.searchHide;
                         this.showResult(card);
                     } else {
                         card.style.display = "none";
+                        card.dataset.searchHide = true;
                     }
                 });
             } else {
@@ -49,8 +51,10 @@
 
         clearSearch() {
             this.cards.forEach((card) => {
-                card.style.display = "flex";
-                this.hideResult(card);
+                if (card.dataset.searchHide && !card.dataset.filterHide) {
+                    card.style.display = "flex";
+                    this.hideResult(card);
+                }
             });
         }
 
