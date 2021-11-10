@@ -3,7 +3,7 @@
     class CardsFilter {
         constructor(elem) {
             this.filter = elem;
-            this.container = this.searchInput.closest(".container");
+            this.container = this.filter.closest(".container");
             this.cards = this.container ? this.container.querySelectorAll(".card") : null;
             this.taglines = this.cards ? this.cards.querySelectorAll(".tagline") : null;
             this.tags = this.multiple.querySelector("[data-sysflow-multiple-tags]");
