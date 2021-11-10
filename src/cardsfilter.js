@@ -5,9 +5,11 @@
             this.filter = elem;
             this.container = this.filter.closest(".container");
             this.cards = this.container ? this.container.querySelectorAll(".card") : null;
-            this.taglines = this.container
-                ? this.container.querySelectorAll(".card .tagline")
-                : null;
+            this.filterBy =
+                this.filter.dataset.sysflowCardsFilter == "0"
+                    ? ".card .tagline"
+                    : this.filter.dataset.sysflowCardsFilter;
+            this.taglines = this.container ? this.container.querySelectorAll(this.filterBy) : null;
             this.tags = this.filter.querySelector("[data-sysflow-multiple-tags]");
             this.list = this.filter.querySelector("[data-sysflow-multiple-list]");
             this.placeholder = this.filter.querySelector("[data-sysflow-multiple-placeholder]");
