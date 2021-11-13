@@ -61,7 +61,7 @@
 
         removeFromTags(index) {
             this.tags.querySelector(`[data-index="${index}"]`).remove();
-            if (!this.tags.length) {
+            if (!this.tags.children.length) {
                 this.showPlaceholder();
             }
         }
