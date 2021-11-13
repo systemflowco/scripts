@@ -52,7 +52,7 @@
         showError(msg) {
             const error = this.age.querySelector("[data-sysflow-age-error]");
             if (error) {
-                error.innerHTML = msg || "Błąd";
+                error.innerHTML = msg || "Error";
                 error.style.opacity = "100%";
 
                 setTimeout(() => {
@@ -63,19 +63,19 @@
 
         validateForm() {
             if (!this.year) {
-                this.showError("Podaj rok urodzenia");
+                this.showError("Provide year");
                 return false;
             }
             if (this.year < 1900 || this.year > new Date().getFullYear()) {
-                this.showError("Niepoprawny rok urodzenia");
+                this.showError("Incorrect year");
                 return false;
             }
             if (this.month < 1 || this.month > 12) {
-                this.showError("Niepoprawny miesiąc");
+                this.showError("Incorrect month");
                 return false;
             }
             if (this.day < 1 || this.day > 31) {
-                this.showError("Niepoprawny dzień");
+                this.showError("Incorrect day");
                 return false;
             }
             return true;
@@ -100,7 +100,7 @@
                     localStorage.setItem(this.KEY_COOKIE, true);
                     this.hideAgeForm();
                 } else {
-                    this.showError(`Nie masz ukończone ${this.limit} lat`);
+                    this.showError(`You are under ${this.limit} years old`);
                 }
             }
         }
