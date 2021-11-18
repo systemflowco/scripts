@@ -69,6 +69,7 @@
         addToTags(option, index) {
             let tag = document.createElement("div");
             tag.classList.add("tag");
+            tag.classList.add("tag-closeable");
             tag.setAttribute("data-index", index);
             tag.innerHTML = `${option.innerText} <span class="material-icons icon-right">close</span>`;
             //allow deleteting selection by clicking tabs
