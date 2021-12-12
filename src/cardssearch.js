@@ -12,6 +12,11 @@
         assignEvents() {
             if (this.cards) {
                 this.searchInput.addEventListener("keyup", this.searchResults.bind(this));
+                this.searchInput.addEventListener("keypress", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                    }
+                });
             }
         }
 
