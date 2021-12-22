@@ -4,6 +4,9 @@
         constructor(elem) {
             this.filter = elem;
             this.container = this.filter.closest(".container");
+            this.collectionItems = this.container
+                ? this.container.querySelectorAll(".w-dyn-item")
+                : null;
             this.cards = this.container ? this.container.querySelectorAll(".card") : null;
             this.filterBy =
                 this.filter.dataset.sysflowCardsFilter == "0"
@@ -21,6 +24,9 @@
 
         assignEvents() {
             this.clearTags();
+            if (this.collectionItems && this.collectionItems.length) {
+                this.cards = this.collectionItems;
+            }
             if (this.cards && this.taglines) {
                 this.createList();
             }
