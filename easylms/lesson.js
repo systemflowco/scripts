@@ -26,6 +26,7 @@ class Lesson {
         this.checkIfFinished();
         this.checkAllLessons();
         this.finishBtn.addEventListener("click", this.finishLesson.bind(this));
+        document.addEventListener("finishLesson", this.finishLesson.bind(this));
     }
     checkIfFinished() {
         if (this.finishedLessons.indexOf(this.slug) > -1) {

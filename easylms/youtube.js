@@ -31,6 +31,7 @@ function createPlayer(iframe) {
         // setup the event function to be called when YT.player is ready
         events: {
             onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange,
         },
     });
 
@@ -41,5 +42,12 @@ function createPlayer(iframe) {
         // play the video at the specified seconds
         console.log("hejka");
         player.seekTo(30);
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+            console.log("Koniec lekcji");
+            $(document).trigger("finishLesson");
+        }
     }
 }
