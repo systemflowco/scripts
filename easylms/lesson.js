@@ -5,8 +5,11 @@ class Lesson {
         this.finishBtn = document.querySelector("[data-lms-finish-btn]");
         this.finishedBtn = document.querySelector("[data-lms-finished-btn]");
         this.nextLessonBtn = document.querySelector("[data-lms-next-btn]");
+        this.autoplayBtn = document.querySelector("[data-lms-autoplay-btn]");
         this.KEY_FINISH = "LESSON.FINISH";
         this.KEY_LAST = "LESSON.LAST";
+        this.KEY_AUTOPLAY = "LESSON.AUTOPLAY";
+        this.autoplayMode = JSON.parse(localStorage.getItem(this.KEY_AUTOPLAY)) || false;
         this.finishedLessons = JSON.parse(localStorage.getItem(this.KEY_FINISH)) || [];
         this.lessons = document.querySelectorAll(".course-content-lesson");
         this.lessonTitle = document.querySelector(
@@ -16,6 +19,15 @@ class Lesson {
         this.assignEvents();
     }
     assignEvents() {
+        this.saveLastLesson();
+        this.checkIfAutoplay();
+        this.checkIfFinished();
+        this.checkAllLessons();
+        this.finishBtn.addEventListener("click", this.finishLesson.bind(this));
+        $(document).on("finishLesson", this.finishLesson.bind(this));
+        $(document).on("nextLesson", this.goToNextLesson.bind(this));
+    }
+    saveLastLesson() {
         localStorage.setItem(
             this.KEY_LAST,
             JSON.stringify({
@@ -24,11 +36,16 @@ class Lesson {
                 course: this.courseTitle,
             })
         );
-        this.checkIfFinished();
-        this.checkAllLessons();
-        this.finishBtn.addEventListener("click", this.finishLesson.bind(this));
-        $(document).on("finishLesson", this.finishLesson.bind(this));
-        $(document).on("nextLesson", this.goToNextLesson.bind(this));
+    }
+    checkIfAutoplay() {
+        if (this.autoplayMode) {
+            this.autoplayBtn.click();
+        }
+        this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));
+    }
+    toggleAutoplayMode() {
+        this.autoplayMode = !this.autoplayMode;
+        localStorage.setItem(this.KEY_AUTOPLAY, JSON.stringify(this.autoplayMode));
     }
     goToNextLesson() {
         this.nextLessonBtn.click();
@@ -69,9 +86,11 @@ class Lesson {
         this.checkAllLessons();
         localStorage.setItem(this.KEY_FINISH, JSON.stringify(this.finishedLessons));
 
-        setTimeout(() => {
-            $(document).trigger("nextLesson");
-        }, 1000);
+        if (this.autoplayMode) {
+            setTimeout(() => {
+                $(document).trigger("nextLesson");
+            }, 1000);
+        }
     }
 }
 document.addEventListener("DOMContentLoaded", function (event) {
