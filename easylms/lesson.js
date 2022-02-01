@@ -33,6 +33,7 @@ class Lesson {
         $(document).on("playerReady", this.checkLastLesson.bind(this));
     }
     checkLastLesson() {
+        console.log("checkLastlesson");
         if (!this.lastLesson) return;
         if (this.lastLesson.lessonSlug == this.lessonSlug) {
             if (this.lastLesson.progress) {
