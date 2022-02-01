@@ -19,6 +19,7 @@ class Lesson {
         this.assignEvents();
     }
     assignEvents() {
+        this.checkLastLesson();
         this.saveLastLesson();
         this.checkIfAutoplay();
         this.checkIfFinished();
@@ -27,6 +28,13 @@ class Lesson {
         $(document).on("finishLesson", this.finishLesson.bind(this));
         $(document).on("nextLesson", this.goToNextLesson.bind(this));
         $(document).on("videoProgress", this.updateLastLessonProgress.bind(this));
+    }
+    checkLastLesson() {
+        const lastLesson = JSON.parse(localStorage.getItem(this.KEY_LAST));
+        if (!lastLesson) return;
+        if (lastLesson.lessonSlug == this.lessonSlug) {
+            $(document).trigger("goToVideoSecond", 30);
+        }
     }
     saveLastLesson() {
         localStorage.setItem(

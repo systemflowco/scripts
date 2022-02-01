@@ -41,16 +41,20 @@ function createPlayer(iframe) {
 
         // play the video at the specified seconds
         console.log("hejka");
+
         setInterval(() => {
-            $(document).trigger("videoProgress", player.getCurrentTime());
+            $(document).trigger("videoProgress", player.getCurrentTime);
         }, 1000);
+
         player.playVideo();
-        // player.seekTo(30);
+
+        $(document).on("goToVideoSecond", (progress) => {
+            player.seekTo(progress);
+        });
     }
 
     function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.ENDED) {
-            console.log("Koniec lekcji");
             $(document).trigger("finishLesson");
         }
     }
