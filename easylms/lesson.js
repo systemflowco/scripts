@@ -16,11 +16,11 @@ class Lesson {
             ".course-content-lesson.w--current .lesson-name"
         ).innerText;
         this.courseTitle = document.querySelector(".course-title-progress").innerText;
+        this.lastLesson = JSON.parse(localStorage.getItem(this.KEY_LAST));
         this.assignEvents();
     }
     assignEvents() {
-        this.checkLastLesson();
-
+        this.saveLastLesson();
         this.checkIfAutoplay();
         this.checkIfFinished();
         this.checkAllLessons();
@@ -40,7 +40,6 @@ class Lesson {
                 $(document).trigger("goToVideoSecond", lastLesson.progress);
             }
         }
-        this.saveLastLesson();
     }
     saveLastLesson() {
         localStorage.setItem(
