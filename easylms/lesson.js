@@ -43,7 +43,7 @@ class Lesson {
                 console.log("klik");
                 this.autoplayBtn.click();
             }
-            // this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));}
+            this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));
         }, 300);
     }
     toggleAutoplayMode() {
