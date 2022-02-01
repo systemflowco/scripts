@@ -38,6 +38,7 @@ class Lesson {
         );
     }
     checkIfAutoplay() {
+        console.log(this.autoplayMode);
         if (this.autoplayMode) {
             this.autoplayBtn.click();
         }
