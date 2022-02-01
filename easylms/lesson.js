@@ -27,7 +27,7 @@ class Lesson {
         this.finishBtn.addEventListener("click", this.toggleFinishStatus.bind(this));
         $(document).on("finishLesson", this.finishLesson.bind(this));
         $(document).on("nextLesson", this.goToNextLesson.bind(this));
-        $(document).on("videoProgress", function (event, progress) {
+        $(document).on("videoProgress", (event, progress) => {
             this.updateLastLessonProgress(progress);
         });
     }
