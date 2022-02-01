@@ -26,7 +26,7 @@ class Lesson {
         this.checkIfFinished();
         this.checkAllLessons();
         this.finishBtn.addEventListener("click", this.finishLesson.bind(this));
-        document.addEventListener("finishLesson", this.finishLesson.bind(this));
+        $(document).on("finishLesson", this.finishLesson.bind(this));
     }
     checkIfFinished() {
         if (this.finishedLessons.indexOf(this.slug) > -1) {
@@ -58,6 +58,7 @@ class Lesson {
         this.finishedBtn.style.display = "flex";
     }
     finishLesson() {
+        console.log("finishing");
         this.toggleFinishStatus();
         this.finishedLessons.push(this.slug);
         this.checkAllLessons();
