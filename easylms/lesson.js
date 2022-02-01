@@ -46,6 +46,7 @@ class Lesson {
     }
     toggleAutoplayMode() {
         this.autoplayMode = !this.autoplayMode;
+        console.log(this.autoplayMode);
         localStorage.setItem(this.KEY_AUTOPLAY, JSON.stringify(this.autoplayMode));
     }
     goToNextLesson() {
