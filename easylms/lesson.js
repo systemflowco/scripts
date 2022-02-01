@@ -23,7 +23,7 @@ class Lesson {
         this.checkIfAutoplay();
         this.checkIfFinished();
         this.checkAllLessons();
-        this.finishBtn.addEventListener("click", this.finishLesson.bind(this));
+        this.finishBtn.addEventListener("click", this.toggleFinishStatus.bind(this));
         $(document).on("finishLesson", this.finishLesson.bind(this));
         $(document).on("nextLesson", this.goToNextLesson.bind(this));
     }
@@ -82,13 +82,13 @@ class Lesson {
     toggleFinishStatus() {
         this.finishBtn.style.display = "none";
         this.finishedBtn.style.display = "flex";
+        this.finishedLessons.push(this.slug);
+        this.checkAllLessons();
+        localStorage.setItem(this.KEY_FINISH, JSON.stringify(this.finishedLessons));
     }
     finishLesson() {
         console.log("finishing");
         this.toggleFinishStatus();
-        this.finishedLessons.push(this.slug);
-        this.checkAllLessons();
-        localStorage.setItem(this.KEY_FINISH, JSON.stringify(this.finishedLessons));
 
         if (this.autoplayMode) {
             setTimeout(() => {
