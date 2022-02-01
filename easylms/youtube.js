@@ -43,7 +43,9 @@ function createPlayer(iframe) {
         console.log("hejka");
 
         setInterval(() => {
-            $(document).trigger("videoProgress", player.getCurrentTime);
+            $(document).trigger("videoProgress", () => {
+                player.getCurrentTime();
+            });
         }, 1000);
 
         player.playVideo();
