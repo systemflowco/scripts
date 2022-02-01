@@ -27,7 +27,9 @@ class Lesson {
         this.finishBtn.addEventListener("click", this.toggleFinishStatus.bind(this));
         $(document).on("finishLesson", this.finishLesson.bind(this));
         $(document).on("nextLesson", this.goToNextLesson.bind(this));
-        $(document).on("videoProgress", this.updateLastLessonProgress.bind(this));
+        $(document).on("videoProgress", function (event, progress) {
+            this.updateLastLessonProgress(progress);
+        });
     }
     checkLastLesson() {
         const lastLesson = JSON.parse(localStorage.getItem(this.KEY_LAST));
