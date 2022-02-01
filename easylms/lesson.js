@@ -4,6 +4,7 @@ class Lesson {
         this.slug = this.pathname.match(/(?<=lekcje\/).+/)[0];
         this.finishBtn = document.querySelector("[data-lms-finish-btn]");
         this.finishedBtn = document.querySelector("[data-lms-finished-btn]");
+        this.nextLessonBtn = document.querySelector("[data-lms-next-btn]");
         this.KEY_FINISH = "LESSON.FINISH";
         this.KEY_LAST = "LESSON.LAST";
         this.finishedLessons = JSON.parse(localStorage.getItem(this.KEY_FINISH)) || [];
@@ -27,6 +28,10 @@ class Lesson {
         this.checkAllLessons();
         this.finishBtn.addEventListener("click", this.finishLesson.bind(this));
         $(document).on("finishLesson", this.finishLesson.bind(this));
+        $(document).on("nextLesson", this.goToNextLesson.bind(this));
+    }
+    goToNextLesson() {
+        this.nextLessonBtn.click();
     }
     checkIfFinished() {
         if (this.finishedLessons.indexOf(this.slug) > -1) {
@@ -63,6 +68,10 @@ class Lesson {
         this.finishedLessons.push(this.slug);
         this.checkAllLessons();
         localStorage.setItem(this.KEY_FINISH, JSON.stringify(this.finishedLessons));
+
+        setTimeout(() => {
+            $(document).trigger("nextLesson");
+        }, 1000);
     }
 }
 document.addEventListener("DOMContentLoaded", function (event) {
