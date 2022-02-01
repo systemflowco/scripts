@@ -33,11 +33,10 @@ class Lesson {
         $(document).on("playerReady", this.checkLastLesson.bind(this));
     }
     checkLastLesson() {
-        const lastLesson = JSON.parse(localStorage.getItem(this.KEY_LAST));
-        if (!lastLesson) return;
-        if (lastLesson.lessonSlug == this.lessonSlug) {
-            if (lastLesson.progress) {
-                $(document).trigger("goToVideoSecond", lastLesson.progress);
+        if (!this.lastLesson) return;
+        if (this.lastLesson.lessonSlug == this.lessonSlug) {
+            if (this.lastLesson.progress) {
+                $(document).trigger("goToVideoSecond", this.lastLesson.progress);
             }
         }
     }
