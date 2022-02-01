@@ -40,8 +40,6 @@ function createPlayer(iframe) {
         // when each timestamp is clicked
 
         // play the video at the specified seconds
-        console.log("hejka");
-
         setInterval(() => {
             const currentTime = player.getCurrentTime();
             $(document).trigger("videoProgress", currentTime);
@@ -50,6 +48,7 @@ function createPlayer(iframe) {
         player.playVideo();
 
         $(document).on("goToVideoSecond", (event, progress) => {
+            console.log(progress);
             player.seekTo(progress);
         });
     }
