@@ -38,11 +38,13 @@ class Lesson {
         );
     }
     checkIfAutoplay() {
-        if (this.autoplayMode) {
-            console.log("klik");
-            this.autoplayBtn.click();
-        }
-        // this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));
+        setTimeout(() => {
+            if (this.autoplayMode) {
+                console.log("klik");
+                this.autoplayBtn.click();
+            }
+            // this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));}
+        }, 300);
     }
     toggleAutoplayMode() {
         this.autoplayMode = !this.autoplayMode;
