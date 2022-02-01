@@ -41,6 +41,9 @@ function createPlayer(iframe) {
 
         // play the video at the specified seconds
         console.log("hejka");
+        setInterval(() => {
+            $(document).trigger("videoProgress", player.getCurrentTime());
+        }, 1000);
         player.playVideo();
         // player.seekTo(30);
     }

@@ -26,6 +26,7 @@ class Lesson {
         this.finishBtn.addEventListener("click", this.toggleFinishStatus.bind(this));
         $(document).on("finishLesson", this.finishLesson.bind(this));
         $(document).on("nextLesson", this.goToNextLesson.bind(this));
+        $(document).on("videoProgress", this.updateLastLessonProgress.bind(this));
     }
     saveLastLesson() {
         localStorage.setItem(
@@ -37,10 +38,12 @@ class Lesson {
             })
         );
     }
+    updateLastLessonProgress(progress) {
+        console.log(progress);
+    }
     checkIfAutoplay() {
         setTimeout(() => {
             if (this.autoplayMode) {
-                console.log("klik");
                 this.autoplayBtn.click();
             }
             this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));
@@ -48,7 +51,6 @@ class Lesson {
     }
     toggleAutoplayMode() {
         this.autoplayMode = !this.autoplayMode;
-        console.log(this.autoplayMode);
         localStorage.setItem(this.KEY_AUTOPLAY, JSON.stringify(this.autoplayMode));
     }
     goToNextLesson() {
@@ -87,7 +89,6 @@ class Lesson {
         localStorage.setItem(this.KEY_FINISH, JSON.stringify(this.finishedLessons));
     }
     finishLesson() {
-        console.log("finishing");
         this.toggleFinishStatus();
 
         if (this.autoplayMode) {
