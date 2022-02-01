@@ -48,8 +48,6 @@ function createPlayer(iframe) {
         player.playVideo();
 
         $(document).on("goToVideoSecond", (event, progress) => {
-            console.log("listening");
-            console.log(progress);
             player.seekTo(progress);
         });
 

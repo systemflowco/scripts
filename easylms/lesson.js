@@ -36,7 +36,6 @@ class Lesson {
         if (!this.lastLesson) return;
         if (this.lastLesson.lessonSlug == this.slug) {
             if (this.lastLesson.progress) {
-                console.log("trigger");
                 $(document).trigger("goToVideoSecond", this.lastLesson.progress);
             }
         }
