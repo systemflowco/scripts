@@ -38,9 +38,8 @@ class Lesson {
         );
     }
     checkIfAutoplay() {
-        console.log(this.autoplayMode);
         if (this.autoplayMode) {
-            this.autoplayBtn.click();
+            $(this.autoplayBtn).trigger("click");
         }
         this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));
     }
