@@ -5,7 +5,7 @@ class Lesson {
         this.finishBtn = document.querySelector("[data-lms-finish-btn]");
         this.finishedBtn = document.querySelector("[data-lms-finished-btn]");
         this.nextLessonBtn = document.querySelector("[data-lms-next-btn]");
-        this.autoplayBtn = document.querySelector("[data-lms-autoplay-btn]");
+        this.autoplayBtn = document.querySelector("[data-lms-autoplay-btn] input");
         this.KEY_FINISH = "LESSON.FINISH";
         this.KEY_LAST = "LESSON.LAST";
         this.KEY_AUTOPLAY = "LESSON.AUTOPLAY";
@@ -42,7 +42,7 @@ class Lesson {
         if (this.autoplayMode) {
             this.autoplayBtn.click();
         }
-        this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this), true);
+        this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));
     }
     toggleAutoplayMode() {
         this.autoplayMode = !this.autoplayMode;
