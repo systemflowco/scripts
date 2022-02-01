@@ -47,13 +47,13 @@ function createPlayer(iframe) {
 
         player.playVideo();
 
-        $(document).trigger("playerReady");
-
         $(document).on("goToVideoSecond", (event, progress) => {
             console.log("listening");
             console.log(progress);
             player.seekTo(progress);
         });
+
+        $(document).trigger("playerReady");
     }
 
     function onPlayerStateChange(event) {
