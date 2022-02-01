@@ -42,7 +42,7 @@ class Lesson {
         if (this.autoplayMode) {
             this.autoplayBtn.click();
         }
-        this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));
+        this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this), true);
     }
     toggleAutoplayMode() {
         this.autoplayMode = !this.autoplayMode;
