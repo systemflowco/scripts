@@ -39,7 +39,9 @@ class Lesson {
     }
     checkIfAutoplay() {
         if (this.autoplayMode) {
-            $(this.autoplayBtn).trigger("click");
+            console.log(this.autoplayMode);
+            console.log(this.autoplayBtn);
+            this.autoplayBtn.click();
         }
         this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));
     }
