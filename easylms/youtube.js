@@ -49,7 +49,7 @@ function createPlayer(iframe) {
 
         player.playVideo();
 
-        $(document).on("goToVideoSecond", (progress) => {
+        $(document).on("goToVideoSecond", (event, progress) => {
             player.seekTo(progress);
         });
     }

@@ -35,7 +35,9 @@ class Lesson {
         const lastLesson = JSON.parse(localStorage.getItem(this.KEY_LAST));
         if (!lastLesson) return;
         if (lastLesson.lessonSlug == this.lessonSlug) {
-            $(document).trigger("goToVideoSecond", 30);
+            if (lastLesson.progress) {
+                $(document).trigger("goToVideoSecond", lastLesson.progress);
+            }
         }
     }
     saveLastLesson() {
