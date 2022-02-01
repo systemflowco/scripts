@@ -57,7 +57,7 @@ class Lesson {
                 lesson: this.lessonTitle,
                 lessonSlug: this.slug,
                 course: this.courseTitle,
-                progres: Math.round(progress),
+                progress: Math.round(progress),
             })
         );
     }
