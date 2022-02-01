@@ -49,7 +49,15 @@ class Lesson {
         );
     }
     updateLastLessonProgress(progress) {
-        console.log(progress);
+        localStorage.setItem(
+            this.KEY_LAST,
+            JSON.stringify({
+                lesson: this.lessonTitle,
+                lessonSlug: this.slug,
+                course: this.courseTitle,
+                progres: Math.round(progress),
+            })
+        );
     }
     checkIfAutoplay() {
         setTimeout(() => {

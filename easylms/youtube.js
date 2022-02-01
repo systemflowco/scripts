@@ -45,7 +45,7 @@ function createPlayer(iframe) {
         setInterval(() => {
             const currentTime = player.getCurrentTime();
             $(document).trigger("videoProgress", currentTime);
-        }, 1000);
+        }, 5000);
 
         player.playVideo();
 
