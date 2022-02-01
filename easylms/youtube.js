@@ -41,7 +41,8 @@ function createPlayer(iframe) {
 
         // play the video at the specified seconds
         console.log("hejka");
-        player.seekTo(30);
+        player.playVideo();
+        // player.seekTo(30);
     }
 
     function onPlayerStateChange(event) {
