@@ -20,7 +20,7 @@ class Lesson {
     }
     assignEvents() {
         this.checkLastLesson();
-        this.saveLastLesson();
+
         this.checkIfAutoplay();
         this.checkIfFinished();
         this.checkAllLessons();
@@ -30,6 +30,7 @@ class Lesson {
         $(document).on("videoProgress", (event, progress) => {
             this.updateLastLessonProgress(progress);
         });
+        $(document).on("playerReady", this.checkLastLesson.bind(this));
     }
     checkLastLesson() {
         const lastLesson = JSON.parse(localStorage.getItem(this.KEY_LAST));
@@ -39,6 +40,7 @@ class Lesson {
                 $(document).trigger("goToVideoSecond", lastLesson.progress);
             }
         }
+        this.saveLastLesson();
     }
     saveLastLesson() {
         localStorage.setItem(
