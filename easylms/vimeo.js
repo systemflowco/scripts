@@ -26,7 +26,7 @@ function vimeoReady() {
         $(frame).attr("id", "dynamic" + i);
 
         // call the createPlayer function with the iframe's id
-        createPlayer("frame");
+        createPlayer(frame.id);
     });
 }
 
