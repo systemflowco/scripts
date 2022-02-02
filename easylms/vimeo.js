@@ -8,12 +8,12 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 tag.addEventListener("load", vimeoReady);
 
 function vimeoReady() {
-    console.log("vimeo ready");
     $("iframe").each((i, frame) => {
         // for each iframe
         // get the src
         let src = $(frame).attr("src");
         // skip the iframe if it's not a vimeo video
+        console.log(frame.src);
         if (!src.includes("vimeo")) return;
         // get the video id from the webflow defined src attribute value
         const videoId = src.split("vimeo.com%2Fvideo%2F")[1].split("%3F")[0];
