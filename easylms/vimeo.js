@@ -1,5 +1,5 @@
 // inject the vimeo api script
-$('<script onload="vimeoReady();"; src="https://player.vimeo.com/api/player.js">').insertBefore(
+$('<script onload="vimeoReady();" src="https://player.vimeo.com/api/player.js">').insertBefore(
     $("script")[0]
 );
 
