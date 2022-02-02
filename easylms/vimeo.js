@@ -16,6 +16,10 @@ function vimeoReady() {
         // skip the iframe if it's not a vimeo video
         if (!src.includes("vimeo")) return;
         console.log("jest iframe z vimeo");
+
+        // create a unique id for the iframe
+        $(frame).attr("id", "dynamic" + i);
+
         // call the createPlayer function with the iframe's id
         createPlayer(frame);
     });
