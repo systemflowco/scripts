@@ -5,19 +5,16 @@
 
     if (!isYoutubeOnPage) return;
 
-    // inject the vimeo api script
+    // inject the youube api script
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName("script")[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    console.log("startYoutube");
 })();
 
 // setup the onYouTubeIframeAPIReady function
 // this is the function called by the youtube api once it's ready
 function onYouTubeIframeAPIReady() {
-    console.log("startOnYoutube");
     // loop through all the iframes on the page
     $("iframe").each((i, frame) => {
         // for each iframe
@@ -40,7 +37,6 @@ function onYouTubeIframeAPIReady() {
 
 // setup the createPlayer function
 function createYoutubePlayer(iframe) {
-    console.log("startCreateYoutubePlayer");
     // initialize YT.player with the specified iframe's id
     let player = new YT.Player(iframe, {
         // setup the event function to be called when YT.player is ready
@@ -52,9 +48,6 @@ function createYoutubePlayer(iframe) {
 
     // setup the onYoutubePlayerReady function
     function onYoutubePlayerReady(event) {
-        console.log("startOnPlayerReady");
-        // when each timestamp is clicked
-
         // play the video at the specified seconds
         setInterval(() => {
             const currentTime = player.getCurrentTime();
@@ -71,7 +64,6 @@ function createYoutubePlayer(iframe) {
     }
 
     function onYoutubePlayerStateChange(event) {
-        console.log("startOnPlayerStateChange");
         if (event.data == YT.PlayerState.ENDED) {
             $(document).trigger("finishLesson");
         }
