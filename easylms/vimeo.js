@@ -4,13 +4,14 @@ $('<script onload="vimeoReady();"; src="https://player.vimeo.com/api/player.js">
 );
 
 function vimeoReady() {
+    console.log("vimeo ready");
     $("iframe").each((i, frame) => {
         // for each iframe
         // get the src
         let src = $(frame).attr("src");
         // skip the iframe if it's not a vimeo video
         if (!src.includes("vimeo")) return;
-
+        console.log("jest iframe z vimeo");
         // call the createPlayer function with the iframe's id
         createPlayer(frame);
     });
