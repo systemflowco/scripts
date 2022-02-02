@@ -20,12 +20,12 @@ function onYouTubeIframeAPIReady() {
         // create a unique id for the iframe
         $(frame).attr("id", "dynamic" + i);
         // call the createPlayer function with the iframe's id
-        createPlayer(frame.id);
+        createYoutubePlayer(frame.id);
     });
 }
 
 // setup the createPlayer function
-function createPlayer(iframe) {
+function createYoutubePlayer(iframe) {
     // initialize YT.player with the specified iframe's id
     let player = new YT.Player(iframe, {
         // setup the event function to be called when YT.player is ready

@@ -14,11 +14,8 @@ function vimeoReady() {
         let src = $(frame).attr("src");
         // skip the iframe if it's not a vimeo video
         if (!src.includes("vimeo")) {
-            console.log("nie vimeo");
             return;
         }
-        console.log("vimeo");
-        console.log(frame.src);
         // get the video id from the webflow defined src attribute value
         const videoId = src.split("vimeo.com%2Fvideo%2F")[1].split("%3F")[0];
         // create a new src & embed the enablejsapi=1 query string
@@ -27,14 +24,13 @@ function vimeoReady() {
         $(frame).attr("src", src);
         // create a unique id for the iframe
         $(frame).attr("id", "dynamic" + i);
-
         // call the createPlayer function with the iframe's id
-        createPlayer(frame.id);
+        createVimeoPlayer(frame.id);
     });
 }
 
 // setup the createPlayer function
-function createPlayer(iframe) {
+function createVimeoPlayer(iframe) {
     var player = new Vimeo.Player(iframe);
 
     // play the video at the specified seconds
