@@ -35,8 +35,9 @@ function createPlayer(iframe) {
 
     // play the video at the specified seconds
     setInterval(() => {
-        const currentTime = player.getCurrentTime();
-        $(document).trigger("videoProgress", currentTime);
+        player.getCurrentTime().then(function (progress) {
+            $(document).trigger("videoProgress", progress);
+        });
     }, 5000);
 
     player.play();
