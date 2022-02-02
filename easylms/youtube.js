@@ -1,4 +1,10 @@
 (() => {
+    const isYoutubeOnPage = [...document.querySelectorAll("iframe")].filter((x) =>
+        x.src.includes("youtube")
+    ).length;
+
+    if (!isYoutubeOnPage) return;
+
     // inject the youtube api script
     $('<script src="https://www.youtube.com/iframe_api">').insertBefore($("script")[0]);
 
