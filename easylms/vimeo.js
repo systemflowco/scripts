@@ -1,7 +1,11 @@
 // inject the vimeo api script
-$('<script onload="vimeoReady();" src="https://player.vimeo.com/api/player.js">').insertBefore(
-    $("script")[0]
-);
+const tag = document.createElement("script");
+tag.src = "https://player.vimeo.com/api/player.js";
+var firstScriptTag = document.getElementsByTagName("script")[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+//wait until loaded
+tag.addEventListener("load", vimeoReady);
 
 function vimeoReady() {
     console.log("vimeo ready");
