@@ -13,8 +13,12 @@ function vimeoReady() {
         // get the src
         let src = $(frame).attr("src");
         // skip the iframe if it's not a vimeo video
+        if (!src.includes("vimeo")) {
+            console.log("nie vimeo");
+            return;
+        }
+        console.log("vimeo");
         console.log(frame.src);
-        if (!src.includes("vimeo")) return;
         // get the video id from the webflow defined src attribute value
         const videoId = src.split("vimeo.com%2Fvideo%2F")[1].split("%3F")[0];
         // create a new src & embed the enablejsapi=1 query string
