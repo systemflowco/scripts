@@ -56,7 +56,8 @@ function createYoutubePlayer(iframe) {
         }, 5000);
 
         player.playVideo();
-        console.log(player.getIframe());
+        player.getIframe().querySelector(".ytp-chrome-top-buttons");
+        console.log(player.getIframe().querySelector(".ytp-chrome-top-buttons"));
 
         $(document).on("goToVideoSecond", (event, progress) => {
             player.seekTo(progress);
