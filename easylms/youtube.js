@@ -39,6 +39,7 @@ function onYouTubeIframeAPIReady() {
 function createYoutubePlayer(iframe) {
     // initialize YT.player with the specified iframe's id
     let player = new YT.Player(iframe, {
+        playerVars: { showInfo: 0, modestbranding: 1 },
         // setup the event function to be called when YT.player is ready
         events: {
             onReady: onYoutubePlayerReady,
