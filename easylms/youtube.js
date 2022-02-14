@@ -56,12 +56,6 @@ function createYoutubePlayer(iframe) {
         }, 5000);
 
         player.playVideo();
-        player.getIframe().querySelector(".ytp-chrome-top-buttons");
-        console.log(
-            player.getIframe().contentWindow.document.querySelector(".ytp-chrome-top-buttons")
-        );
-
-        player.getIframe().contentWindow.document.querySelector(".ytp-chrome-top-buttons").remove();
 
         $(document).on("goToVideoSecond", (event, progress) => {
             player.seekTo(progress);
