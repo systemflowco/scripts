@@ -70,4 +70,3 @@ function createYoutubePlayer(iframe) {
         }
     }
 }
-data - lms - autoplay - btn;
