@@ -44,6 +44,4 @@ const easy_json = {
         window.easyJSON = data;
     },
 };
-easy_json.get().then(() => {
-    console.log(window.easyJSON);
-});
+easy_json.get();
