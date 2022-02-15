@@ -1,7 +1,7 @@
 const ej_api = "https://app.easytools.pl/api/json";
-const easyJSON = {
+const easy_json = {
     logged() {
-        const stripeKey = easyJSON.getProductId();
+        const stripeKey = easy_json.getProductId();
         return window._EC_USER_ID && window[stripeKey];
     },
     getProductId() {
@@ -10,11 +10,11 @@ const easyJSON = {
         });
     },
     async patch(json, override = false) {
-        if (!easyJSON.logged()) {
+        if (!easy_json.logged()) {
             return;
         }
         const userId = window._EC_USER_ID;
-        const stripeId = easyJSON.getProductId()[0];
+        const stripeId = easy_json.getProductId()[0];
         let userJSON = json;
         if (!override) {
             userJSON = { ...window.easyJSON, ...json };
@@ -30,11 +30,11 @@ const easyJSON = {
         return data;
     },
     async get() {
-        if (!easyJSON.logged()) {
+        if (!easy_json.logged()) {
             return;
         }
         const userId = window._EC_USER_ID;
-        const stripeId = easyJSON.getProductId()[0];
+        const stripeId = easy_json.getProductId()[0];
         const result = await fetch(`${ej_api}/${userId}?stripeId=${stripeId}`, {
             mode: "cors",
             method: "GET",
@@ -44,6 +44,6 @@ const easyJSON = {
         window.easyJSON = data;
     },
 };
-easyJSON.get().then(() => {
+easy_json.get().then(() => {
     console.log(window.easyJSON);
 });

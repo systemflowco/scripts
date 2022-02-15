@@ -48,11 +48,7 @@
                 lessonSlug: this.slug,
                 course: this.courseTitle,
             });
-
-            localStorage.setItem(this.KEY_LAST, obj[this.KEY_LAST]);
-            if (easyJSON) {
-                easyJSON.patch(obj);
-            }
+            saveLsAndEj(obj);
         }
         updateLastLessonProgress(progress) {
             const obj = {};
@@ -62,11 +58,7 @@
                 course: this.courseTitle,
                 progress: Math.round(progress),
             });
-
-            localStorage.setItem(this.KEY_LAST, obj[this.KEY_LAST]);
-            if (easyJSON) {
-                easyJSON.patch(obj);
-            }
+            saveLsAndEj(obj);
         }
         checkIfAutoplay() {
             setTimeout(() => {
@@ -78,7 +70,10 @@
         }
         toggleAutoplayMode() {
             this.autoplayMode = !this.autoplayMode;
-            localStorage.setItem(this.KEY_AUTOPLAY, JSON.stringify(this.autoplayMode));
+
+            const obj = {};
+            obj[this.KEY_AUTOPLAY] = JSON.stringify(this.autoplayMode);
+            saveLsAndEj(obj);
         }
         goToNextLesson() {
             this.nextLessonBtn.click();
@@ -113,7 +108,10 @@
             this.finishedBtn.style.display = "flex";
             this.finishedLessons.push(this.slug);
             this.checkAllLessons();
-            localStorage.setItem(this.KEY_FINISH, JSON.stringify(this.finishedLessons));
+
+            const obj = {};
+            obj[this.KEY_FINISH] = JSON.stringify(this.finishedLessons);
+            saveLsAndEj(obj);
         }
         finishLesson() {
             this.toggleFinishStatus();
@@ -122,6 +120,13 @@
                 setTimeout(() => {
                     $(document).trigger("nextLesson");
                 }, 1000);
+            }
+        }
+        saveLsAndEj(obj) {
+            const key = Object.keys(obj)[0];
+            localStorage.setItem(key, obj[key]);
+            if (typeof easy_json !== "undefined") {
+                easy_json.patch(obj);
             }
         }
     }
