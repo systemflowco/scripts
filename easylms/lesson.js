@@ -113,9 +113,7 @@
         toggleFinishStatus() {
             this.finishBtn.style.display = "none";
             this.finishedBtn.style.display = "flex";
-            console.log(this.finishedLessons);
-            console.log(this.slug);
-            if (this.finishedLessons.indexOf(this.slug) != -1) {
+            if (this.finishedLessons.indexOf(this.slug) == -1) {
                 this.finishedLessons.push(this.slug);
             }
             this.checkAllLessons();
