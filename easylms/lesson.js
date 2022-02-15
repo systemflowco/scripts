@@ -25,12 +25,13 @@
         }
         assignEvents() {
             this.saveLastLesson();
+
             //if no easyJson Script do not wait for data
             if (typeof easy_json !== "undefined") {
                 this.checking();
             } else {
                 //maybe they are already here available
-                if (typeof window.easyJSON !== "undefined") {
+                if (window.easyJSON) {
                     this.checking();
                     // if not wait for data from easyJSON
                 } else {

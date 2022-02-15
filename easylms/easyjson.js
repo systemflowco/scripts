@@ -48,6 +48,7 @@ easy_json
     .get()
     .then(() => {
         $(document).trigger("easyJsonReady");
+        console.log("Easy Json Ready");
     })
     .catch(() => {
         $(document).trigger("easyJsonReady");
