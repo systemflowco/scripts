@@ -139,8 +139,11 @@
             }
         }
         readLsAndEj(key) {
+            console.log(key);
+            console.log(window.easyJSON);
             if (window.easyJSON && window.easyJSON[key]) {
                 let value = window.easyJSON[key];
+                console.log(value);
                 //update localStorage in case they are different
                 localStorage.setItem(key, value);
                 return JSON.parse(value);
