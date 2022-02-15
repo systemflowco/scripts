@@ -27,7 +27,7 @@
             this.saveLastLesson();
 
             //if no easyJson Script do not wait for data
-            if (typeof easy_json !== "undefined") {
+            if (typeof easy_json === "undefined") {
                 this.checking();
             } else {
                 //maybe they are already here available
@@ -82,8 +82,9 @@
                 if (this.autoplayMode) {
                     this.autoplayBtn.click();
                 }
+                console.log(this.autoplayBtn);
                 this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));
-            }, 300);
+            }, 500);
         }
         toggleAutoplayMode() {
             this.autoplayMode = !this.autoplayMode;
