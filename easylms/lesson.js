@@ -42,25 +42,31 @@
             }
         }
         saveLastLesson() {
-            localStorage.setItem(
-                this.KEY_LAST,
-                JSON.stringify({
-                    lesson: this.lessonTitle,
-                    lessonSlug: this.slug,
-                    course: this.courseTitle,
-                })
-            );
+            const obj = {};
+            obj[this.KEY_LAST] = JSON.stringify({
+                lesson: this.lessonTitle,
+                lessonSlug: this.slug,
+                course: this.courseTitle,
+            });
+
+            localStorage.setItem(this.KEY_LAST, obj[this.KEY_LAST]);
+            if (easyJSON) {
+                easyJSON.patch(obj);
+            }
         }
         updateLastLessonProgress(progress) {
-            localStorage.setItem(
-                this.KEY_LAST,
-                JSON.stringify({
-                    lesson: this.lessonTitle,
-                    lessonSlug: this.slug,
-                    course: this.courseTitle,
-                    progress: Math.round(progress),
-                })
-            );
+            const obj = {};
+            obj[this.KEY_LAST] = JSON.stringify({
+                lesson: this.lessonTitle,
+                lessonSlug: this.slug,
+                course: this.courseTitle,
+                progress: Math.round(progress),
+            });
+
+            localStorage.setItem(this.KEY_LAST, obj[this.KEY_LAST]);
+            if (easyJSON) {
+                easyJSON.patch(obj);
+            }
         }
         checkIfAutoplay() {
             setTimeout(() => {
