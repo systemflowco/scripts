@@ -106,7 +106,9 @@
         toggleFinishStatus() {
             this.finishBtn.style.display = "none";
             this.finishedBtn.style.display = "flex";
-            this.finishedLessons.push(this.slug);
+            if (this.finishedLessons.indexOf(this.slug) != -1) {
+                this.finishedLessons.push(this.slug);
+            }
             this.checkAllLessons();
 
             const obj = {};
