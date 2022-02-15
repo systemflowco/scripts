@@ -44,4 +44,11 @@ const easy_json = {
         window.easyJSON = data;
     },
 };
-easy_json.get();
+easy_json
+    .get()
+    .then(() => {
+        $(document).trigger("easyJsonReady");
+    })
+    .catch(() => {
+        $(document).trigger("easyJsonReady");
+    });

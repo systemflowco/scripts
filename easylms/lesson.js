@@ -25,9 +25,19 @@
         }
         assignEvents() {
             this.saveLastLesson();
-            this.checkIfAutoplay();
-            this.checkIfFinished();
-            this.checkAllLessons();
+            //if no easyJson Script do not wait for data
+            if (typeof easy_json !== "undefined") {
+                this.checking();
+            } else {
+                //maybe they are already here available
+                if (typeof window.easyJSON !== "undefined") {
+                    this.checking();
+                    // if not wait for data from easyJSON
+                } else {
+                    $(document).on("easyJsonReady", this.checking.bind(this));
+                }
+            }
+
             this.finishBtn.addEventListener("click", this.toggleFinishStatus.bind(this));
             $(document).on("finishLesson", this.finishLesson.bind(this));
             $(document).on("nextLesson", this.goToNextLesson.bind(this));
@@ -35,6 +45,11 @@
                 this.updateLastLessonProgress(progress);
             });
             $(document).on("playerReady", this.checkLastLesson.bind(this));
+        }
+        checking() {
+            this.checkIfAutoplay();
+            this.checkIfFinished();
+            this.checkAllLessons();
         }
         checkLastLesson() {
             this.lastLesson = this.readLsAndEj(this.KEY_LAST);
@@ -46,23 +61,19 @@
             }
         }
         saveLastLesson() {
-            const obj = {};
-            obj[this.KEY_LAST] = JSON.stringify({
+            this.saveLsAndEj(this.KEY_LAST, {
                 lesson: this.lessonTitle,
                 lessonSlug: this.slug,
                 course: this.courseTitle,
             });
-            this.saveLsAndEj(obj);
         }
         updateLastLessonProgress(progress) {
-            const obj = {};
-            obj[this.KEY_LAST] = JSON.stringify({
+            this.saveLsAndEj(this.KEY_LAST, {
                 lesson: this.lessonTitle,
                 lessonSlug: this.slug,
                 course: this.courseTitle,
                 progress: Math.round(progress),
             });
-            this.saveLsAndEj(obj);
         }
         checkIfAutoplay() {
             this.autoplayMode = this.readLsAndEj(this.KEY_AUTOPLAY) || false;
@@ -75,10 +86,7 @@
         }
         toggleAutoplayMode() {
             this.autoplayMode = !this.autoplayMode;
-
-            const obj = {};
-            obj[this.KEY_AUTOPLAY] = JSON.stringify(this.autoplayMode);
-            this.saveLsAndEj(obj);
+            this.saveLsAndEj(this.KEY_AUTOPLAY, this.autoplayMode);
         }
         goToNextLesson() {
             this.nextLessonBtn.click();
@@ -117,10 +125,7 @@
                 this.finishedLessons.push(this.slug);
             }
             this.checkAllLessons();
-
-            const obj = {};
-            obj[this.KEY_FINISH] = JSON.stringify(this.finishedLessons);
-            this.saveLsAndEj(obj);
+            this.saveLsAndEj(this.KEY_FINISH, this.finishLessons);
         }
         finishLesson() {
             this.toggleFinishStatus();
@@ -131,8 +136,9 @@
                 }, 1000);
             }
         }
-        saveLsAndEj(obj) {
-            const key = Object.keys(obj)[0];
+        saveLsAndEj(key, value) {
+            const obj = {};
+            obj[key] = JSON.stringify(value);
             localStorage.setItem(key, obj[key]);
             if (typeof easy_json !== "undefined") {
                 easy_json.patch(obj);
