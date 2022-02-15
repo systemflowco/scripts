@@ -140,7 +140,10 @@
         }
         readLsAndEj(key) {
             if (window.easyJSON && window.easyJSON[key]) {
-                return JSON.parse(window.easyJSON[key]);
+                let value = window.easyJSON[key];
+                //update localStorage in case they are different
+                localStorage.setItem(key, value);
+                return JSON.parse(value);
             }
             return JSON.parse(localStorage.getItem(key));
         }
