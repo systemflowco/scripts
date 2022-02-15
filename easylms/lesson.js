@@ -7,17 +7,20 @@
             this.finishedBtn = document.querySelector("[data-lms-finished-btn]");
             this.nextLessonBtn = document.querySelector("[data-lms-next-btn]");
             this.autoplayBtn = document.querySelector("[data-lms-autoplay-btn] input");
-            this.KEY_FINISH = "LESSON.FINISH";
-            this.KEY_LAST = "LESSON.LAST";
-            this.KEY_AUTOPLAY = "LESSON.AUTOPLAY";
-            this.autoplayMode = JSON.parse(localStorage.getItem(this.KEY_AUTOPLAY)) || false;
-            this.finishedLessons = JSON.parse(localStorage.getItem(this.KEY_FINISH)) || [];
             this.lessons = document.querySelectorAll(".course-content-lesson");
             this.lessonTitle = document.querySelector(
                 ".course-content-lesson.w--current .lesson-name"
             ).innerText;
             this.courseTitle = document.querySelector(".course-title-progress").innerText;
-            this.lastLesson = JSON.parse(localStorage.getItem(this.KEY_LAST));
+
+            this.KEY_FINISH = "LESSON.FINISH";
+            this.KEY_LAST = "LESSON.LAST";
+            this.KEY_AUTOPLAY = "LESSON.AUTOPLAY";
+
+            this.autoplayMode = false;
+            this.finishedLessons = [];
+            this.lastLesson = "";
+
             this.assignEvents();
         }
         assignEvents() {
@@ -34,6 +37,7 @@
             $(document).on("playerReady", this.checkLastLesson.bind(this));
         }
         checkLastLesson() {
+            this.lastLesson = this.readLsAndEj(this.KEY_LAST);
             if (!this.lastLesson) return;
             if (this.lastLesson.lessonSlug == this.slug) {
                 if (this.lastLesson.progress) {
@@ -61,6 +65,7 @@
             this.saveLsAndEj(obj);
         }
         checkIfAutoplay() {
+            this.autoplayMode = this.readLsAndEj(this.KEY_AUTOPLAY) || false;
             setTimeout(() => {
                 if (this.autoplayMode) {
                     this.autoplayBtn.click();
@@ -79,6 +84,8 @@
             this.nextLessonBtn.click();
         }
         checkIfFinished() {
+            this.finishedLessons = this.readLsAndEj(this.KEY_FINISH) || [];
+
             if (this.finishedLessons.indexOf(this.slug) > -1) {
                 this.toggleFinishStatus();
             }
@@ -130,6 +137,12 @@
             if (typeof easy_json !== "undefined") {
                 easy_json.patch(obj);
             }
+        }
+        readLsAndEj(key) {
+            if (window.easyJSON && window.easyJSON[key]) {
+                return JSON.parse(window.easyJSON[key]);
+            }
+            return JSON.parse(localStorage.getItem(key));
         }
     }
     document.addEventListener("DOMContentLoaded", function (event) {
