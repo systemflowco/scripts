@@ -82,7 +82,6 @@
                 if (this.autoplayMode) {
                     this.autoplayBtn.click();
                 }
-                console.log(this.autoplayBtn);
                 this.autoplayBtn.addEventListener("click", this.toggleAutoplayMode.bind(this));
             }, 500);
         }
@@ -147,11 +146,8 @@
             }
         }
         readLsAndEj(key) {
-            console.log(key);
-            console.log(window.easyJSON);
             if (window.easyJSON && window.easyJSON[key]) {
                 let value = window.easyJSON[key];
-                console.log(value);
                 //update localStorage in case they are different
                 localStorage.setItem(key, value);
                 return JSON.parse(value);
