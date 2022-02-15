@@ -126,7 +126,7 @@
                 this.finishedLessons.push(this.slug);
             }
             this.checkAllLessons();
-            this.saveLsAndEj(this.KEY_FINISH, this.finishLessons);
+            this.saveLsAndEj(this.KEY_FINISH, this.finishedLessons);
         }
         finishLesson() {
             this.toggleFinishStatus();
