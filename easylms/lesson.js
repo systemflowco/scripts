@@ -48,7 +48,7 @@
                 lessonSlug: this.slug,
                 course: this.courseTitle,
             });
-            saveLsAndEj(obj);
+            this.saveLsAndEj(obj);
         }
         updateLastLessonProgress(progress) {
             const obj = {};
@@ -58,7 +58,7 @@
                 course: this.courseTitle,
                 progress: Math.round(progress),
             });
-            saveLsAndEj(obj);
+            this.saveLsAndEj(obj);
         }
         checkIfAutoplay() {
             setTimeout(() => {
@@ -73,7 +73,7 @@
 
             const obj = {};
             obj[this.KEY_AUTOPLAY] = JSON.stringify(this.autoplayMode);
-            saveLsAndEj(obj);
+            this.saveLsAndEj(obj);
         }
         goToNextLesson() {
             this.nextLessonBtn.click();
@@ -111,7 +111,7 @@
 
             const obj = {};
             obj[this.KEY_FINISH] = JSON.stringify(this.finishedLessons);
-            saveLsAndEj(obj);
+            this.saveLsAndEj(obj);
         }
         finishLesson() {
             this.toggleFinishStatus();
