@@ -16,16 +16,16 @@
         }
 
         checkPrices() {
+            this.totalPrice = this.startPrice;
+            this.totalMonthPrice = this.startMonthPrice;
             this.prices.forEach((price) => {
-                this.totalPrice = this.startPrice;
-                this.totalMonthPrice = this.startMonthPrice;
-                const chosen = price.querySelector("input[type=checkbox]").checked;
+                let chosen = price.querySelector("input[type=checkbox]").checked;
                 if (chosen) {
-                    const title = price.querySelector(".checkbox-title").innerText;
-                    const priceField = price.querySelector(".service-price");
-                    const price = priceField ? +priceField.innerText.split("zł")[0] : 0;
-                    const monthPriceField = price.querySelector(".tag.alternative");
-                    const monthPrice = monthPriceField
+                    let title = price.querySelector(".checkbox-title").innerText;
+                    let priceField = price.querySelector(".service-price");
+                    let price = priceField ? +priceField.innerText.split("zł")[0] : 0;
+                    let monthPriceField = price.querySelector(".tag.alternative");
+                    let monthPrice = monthPriceField
                         ? +monthPriceField.innerText.split("zł")[0]
                         : 0;
                     this.totalPrice += price;
