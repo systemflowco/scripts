@@ -62,7 +62,7 @@
         }
 
         clearPriceTable() {
-            const firstItem = this.priceTable.querySelector("ol").children[0];
+            const firstItem = this.priceTable.querySelector("ol").children[0].outerHTML;
             this.priceTable.querySelector("ol").innerHTML = firstItem;
         }
 
