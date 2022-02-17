@@ -2,7 +2,7 @@
     class Calculator {
         constructor(elem) {
             this.prices = document.querySelectorAll(".pricing-checkbox");
-            this.startPrice = 1990;
+            this.startPrice = 990;
             this.startMonthPrice = 0;
             this.totalPrice = 0;
             this.totalMonthPrice = 0;
@@ -34,6 +34,10 @@
                     this.addPriceToTable(title, price);
                 }
             });
+            //update total Price
+            this.priceTable.querySelector(
+                ".summary-item-price.big"
+            ).innerText = `${this.totalPrice} zł netto`;
         }
 
         addPriceToTable(title, price) {
