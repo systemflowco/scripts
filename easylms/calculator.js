@@ -12,6 +12,7 @@
         }
 
         assignEvents() {
+            this.checkPrices();
             this.items.forEach((item) => {
                 item.addEventListener("click", this.checkPrices.bind(this));
             });
@@ -32,8 +33,10 @@
                     let monthPrice = monthPriceField
                         ? +monthPriceField.innerText.split("zł")[0]
                         : 0;
-                    this.totalPrice += price;
-                    this.addPriceToTable(title, price);
+                    if (price) {
+                        this.totalPrice += price;
+                        this.addPriceToTable(title, price);
+                    }
                     if (monthPrice) {
                         this.totalMonthPrice += monthPrice;
                         this.addMonthPriceToTable(title, monthPrice);
