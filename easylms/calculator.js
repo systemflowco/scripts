@@ -2,6 +2,7 @@
     class Calculator {
         constructor(elem) {
             this.items = document.querySelectorAll(".pricing-checkbox");
+            this.countItems = document.querySelectorAll(".service-header");
             this.startPrice = 990;
             this.startMonthPrice = 0;
             this.totalPrice = 0;
@@ -15,17 +16,15 @@
             this.checkPrices();
             this.items.forEach((item) => {
                 item.addEventListener("click", this.checkPrices.bind(this));
+            });
+            this.countItems.forEach((item) => {
                 let counter = item.querySelector(".input-counter");
                 if (counter) {
-                    item.querySelector(".input-counter+a").addEventListener(
-                        "click",
-                        this.changeAmount.bind(this, "plus")
-                    );
-                    item.querySelector(".input-counter~a").addEventListener(
-                        "click",
-                        this.changeAmount.bind(this, "minus")
-                    );
+                    let toggles = counter.parentElement.querySelectorAll("a");
+                    toggles[0].addEventListener("click", this.changeAmount.bind(this, "plus"));
+                    toggles[1].addEventListener("click", this.changeAmount.bind(this, "minus"));
                 }
+                item.addEventListener("click", this.checkPrices.bind(this));
             });
         }
 
