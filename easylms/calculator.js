@@ -6,6 +6,7 @@
             this.startMonthPrice = 0;
             this.totalPrice = 0;
             this.totalMonthPrice = 0;
+            this.priceTable = document.querySelector(".pricing-summary");
             this.assignEvents();
         }
 
@@ -30,8 +31,14 @@
                         : 0;
                     this.totalPrice += price;
                     this.totalMonthPrice += monthPrice;
+                    this.addPriceToTable(title, price);
                 }
             });
+        }
+
+        addPriceToTable(title, price) {
+            const newItem = `<li class="summary-list-item"><div class="summary-item-name">${title}</div><div class="summary-item-price">${price} zł</div></li>`;
+            this.priceTable.querySelector("ol").innerHTML += newItem;
         }
     }
     document.addEventListener("DOMContentLoaded", function (event) {
