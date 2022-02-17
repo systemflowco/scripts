@@ -7,7 +7,7 @@
             this.collectionItems = this.container
                 ? this.container.querySelectorAll(".w-dyn-item")
                 : null;
-            this.cards = this.container ? this.container.querySelectorAll(".cards") : null;
+            this.cards = this.container ? this.container.querySelectorAll(".card") : null;
             this.textSelectors = "h1, h2, h3, h4, h5, h6, p";
             this.assignEvents();
         }
