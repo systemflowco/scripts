@@ -20,8 +20,10 @@
             this.totalPrice = this.startPrice;
             this.totalMonthPrice = this.startMonthPrice;
             this.prices.forEach((price) => {
+                console.log(price);
                 let chosen = price.querySelector("input[type=checkbox]").checked;
                 if (chosen) {
+                    console.log(price);
                     let title = price.querySelector(".checkbox-title").innerText;
                     let priceField = price.querySelector(".service-price");
                     let price = priceField ? +priceField.innerText.split("zł")[0] : 0;
