@@ -15,6 +15,17 @@
             this.checkPrices();
             this.items.forEach((item) => {
                 item.addEventListener("click", this.checkPrices.bind(this));
+                let counter = item.querySelector(".input-counter");
+                if (counter) {
+                    item.querySelector(".input-counter+a").addEventListener(
+                        "click",
+                        this.changeAmount.bind(this, "plus")
+                    );
+                    item.querySelector(".input-counter~a").addEventListener(
+                        "click",
+                        this.changeAmount.bind(this, "minus")
+                    );
+                }
             });
         }
 
@@ -71,6 +82,10 @@
 
         clearMonthPriceTable() {
             this.monthPriceTable.querySelector("ol").innerHTML = "";
+        }
+
+        changeAmount(value) {
+            console.log(value);
         }
     }
     document.addEventListener("DOMContentLoaded", function (event) {
