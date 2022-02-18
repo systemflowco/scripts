@@ -121,7 +121,7 @@
             } else {
                 counter.value = 0;
             }
-            this.updateCheckboxState();
+            this.updateCheckboxState(counter);
         }
 
         updateCheckboxState(counter) {
