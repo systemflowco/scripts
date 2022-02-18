@@ -23,12 +23,14 @@
                     let toggles = counter.parentElement.querySelectorAll("a");
                     toggles[0].addEventListener("click", this.changeAmount.bind(this, counter, -1));
                     toggles[1].addEventListener("click", this.changeAmount.bind(this, counter, 1));
+                    counter.addEventListener("input", this.changeAmount.bind(this, counter, 0));
                 }
                 item.addEventListener("click", this.checkAllPrices.bind(this));
             });
         }
 
         checkAllPrices() {
+            console.log("checking prices");
             this.totalPrice = this.startPrice;
             this.clearPriceTable();
             this.totalMonthPrice = this.startMonthPrice;
@@ -113,9 +115,11 @@
 
             if (newValue > -1) {
                 counter.value = newValue;
+            } else {
+                counter.value = 0;
             }
 
-            if (newValue === 1 || newValue === 0) {
+            if (oldValue === 0 || newValue === 0) {
                 counter.closest(".service-header").querySelector("input[type=checkbox]").click();
             }
         }
