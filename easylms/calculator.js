@@ -23,7 +23,7 @@
                     let toggles = counter.parentElement.querySelectorAll("a");
                     toggles[0].addEventListener("click", this.changeAmount.bind(this, counter, -1));
                     toggles[1].addEventListener("click", this.changeAmount.bind(this, counter, 1));
-                    counter.addEventListener("input", this.changeAmount.bind(this, counter, 0));
+                    counter.addEventListener("change", this.changeInputAmount.bind(this, counter));
                 }
                 item.addEventListener("click", this.checkAllPrices.bind(this));
             });
@@ -118,9 +118,19 @@
             } else {
                 counter.value = 0;
             }
+        }
 
-            if (oldValue === 0 || newValue === 0) {
-                counter.closest(".service-header").querySelector("input[type=checkbox]").click();
+        changeInputAmount(counter) {
+            let chosenField = counter
+                .closest(".service-header")
+                .querySelector("input[type=checkbox]");
+            let chosen = chosenField.checked;
+
+            if (counter.value > 0 && !chosen) {
+                chosenField.click();
+            }
+            if (counter.value <= 0 && chosen) {
+                chosenField.click();
             }
         }
     }
