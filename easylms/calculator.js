@@ -108,8 +108,14 @@
         }
 
         changeAmount(counter, value) {
-            counter.value += value;
-            if (counter.value) {
+            let oldValue = +counter.value;
+            let newValue = oldValue + value;
+
+            if (newValue > -1) {
+                counter.value = newValue;
+            }
+
+            if (newValue === 1 || newValue === 0) {
                 counter.closest(".service-header").querySelector("input[type=checkbox]").click();
             }
         }
