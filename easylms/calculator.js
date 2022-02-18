@@ -69,7 +69,7 @@
                         this.addPriceToTable(title, price);
                     }
                     if (!price) {
-                        this.addPriceToTable(title, "-");
+                        this.addPriceToTable(title, "");
                     }
                     if (monthPrice) {
                         this.totalMonthPrice += monthPrice;
@@ -103,7 +103,9 @@
         }
 
         addPriceToTable(title, price) {
-            const newItem = `<li class="summary-list-item"><div class="summary-item-name">${title}</div><div class="summary-item-price">${price} zł</div></li>`;
+            const newItem = `<li class="summary-list-item"><div class="summary-item-name">${title}</div><div class="summary-item-price">${
+                price ? price + " zł" : "-"
+            }</div></li>`;
             this.priceTable.querySelector("ol").innerHTML += newItem;
         }
 
