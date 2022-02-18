@@ -13,6 +13,7 @@
         }
 
         assignEvents() {
+            this.startingPointCounter();
             this.checkAllPrices();
             this.items.forEach((item) => {
                 item.addEventListener("click", this.checkAllPrices.bind(this));
@@ -33,7 +34,6 @@
         }
 
         checkAllPrices() {
-            console.log("checking prices");
             this.totalPrice = this.startPrice;
             this.clearPriceTable();
             this.totalMonthPrice = this.startMonthPrice;
@@ -90,6 +90,12 @@
                         this.addPriceToTable(title, price * amount);
                     }
                 }
+            });
+        }
+
+        startingPointCounter() {
+            this.countItems.forEach((item) => {
+                item.querySelector(".input-counter").value = 1;
             });
         }
 
