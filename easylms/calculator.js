@@ -3,7 +3,7 @@
         constructor(elem) {
             this.items = document.querySelectorAll(".pricing-checkbox");
             this.countItems = document.querySelectorAll(".service-header");
-            this.startPrice = 990;
+            this.startPrice = +document.querySelector(".price-big").innerText.split("zł")[0];
             this.startMonthPrice = 0;
             this.totalPrice = 0;
             this.totalMonthPrice = 0;
@@ -23,7 +23,10 @@
                     let toggles = counter.parentElement.querySelectorAll("a");
                     toggles[0].addEventListener("click", this.changeAmount.bind(this, counter, -1));
                     toggles[1].addEventListener("click", this.changeAmount.bind(this, counter, 1));
-                    counter.addEventListener("change", this.changeInputAmount.bind(this, counter));
+                    counter.addEventListener(
+                        "change",
+                        this.updateCheckboxState.bind(this, counter)
+                    );
                 }
                 item.addEventListener("click", this.checkAllPrices.bind(this));
             });
@@ -118,9 +121,10 @@
             } else {
                 counter.value = 0;
             }
+            this.updateCheckboxState();
         }
 
-        changeInputAmount(counter) {
+        updateCheckboxState(counter) {
             let chosenField = counter
                 .closest(".service-header")
                 .querySelector("input[type=checkbox]");
