@@ -13,26 +13,42 @@
         }
 
         assignEvents() {
-            this.checkPrices();
+            this.checkAllPrices();
             this.items.forEach((item) => {
-                item.addEventListener("click", this.checkPrices.bind(this));
+                item.addEventListener("click", this.checkAllPrices.bind(this));
             });
             this.countItems.forEach((item) => {
                 let counter = item.querySelector(".input-counter");
                 if (counter) {
                     let toggles = counter.parentElement.querySelectorAll("a");
-                    toggles[0].addEventListener("click", this.changeAmount.bind(this, "plus"));
-                    toggles[1].addEventListener("click", this.changeAmount.bind(this, "minus"));
+                    toggles[0].addEventListener("click", this.changeAmount.bind(this, counter, -1));
+                    toggles[1].addEventListener("click", this.changeAmount.bind(this, counter, 1));
                 }
-                item.addEventListener("click", this.checkPrices.bind(this));
+                item.addEventListener("click", this.checkAllPrices.bind(this));
             });
         }
 
-        checkPrices() {
+        checkAllPrices() {
             this.totalPrice = this.startPrice;
             this.clearPriceTable();
             this.totalMonthPrice = this.startMonthPrice;
             this.clearMonthPriceTable();
+
+            this.checkSinglePrices();
+            this.checkCounterPrices();
+
+            //update total Price
+            this.priceTable.querySelector(
+                ".summary-item-price.big"
+            ).innerText = `${this.totalPrice} zł netto`;
+
+            //update total month Price
+            this.monthPriceTable.querySelector(
+                ".summary-item-price.big"
+            ).innerText = `${this.totalMonthPrice} zł`;
+        }
+
+        checkSinglePrices() {
             this.items.forEach((item) => {
                 let chosen = item.querySelector("input[type=checkbox]").checked;
                 if (chosen) {
@@ -53,15 +69,23 @@
                     }
                 }
             });
-            //update total Price
-            this.priceTable.querySelector(
-                ".summary-item-price.big"
-            ).innerText = `${this.totalPrice} zł netto`;
+        }
 
-            //update total month Price
-            this.monthPriceTable.querySelector(
-                ".summary-item-price.big"
-            ).innerText = `${this.totalMonthPrice} zł`;
+        checkCounterPrices() {
+            this.countItems.forEach((item) => {
+                let chosen = item.querySelector("input[type=checkbox]").checked;
+                if (chosen) {
+                    let title = item.querySelector(".service-title").innerText;
+                    let priceField = item.querySelector(".service-price-label");
+                    let price = priceField ? +priceField.innerText.split("zł")[0] : 0;
+                    let amountField = item.querySelector(".input-counter");
+                    let amount = amountField ? +amountField.value : 0;
+                    if (price && amount) {
+                        this.totalPrice += price * amount;
+                        this.addPriceToTable(title, price * amount);
+                    }
+                }
+            });
         }
 
         addPriceToTable(title, price) {
@@ -83,8 +107,11 @@
             this.monthPriceTable.querySelector("ol").innerHTML = "";
         }
 
-        changeAmount(value) {
-            console.log(value);
+        changeAmount(counter, value) {
+            counter.value += value;
+            if (counter.value) {
+                counter.closest(".service-header").querySelector("input[type=checkbox]").click();
+            }
         }
     }
     document.addEventListener("DOMContentLoaded", function (event) {
