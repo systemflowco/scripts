@@ -68,6 +68,9 @@
                         this.totalPrice += price;
                         this.addPriceToTable(title, price);
                     }
+                    if (!price) {
+                        this.addPriceToTable(title, "-");
+                    }
                     if (monthPrice) {
                         this.totalMonthPrice += monthPrice;
                         this.addMonthPriceToTable(title, monthPrice);
