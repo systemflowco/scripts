@@ -9,7 +9,7 @@
             lastLesson = JSON.parse(localStorage.getItem(KEY_LAST));
         }
 
-        if (lastLesson) {
+        if (continueBanner && lastLesson) {
             continueBanner.href = `./lekcje/${lastLesson.lessonSlug}`;
             continueBanner.querySelector(".continue-course-name-span").innerText =
                 lastLesson.course;
