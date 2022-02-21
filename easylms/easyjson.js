@@ -44,12 +44,13 @@ const easy_json = {
         window.easyJSON = data;
     },
 };
+
+const newEvent = new Event("easyJsonReady");
 easy_json
     .get()
     .then(() => {
-        $(document).trigger("easyJsonReady");
-        console.log("Easy Json Ready");
+        document.dispatchEvent(newEvent);
     })
     .catch(() => {
-        $(document).trigger("easyJsonReady");
+        document.dispatchEvent(newEvent);
     });
