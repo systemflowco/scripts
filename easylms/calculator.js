@@ -18,7 +18,7 @@
                 item.addEventListener("click", this.checkAllPrices.bind(this));
             });
             this.countItems.forEach((item) => {
-                let toggles = counter.parentElement.querySelectorAll("a");
+                let toggles = item.parentElement.querySelectorAll("a");
                 toggles[0].addEventListener("click", this.changeAmount.bind(this, item, -1));
                 toggles[1].addEventListener("click", this.changeAmount.bind(this, item, 1));
             });
@@ -96,6 +96,13 @@
             } else {
                 counter.innerText = 0;
             }
+
+            if (newValue > 1) {
+                item.parentElement.querySelector("a").classList.remove("disabled");
+            } else {
+                item.parentElement.querySelector("a").classList.add("disabled");
+            }
+
             this.updateCheckboxState(counter);
         }
 
