@@ -15,7 +15,10 @@
         assignEvents() {
             this.checkAllPrices();
             this.items.forEach((item) => {
-                item.addEventListener("click", this.checkAllPrices.bind(this));
+                item.querySelector(".w-checkbox").addEventListener(
+                    "click",
+                    this.checkAllPrices.bind(this)
+                );
             });
             this.countItems.forEach((item) => {
                 let toggles = item.parentElement.querySelectorAll("a");
@@ -97,7 +100,7 @@
                 counter.innerText = 0;
             }
 
-            if (newValue > 1) {
+            if (newValue > 0) {
                 counter.parentElement.querySelector("a").classList.remove("disabled");
             } else {
                 counter.parentElement.querySelector("a").classList.add("disabled");
