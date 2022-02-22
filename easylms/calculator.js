@@ -59,7 +59,10 @@
                     let amount = amountField ? +amountField.innerText : 1;
                     if (price) {
                         this.totalPrice += price * amount;
-                        this.addPriceToTable(title, price * amount);
+                        this.addPriceToTable(
+                            amount > 1 ? title + " x" + amount : title,
+                            price * amount
+                        );
                     }
                     if (monthPrice) {
                         this.totalMonthPrice += monthPrice * amount;
