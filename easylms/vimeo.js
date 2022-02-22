@@ -26,7 +26,7 @@
             // get the video id from the webflow defined src attribute value
             const videoId = src.split("vimeo.com%2Fvideo%2F")[1].split("%26")[0];
             // create a new src & embed the enablejsapi=1 query string
-            src = `https://vimeo.com/${videoId}?embedded=true`;
+            src = `https://player.vimeo.com/video/${videoId}?embedded=true`;
             // set the recreated src as the iframe's src
             $(frame).attr("src", src);
             // create a unique id for the iframe
