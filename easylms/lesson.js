@@ -48,6 +48,7 @@
             $(document).on("playerReady", this.checkLastLesson.bind(this));
         }
         checking() {
+            console.log("checking");
             this.checkIfAutoplay();
             this.checkIfFinished();
             this.checkAllLessons();
@@ -129,6 +130,7 @@
             this.saveLsAndEj(this.KEY_FINISH, this.finishedLessons);
         }
         finishLesson() {
+            console.log("finish lesson");
             this.toggleFinishStatus();
 
             if (this.autoplayMode) {
