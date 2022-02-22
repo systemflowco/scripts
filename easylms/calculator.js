@@ -98,9 +98,9 @@
             }
 
             if (newValue > 1) {
-                item.parentElement.querySelector("a").classList.remove("disabled");
+                counter.parentElement.querySelector("a").classList.remove("disabled");
             } else {
-                item.parentElement.querySelector("a").classList.add("disabled");
+                counter.parentElement.querySelector("a").classList.add("disabled");
             }
 
             this.updateCheckboxState(counter);
