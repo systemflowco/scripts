@@ -11,6 +11,7 @@ const easy_json = {
     },
     async patch(json, override = false) {
         if (!easy_json.logged()) {
+            window.easyJSON = {};
             return;
         }
         const userId = window._EC_USER_ID;
@@ -26,11 +27,12 @@ const easy_json = {
             body: JSON.stringify({ data: JSON.stringify(userJSON), stripeId: stripeId }),
         });
         const { data } = await result.json();
-        window.easyJSON = data;
+        window.easyJSON = data || {};
         return data;
     },
     async get() {
         if (!easy_json.logged()) {
+            window.easyJSON = {};
             return;
         }
         const userId = window._EC_USER_ID;
@@ -41,7 +43,7 @@ const easy_json = {
             headers: { "Content-Type": "application/json" },
         });
         const data = await result.json();
-        window.easyJSON = data;
+        window.easyJSON = data || {};
     },
 };
 
