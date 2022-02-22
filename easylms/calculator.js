@@ -1,8 +1,8 @@
 (() => {
     class Calculator {
         constructor(elem) {
-            this.items = document.querySelectorAll(".pricing-checkbox");
-            this.countItems = document.querySelectorAll(".service-header");
+            this.items = document.querySelectorAll(".pricing-checkbox-header");
+            this.countItems = document.querySelectorAll(".checkbox-counter-value");
             this.startPrice = +document.querySelector(".price-big").innerText.split("zł")[0];
             this.startMonthPrice = 0;
             this.totalPrice = 0;
@@ -13,23 +13,14 @@
         }
 
         assignEvents() {
-            this.startingPointCounter();
             this.checkAllPrices();
             this.items.forEach((item) => {
                 item.addEventListener("click", this.checkAllPrices.bind(this));
             });
             this.countItems.forEach((item) => {
-                let counter = item.querySelector(".input-counter");
-                if (counter) {
-                    let toggles = counter.parentElement.querySelectorAll("a");
-                    toggles[0].addEventListener("click", this.changeAmount.bind(this, counter, -1));
-                    toggles[1].addEventListener("click", this.changeAmount.bind(this, counter, 1));
-                    counter.addEventListener(
-                        "change",
-                        this.updateCheckboxState.bind(this, counter)
-                    );
-                }
-                item.addEventListener("click", this.checkAllPrices.bind(this));
+                let toggles = counter.parentElement.querySelectorAll("a");
+                toggles[0].addEventListener("click", this.changeAmount.bind(this, item, -1));
+                toggles[1].addEventListener("click", this.changeAmount.bind(this, item, 1));
             });
         }
 
@@ -40,7 +31,6 @@
             this.clearMonthPriceTable();
 
             this.checkSinglePrices();
-            this.checkCounterPrices();
 
             //update total Price
             this.priceTable.querySelector(
@@ -57,48 +47,22 @@
             this.items.forEach((item) => {
                 let chosen = item.querySelector("input[type=checkbox]").checked;
                 if (chosen) {
-                    let title = item.querySelector(".checkbox-title").innerText;
-                    let priceField = item.querySelector(".service-price");
-                    let price = priceField ? +priceField.innerText.split("zł")[0] : 0;
-                    let monthPriceField = item.querySelector(".tag.alternative");
-                    let monthPrice = monthPriceField
-                        ? +monthPriceField.innerText.split("zł")[0]
-                        : 0;
+                    let title = item.querySelector(".checkbox-custom-label").innerText;
+                    let priceField = item.querySelector(".price-service");
+                    let price = priceField ? +priceField.innerText : 0;
+                    let monthPriceField = item.querySelector(".price-monthly");
+                    let monthPrice = monthPriceField ? +monthPriceField.innerText : 0;
+                    let amountField = item.querySelector(".checkbox-counter-value");
+                    let amount = amountField ? +amountField.innerText : 1;
                     if (price) {
-                        this.totalPrice += price;
-                        this.addPriceToTable(title, price);
-                    }
-                    if (!price) {
-                        this.addPriceToTable(title, "");
-                    }
-                    if (monthPrice) {
-                        this.totalMonthPrice += monthPrice;
-                        this.addMonthPriceToTable(title, monthPrice);
-                    }
-                }
-            });
-        }
-
-        checkCounterPrices() {
-            this.countItems.forEach((item) => {
-                let chosen = item.querySelector("input[type=checkbox]").checked;
-                if (chosen) {
-                    let title = item.querySelector(".service-title").innerText;
-                    let priceField = item.querySelector(".service-price-label");
-                    let price = priceField ? +priceField.innerText.split("zł")[0] : 0;
-                    let amountField = item.querySelector(".input-counter");
-                    let amount = amountField ? +amountField.value : 0;
-                    if (price && amount) {
                         this.totalPrice += price * amount;
                         this.addPriceToTable(title, price * amount);
                     }
+                    if (monthPrice) {
+                        this.totalMonthPrice += monthPrice * amount;
+                        this.addMonthPriceToTable(title, monthPrice * amount);
+                    }
                 }
-            });
-        }
-
-        startingPointCounter() {
-            this.countItems.forEach((item) => {
-                item.querySelector(".input-counter").value = 1;
             });
         }
 
@@ -124,20 +88,20 @@
         }
 
         changeAmount(counter, value) {
-            let oldValue = +counter.value;
+            let oldValue = +counter.innerText;
             let newValue = oldValue + value;
 
             if (newValue > -1) {
-                counter.value = newValue;
+                counter.innerText = newValue;
             } else {
-                counter.value = 0;
+                counter.innerText = 0;
             }
             this.updateCheckboxState(counter);
         }
 
         updateCheckboxState(counter) {
             let chosenField = counter
-                .closest(".service-header")
+                .closest(".pricing-checkbox-header")
                 .querySelector("input[type=checkbox]");
             let chosen = chosenField.checked;
 
