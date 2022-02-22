@@ -60,14 +60,14 @@
                     if (price) {
                         this.totalPrice += price * amount;
                         this.addPriceToTable(
-                            amount > 1 ? title + " x" + amount : title,
+                            amount > 1 ? title + " x " + amount : title,
                             price * amount
                         );
                     }
                     if (monthPrice) {
                         this.totalMonthPrice += monthPrice * amount;
                         this.addMonthPriceToTable(
-                            amount > 1 ? title + " x" + amount : title,
+                            amount > 1 ? title + " x " + amount : title,
                             monthPrice * amount
                         );
                     }
@@ -76,9 +76,7 @@
         }
 
         addPriceToTable(title, price) {
-            const newItem = `<li class="summary-list-item"><div class="summary-item-name">${title}</div><div class="summary-item-price">${
-                price ? price + " zł" : "-"
-            }</div></li>`;
+            const newItem = `<li class="summary-list-item"><div class="summary-item-name">${title}</div><div class="summary-item-price">${price} zł</div></li>`;
             this.priceTable.querySelector("ol").innerHTML += newItem;
         }
 
@@ -122,10 +120,10 @@
                 .querySelector("input[type=checkbox]");
             let chosen = chosenField.checked;
 
-            if (counter.value > 0 && !chosen) {
+            if (+counter.innerText > 0 && !chosen) {
                 chosenField.click();
             }
-            if (counter.value <= 0 && chosen) {
+            if (+counter.innerText <= 0 && chosen) {
                 chosenField.click();
             }
         }
