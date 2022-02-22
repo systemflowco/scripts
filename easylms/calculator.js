@@ -66,7 +66,10 @@
                     }
                     if (monthPrice) {
                         this.totalMonthPrice += monthPrice * amount;
-                        this.addMonthPriceToTable(title, monthPrice * amount);
+                        this.addMonthPriceToTable(
+                            amount > 1 ? title + " x" + amount : title,
+                            monthPrice * amount
+                        );
                     }
                 }
             });
