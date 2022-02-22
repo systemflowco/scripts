@@ -113,6 +113,7 @@
             }
 
             this.updateCheckboxState(counter);
+            this.checkAllPrices();
         }
 
         updateCheckboxState(counter) {
