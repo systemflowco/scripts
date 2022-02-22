@@ -24,7 +24,11 @@
             this.assignEvents();
         }
         assignEvents() {
+            console.log("saveLastLesson");
             this.saveLastLesson();
+
+            console.log(easy_json);
+            console.log(window.easyJSON);
 
             //if no easyJson Script do not wait for data
             if (typeof easy_json === "undefined") {
