@@ -24,11 +24,7 @@
             this.assignEvents();
         }
         assignEvents() {
-            console.log("saveLastLesson");
             this.saveLastLesson();
-
-            console.log(easy_json);
-            console.log(window.easyJSON);
 
             //if no easyJson Script do not wait for data
             if (typeof easy_json === "undefined") {
@@ -52,7 +48,6 @@
             $(document).on("playerReady", this.checkLastLesson.bind(this));
         }
         checking() {
-            console.log("checking");
             this.checkIfAutoplay();
             this.checkIfFinished();
             this.checkAllLessons();
@@ -134,7 +129,6 @@
             this.saveLsAndEj(this.KEY_FINISH, this.finishedLessons);
         }
         finishLesson() {
-            console.log("finish lesson");
             this.toggleFinishStatus();
 
             if (this.autoplayMode) {
