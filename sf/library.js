@@ -20,27 +20,28 @@
             const name = component.querySelector("[data-name]").innerText;
             const slug = component.querySelector("[data-slug]").innerText;
             const link = `https://systemflowco.github.io/scripts/sf13/${slug}.json`;
+            const btnText = btn.querySelector(".button-text");
 
-            btn.querySelector(".button-text") = "Coping ...";
+            btnText.innerText = "Coping ...";
 
             fetch(link)
-            .then((response) => {
-                if (!response.ok) return new Promise((resolve, reject) => reject(response.text()));
-                return response.text();
-            })
-            .then((data) => {
-                window.addEventListener("copy", this.copyJson.bind(this));
-                window.wfCopyJsonData = data;
-                document.execCommand("copy");
-            })
-            .catch((error) => {
-                //FIXME: add error banner
-
-            })
-            .finally(() => {
-                btn.querySelector(".button-text") = "Copy";
-                this.showBanner(name);
-            });           
+                .then((response) => {
+                    if (!response.ok)
+                        return new Promise((resolve, reject) => reject(response.text()));
+                    return response.text();
+                })
+                .then((data) => {
+                    window.addEventListener("copy", this.copyJson.bind(this));
+                    window.wfCopyJsonData = data;
+                    document.execCommand("copy");
+                })
+                .catch((error) => {
+                    this.showBanner("Something went wrong. Please refresh browser and try again!");
+                })
+                .finally(() => {
+                    btnText.innerText = "Copy";
+                    this.showBanner(`Component ${name} copied successfully`);
+                });
         }
 
         copyJson(e) {
@@ -51,10 +52,8 @@
             window.removeEventListener("copy", copyJson);
         }
 
-        showBanner(name) {
-            this.banner.querySelector(
-                ".body-text"
-            ).innerText = `Component ${name} copied successfully`;
+        showBanner(text) {
+            this.banner.querySelector(".body-text").innerText = text;
             this.banner.style.display = "flex";
             setTimeout(() => {
                 this.banner.style.opacity = "1";
