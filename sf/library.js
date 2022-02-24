@@ -3,7 +3,7 @@
     class SFLibrary {
         constructor() {
             this.copyBtns = document.querySelectorAll("[data-copy-btn]");
-            this.banner = documet.querySelector("[data-banner]");
+            this.banner = document.querySelector("[data-banner]");
             this.assignEvents();
         }
 
