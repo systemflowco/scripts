@@ -49,7 +49,7 @@
                 e.clipboardData.setData("application/json", window.wfCopyJsonData);
                 e.preventDefault();
             }
-            window.removeEventListener("copy", copyJson);
+            window.removeEventListener("copy", this.copyJson.bind(this));
         }
 
         showBanner(text) {
