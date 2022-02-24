@@ -3,7 +3,7 @@
     class SFLibrary {
         constructor() {
             this.copyBtns = document.querySelectorAll("[data-copy-btn]");
-
+            this.banner = documet.querySelector("[data-banner]");
             this.assignEvents();
         }
 
@@ -17,10 +17,17 @@
 
         copyComponent(btn) {
             const component = btn.closest("[data-component]");
-            const name = component.querySelector("[data-name]");
-            const slug = component.querySelector("[data-slug]");
-            console.log(name);
-            console.log(slug);
+            const name = component.querySelector("[data-name]").innerText;
+            const slug = component.querySelector("[data-slug]").innerText;
+            this.showBanner(name);
+        }
+
+        showBanner(name) {
+            this.banner.innerText = `Component ${name} copied successfully`;
+            this.banner.style.display = "flex";
+            setTimeout(() => {
+                this.banner.style.display = "none";
+            }, 3000);
         }
     }
     document.addEventListener("DOMContentLoaded", function (event) {
