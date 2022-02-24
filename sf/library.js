@@ -23,7 +23,9 @@
         }
 
         showBanner(name) {
-            this.banner.innerText = `Component ${name} copied successfully`;
+            this.banner.querySelector(
+                ".body-text"
+            ).innerText = `Component ${name} copied successfully`;
             this.banner.style.display = "flex";
             setTimeout(() => {
                 this.banner.style.display = "none";
