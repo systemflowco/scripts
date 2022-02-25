@@ -1,17 +1,18 @@
 (() => {
     class Lesson {
         constructor(elem) {
-            this.pathname = location.pathname;
-            this.slug = this.pathname.match(/(?<=lekcje\/).+/)[0];
+            this.slug = window.easyLmsInfo.lessonSlug;
+            this.courseName = window.easyLmsInfo.courseName;
+            this.lessonName = window.easyLmsInfo.lessonName;
+            this.webhookUrl = window.easyLmsInfo.webhookUrl;
+            this.productId = window.easyLmsInfo.ecProductId;
+            this.userId = window._EC_USER_ID;
+
             this.finishBtn = document.querySelector("[data-lms-finish-btn]");
             this.finishedBtn = document.querySelector("[data-lms-finished-btn]");
             this.nextLessonBtn = document.querySelector("[data-lms-next-btn]");
             this.autoplayBtn = document.querySelector("[data-lms-autoplay-btn] input");
             this.lessons = document.querySelectorAll(".course-content-lesson");
-            this.lessonTitle = document.querySelector(
-                ".course-content-lesson.w--current .lesson-name"
-            ).innerText;
-            this.courseTitle = document.querySelector(".course-title-progress").innerText;
 
             this.KEY_FINISH = "LESSON.FINISH";
             this.KEY_LAST = "LESSON.LAST";
@@ -63,16 +64,25 @@
         }
         saveLastLesson() {
             this.saveLsAndEj(this.KEY_LAST, {
-                lesson: this.lessonTitle,
+                lesson: this.lessonName,
                 lessonSlug: this.slug,
-                course: this.courseTitle,
+                course: this.courseName,
+            });
+            this.sendWebhook({
+                type: "lastLesson",
+                location: window.location.href,
+                ecUserId: this.userId,
+                ecProductId: this.productId,
+                lessonName: this.lessonName,
+                lessonSlug: this.lessonSlug,
+                courseName: this.courseName,
             });
         }
         updateLastLessonProgress(progress) {
             this.saveLsAndEj(this.KEY_LAST, {
-                lesson: this.lessonTitle,
+                lesson: this.lessonName,
                 lessonSlug: this.slug,
-                course: this.courseTitle,
+                course: this.courseName,
                 progress: Math.round(progress),
             });
         }
@@ -101,6 +111,7 @@
         }
         checkAllLessons() {
             let nOfFinished = 0;
+
             this.lessons.forEach((lesson) => {
                 lesson.slug = lesson.href.match(/(?<=lekcje\/).+/)[0];
                 if (this.finishedLessons.indexOf(lesson.slug) > -1) {
@@ -109,15 +120,18 @@
                     nOfFinished++;
                 }
             });
+
             const progress = Math.round(100 * (nOfFinished / this.lessons.length));
             document.querySelector(".course-progress-circle-text").innerText = `${progress}%`;
             const circle = document.querySelector(".progress-ring__circle");
-            const radius = circle.r.baseVal.value;
-            const circumference = radius * 2 * Math.PI;
-            circle.style.strokeDasharray = `${circumference} ${circumference}`;
-            circle.style.strokeDashoffset = circumference;
-            const offset = circumference - (progress / 100) * circumference;
-            circle.style.strokeDashoffset = offset;
+            if (circle && circle.r) {
+                const radius = circle.r.baseVal.value;
+                const circumference = radius * 2 * Math.PI;
+                circle.style.strokeDasharray = `${circumference} ${circumference}`;
+                circle.style.strokeDashoffset = circumference;
+                const offset = circumference - (progress / 100) * circumference;
+                circle.style.strokeDashoffset = offset;
+            }
         }
         toggleFinishStatus() {
             this.finishBtn.style.display = "none";
@@ -126,6 +140,15 @@
                 this.finishedLessons.push(this.slug);
             }
             this.checkAllLessons();
+            this.sendWebhook({
+                type: "lessonFinished",
+                location: window.location.href,
+                ecUserId: this.userId,
+                ecProductId: this.productId,
+                lessonName: this.lessonName,
+                lessonSlug: this.lessonSlug,
+                courseName: this.courseName,
+            });
             this.saveLsAndEj(this.KEY_FINISH, this.finishedLessons);
         }
         finishLesson() {
@@ -153,6 +176,14 @@
                 return JSON.parse(value);
             }
             return JSON.parse(localStorage.getItem(key));
+        }
+        sendWebhook(data) {
+            if (this.webhookUrl) {
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("POST", this.webhookUrl, true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send(JSON.stringify(data));
+            }
         }
     }
     document.addEventListener("DOMContentLoaded", function (event) {
