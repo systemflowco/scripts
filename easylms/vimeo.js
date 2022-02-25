@@ -1,9 +1,5 @@
 (() => {
-    const isVimeoOnPage = [...document.querySelectorAll("iframe")].filter((x) =>
-        x.src.includes("vimeo")
-    ).length;
-
-    if (!isVimeoOnPage) return;
+    if (window.easyLmsInfo.videoType !== "vimeo") return;
 
     // inject the vimeo api script
     const tag = document.createElement("script");
@@ -24,8 +20,8 @@
                 return;
             }
             // get the video id from the webflow defined src attribute value
-            let tempId = src.split("vimeo.com%2Fvideo%2F");
-            const videoId = tempId.length > 1 ? tempId[1].split("%3F")[0] : "";
+            const videoId = window.easyLmsInfo.videoId;
+
             let tempHash = src.split("%3Fh%3D");
             const videoHash = tempHash.length > 1 ? tempHash[1].split("%26")[0] : "";
             // create a new src & embed the enablejsapi=1 query string
