@@ -19,7 +19,8 @@ function onYouTubeIframeAPIReady() {
         // skip the iframe if it's not a youtube video
         if (!src.includes("youtube")) return;
         // get the video id from the webflow defined src attribute value
-        const videoId = window.easyLmsInfo.videoId;
+        const videoId =
+            window.easyLmsInfo.videoId || src.split("youtube.com%2Fembed%2F")[1].split("%3F")[0];
         // create a new src & embed the enablejsapi=1 query string
         src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&modestbranding=1&showinfo=0&rel=0`;
         // set the recreated src as the iframe's src
