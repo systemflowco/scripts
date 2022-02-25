@@ -4,9 +4,11 @@
             this.slug = window.easyLmsInfo.lessonSlug;
             this.courseName = window.easyLmsInfo.courseName;
             this.lessonName = window.easyLmsInfo.lessonName;
-            this.webhookUrl = window.easyLmsInfo.webhookUrl;
             this.productId = window.easyLmsInfo.ecProductId;
             this.userId = window._EC_USER_ID;
+
+            this.webhookUrlField = document.querySelector("[data-easylms-webhook-url]");
+            this.webhookUrl = webhookUrlField ? webhookUrlField.value : "";
 
             this.finishBtn = document.querySelector("[data-lms-finish-btn]");
             this.finishedBtn = document.querySelector("[data-lms-finished-btn]");
