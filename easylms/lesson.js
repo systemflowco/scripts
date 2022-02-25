@@ -9,7 +9,7 @@
             this.lessonVideo = window.easyLmsInfo.lessonVideo;
 
             this.webhookUrlField = document.querySelector("[data-easylms-webhook-url]");
-            this.webhookUrl = webhookUrlField ? webhookUrlField.value : "";
+            this.webhookUrl = this.webhookUrlField ? this.webhookUrlField.value : "";
 
             this.finishBtn = document.querySelector("[data-lms-finish-btn]");
             this.finishedBtn = document.querySelector("[data-lms-finished-btn]");
