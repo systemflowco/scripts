@@ -1,5 +1,5 @@
 (() => {
-    if (window.easyLmsInfo.videoType.toLoweCase() !== "youtube") return;
+    if (window.easyLmsInfo.videoType.toLowerCase() !== "youtube") return;
 
     // inject the youube api script
     const tag = document.createElement("script");
