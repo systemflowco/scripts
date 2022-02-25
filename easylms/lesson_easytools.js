@@ -4,7 +4,7 @@
             this.slug = window.easyLmsInfo.lessonSlug;
             this.courseName = window.easyLmsInfo.courseName;
             this.lessonName = window.easyLmsInfo.lessonName;
-            this.webhookUrl = window.easyLmsInfo.webhookUrl;
+            this.webhookUrl = window.easylmswebhook;
             this.productId = window.easyLmsInfo.ecProductId;
             this.userId = window._EC_USER_ID;
 
