@@ -14,9 +14,7 @@ function onYouTubeIframeAPIReady() {
     const frame = document.querySelector("[data-easylms-video]");
 
     // get the video id
-    var myregexp =
-        /.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-    const videoId = window.easyLmsInfo.lessonVideo.replace(myregexp, "$1");
+    const videoId = window.easyLmsInfo.videoId;
 
     // create a new src & embed the enablejsapi=1 query string
     src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&modestbranding=1&showinfo=0&rel=0`;
