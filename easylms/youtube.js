@@ -1,5 +1,5 @@
 (() => {
-    if (window.easyLmsInfo.videoType.toLowerCase() !== "youtube") return;
+    if (!window.easyLmsInfo.lessonVideo.includes("youtu")) return;
 
     // inject the youube api script
     const tag = document.createElement("script");
@@ -11,25 +11,22 @@
 // setup the onYouTubeIframeAPIReady function
 // this is the function called by the youtube api once it's ready
 function onYouTubeIframeAPIReady() {
-    // loop through all the iframes on the page
-    $("iframe").each((i, frame) => {
-        // for each iframe
-        // get the src
-        let src = $(frame).attr("src");
-        // skip the iframe if it's not a youtube video
-        if (!src.includes("youtube")) return;
-        // get the video id from the webflow defined src attribute value
-        const videoId =
-            window.easyLmsInfo.videoId || src.split("youtube.com%2Fembed%2F")[1].split("%3F")[0];
-        // create a new src & embed the enablejsapi=1 query string
-        src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&modestbranding=1&showinfo=0&rel=0`;
-        // set the recreated src as the iframe's src
-        $(frame).attr("src", src);
-        // create a unique id for the iframe
-        $(frame).attr("id", "dynamic" + i);
-        // call the createPlayer function with the iframe's id
-        createYoutubePlayer(frame.id);
-    });
+    const frame = document.querySelector("[data-easylms-video]");
+
+    // get the video id
+    var myregexp =
+        /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
+    const videoId = window.easyLmsInfo.lessonVideo.replace("$1");
+
+    // create a new src & embed the enablejsapi=1 query string
+    src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&modestbranding=1&showinfo=0&rel=0`;
+
+    // set the recreated src as the iframe's src
+    frame.setAttribute("src", src);
+    // create a unique id for the iframe
+    frame.id = "youtubePlayer";
+    // call the createPlayer function with the iframe's id
+    createYoutubePlayer(frame.id);
 }
 
 // setup the createPlayer function

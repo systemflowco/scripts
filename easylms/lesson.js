@@ -6,6 +6,7 @@
             this.lessonName = window.easyLmsInfo.lessonName;
             this.productId = window.easyLmsInfo.ecProductId;
             this.userId = window._EC_USER_ID;
+            this.lessonVideo = window.easyLmsInfo.lessonVideo;
 
             this.webhookUrlField = document.querySelector("[data-easylms-webhook-url]");
             this.webhookUrl = webhookUrlField ? webhookUrlField.value : "";
