@@ -1,5 +1,5 @@
 (() => {
-    if (window.easyLmsInfo.videoType !== "vimeo") return;
+    if (window.easyLmsInfo.videoType.toLoweCase() !== "vimeo") return;
 
     // inject the vimeo api script
     const tag = document.createElement("script");
