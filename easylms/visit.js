@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     const webhookUrlField = document.querySelector("[data-easylms-webhook-url]");
     const webhookUrl = webhookUrlField ? webhookUrlField.innerText : "";
-
+    console.log(webhookUrl);
     if (webhookUrl && webhookUrl !== "https://webhook_url.com") {
         sendWebhook({
             type: "visitPage",
