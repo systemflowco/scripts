@@ -9,7 +9,7 @@
             this.lessonVideo = window.easyLmsInfo.lessonVideo;
 
             this.webhookUrlField = document.querySelector("[data-easylms-webhook-url]");
-            this.webhookUrl = this.webhookUrlField ? this.webhookUrlField.value : "";
+            this.webhookUrl = this.webhookUrlField ? this.webhookUrlField.innerText : "";
 
             this.finishBtn = document.querySelector("[data-lms-finish-btn]");
             this.finishedBtn = document.querySelector("[data-lms-finished-btn]");
@@ -181,7 +181,7 @@
             return JSON.parse(localStorage.getItem(key));
         }
         sendWebhook(data) {
-            if (this.webhookUrl) {
+            if (this.webhookUrl && this.webhookUrl !== "https://webhook_url.com") {
                 const xhttp = new XMLHttpRequest();
                 xhttp.open("POST", this.webhookUrl, true);
                 xhttp.setRequestHeader("Content-type", "application/json");

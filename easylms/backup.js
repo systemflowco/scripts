@@ -29,6 +29,7 @@ data-easylms-webhook-url
 
 data-easylms-video
 
+
 <script>
 window.easyLmsInfo = {
   eventName: "{{wf {&quot;path&quot;:&quot;name&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}",
