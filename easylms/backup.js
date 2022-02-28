@@ -39,3 +39,16 @@ window.easyLmsInfo = {
 </script>
 
 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://vimeo.com/event/{{wf {&quot;path&quot;:&quot;workshop-id&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}/embed" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+
+Link do lekcji video
+Podaj link do lekcji na YouTube lub Vimeo
+
+
+
+<div style="padding-top:56%" class="w-video w-embed">
+<iframe data-easylms-video class="embedly-embed" src="" scrolling="no"></iframe>
+</div>
+
+
+
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://vimeo.com/event/1897674/embed" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>

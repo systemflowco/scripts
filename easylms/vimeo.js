@@ -18,12 +18,19 @@ const videoLink2 = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVid
         // get the video id from the webflow defined src attribute value
         var myregexp =
             /.*(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?\/?(.*)/i;
-        const videoId = videoLink2.replace(myregexp, "$1");
-        const videoHash = videoLink2.replace(myregexp, "$2");
+
+        var myregexp2 =
+            /.*(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/event\/|event\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?\/?(.*)/i;
+        const videoId = window.easyLmsInfo.eventVideo
+            ? videoLink2.replace(myregexp2, "$1")
+            : videoLink2.replace(myregexp, "$1");
+        const videoHash = window.easyLmsInfo.eventVideo
+            ? videoLink2.replace(myregexp2, "$2")
+            : videoLink2.replace(myregexp, "$2");
         // create a new src & embed the enablejsapi=1 query string
-        const src = `https://player.vimeo.com/video/${videoId}${
-            videoHash ? "?h=" + videoHash : ""
-        }`;
+        const src = window.easyLmsInfo.eventVideo
+            ? `https://vimeo.com/event/${videoId}${videoHash ? "?h=" + videoHash : ""}/embed`
+            : `https://player.vimeo.com/video/${videoId}${videoHash ? "?h=" + videoHash : ""}`;
         // set the recreated src as the iframe's src
         frame.setAttribute("src", src);
         // create a unique id for the iframe
@@ -33,7 +40,7 @@ const videoLink2 = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVid
 
         const chat = document.querySelector("[data-easylms-video-chat]");
         if (chat) {
-            const chatSrc = `https://vimeo.com/event/${videoId}/chat/`;
+            const chatSrc = `https://vimeo.com/event/${videoId}/chat`;
             chat.setAttribute("src", chatSrc);
         }
     }

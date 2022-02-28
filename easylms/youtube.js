@@ -32,8 +32,7 @@ function onYouTubeIframeAPIReady() {
 
     const chat = document.querySelector("[data-easylms-video-chat]");
     if (chat) {
-        //FIXME
-        const chatSrc = `https://vimeo.com/event/${videoId}/chat/`;
+        const chatSrc = `https://www.youtube.com/live_chat?v=${videoId}&embed_domain=${location.origin}`;
         chat.setAttribute("src", chatSrc);
     }
 }
