@@ -11,28 +11,21 @@
     tag.addEventListener("load", vimeoReady);
 
     function vimeoReady() {
-        $("iframe").each((i, frame) => {
-            // for each iframe
-            // get the src
-            let src = $(frame).attr("src");
-            // skip the iframe if it's not a vimeo video
-            if (!src.includes("vimeo")) {
-                return;
-            }
-            // get the video id from the webflow defined src attribute value
-            const videoId =
-                window.easyLmsInfo.videoId || src.split("vimeo.com%2Fvideo%2F")[1].split("%3F")[0];
-            let tempHash = src.split("%3Fh%3D");
-            const videoHash = tempHash.length > 1 ? tempHash[1].split("%26")[0] : "";
-            // create a new src & embed the enablejsapi=1 query string
-            src = `https://player.vimeo.com/video/${videoId}${videoHash ? "?h=" + videoHash : ""}`;
-            // set the recreated src as the iframe's src
-            $(frame).attr("src", src);
-            // create a unique id for the iframe
-            $(frame).attr("id", "dynamic" + i);
-            // call the createPlayer function with the iframe's id
-            createVimeoPlayer(frame.id);
-        });
+        const frame = document.querySelector("[data-easylms-video]");
+
+        // get the video id from the webflow defined src attribute value
+        var myregexp =
+            /.*(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?\/?(.*)/i;
+        const videoId = window.easyLmsInfo.lessonVideo.replace(myregexp, "$1");
+        const videoHash = window.easyLmsInfo.lessonVideo.replace(myregexp, "$2");
+        // create a new src & embed the enablejsapi=1 query string
+        src = `https://player.vimeo.com/video/${videoId}${videoHash ? "?h=" + videoHash : ""}`;
+        // set the recreated src as the iframe's src
+        frame.setAttribute("src", src);
+        // create a unique id for the iframe
+        frame.id = "vimeoPlayer";
+        // call the createPlayer function with the iframe's id
+        createVimeoPlayer(frame.id);
     }
 
     // setup the createPlayer function
