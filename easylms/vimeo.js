@@ -34,6 +34,7 @@ const videoLink2 = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVid
         const chat = document.querySelector("[data-easylms-video-chat]");
         if (chat) {
             const chatSrc = `https://vimeo.com/event/${videoId}/chat/`;
+            chat.setAttribute("src", chatSrc);
         }
     }
 

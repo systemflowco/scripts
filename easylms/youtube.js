@@ -29,6 +29,13 @@ function onYouTubeIframeAPIReady() {
     frame.id = "youtubePlayer";
     // call the createPlayer function with the iframe's id
     createYoutubePlayer(frame.id);
+
+    const chat = document.querySelector("[data-easylms-video-chat]");
+    if (chat) {
+        //FIXME
+        const chatSrc = `https://vimeo.com/event/${videoId}/chat/`;
+        chat.setAttribute("src", chatSrc);
+    }
 }
 
 // setup the createPlayer function
