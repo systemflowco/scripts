@@ -195,7 +195,7 @@
             return JSON.parse(localStorage.getItem(key));
         }
         sendWebhook(data) {
-            if (this.webhookUrl && this.webhookUrl !== "Zamień ten tekst na URL Webhooka") {
+            if (this.webhookUrl && !this.webhookUrl.includes("Zamień ten tekst")) {
                 const xhttp = new XMLHttpRequest();
                 xhttp.open("POST", this.webhookUrl, true);
                 xhttp.setRequestHeader("Content-type", "application/json");

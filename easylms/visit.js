@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     const webhookUrlField = document.querySelector("[data-easylms-webhook-url]");
     const webhookUrl = webhookUrlField ? webhookUrlField.innerText : "";
 
-    if (webhookUrl && webhookUrl !== "Zamień ten tekst na URL Webhooka") {
+    if (webhookUrl && !webhookUrl.includes("Zamień ten tekst")) {
         sendWebhook(webhookUrl, {
             type: "visitPage",
             location: window.location.href,
