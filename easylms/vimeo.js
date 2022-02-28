@@ -1,5 +1,7 @@
+const videoLink = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVideo;
+
 (() => {
-    if (!window.easyLmsInfo.lessonVideo.includes("vimeo")) return;
+    if (!videoLink.includes("vimeo")) return;
 
     // inject the vimeo api script
     const tag = document.createElement("script");
@@ -16,8 +18,8 @@
         // get the video id from the webflow defined src attribute value
         var myregexp =
             /.*(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?\/?(.*)/i;
-        const videoId = window.easyLmsInfo.lessonVideo.replace(myregexp, "$1");
-        const videoHash = window.easyLmsInfo.lessonVideo.replace(myregexp, "$2");
+        const videoId = videoLink.replace(myregexp, "$1");
+        const videoHash = videoLink.replace(myregexp, "$2");
         // create a new src & embed the enablejsapi=1 query string
         const src = `https://player.vimeo.com/video/${videoId}${
             videoHash ? "?h=" + videoHash : ""
