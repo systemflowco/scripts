@@ -44,6 +44,7 @@
             }
 
             this.finishBtn.addEventListener("click", this.toggleFinishStatus.bind(this));
+            this.finishedBtn.addEventListener("click", this.revertFinishStatus.bind(this));
             $(document).on("finishLesson", this.finishLesson.bind(this));
             $(document).on("nextLesson", this.goToNextLesson.bind(this));
             $(document).on("videoProgress", (event, progress) => {
@@ -152,6 +153,16 @@
                 lessonSlug: this.lessonSlug,
                 courseName: this.courseName,
             });
+            this.saveLsAndEj(this.KEY_FINISH, this.finishedLessons);
+        }
+        revertFinishStatus() {
+            this.finishedBtn.style.display = "none";
+            this.finishBtn.style.display = "flex";
+            let index = this.finishedLessons.indexOf(this.slug);
+            if (index != -1) {
+                this.finishedLessons.splice(index, 1);
+            }
+            this.checkAllLessons();
             this.saveLsAndEj(this.KEY_FINISH, this.finishedLessons);
         }
         finishLesson() {
