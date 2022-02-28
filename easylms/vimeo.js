@@ -1,4 +1,4 @@
-const videoLink = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVideo;
+let videoLink = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVideo || "";
 
 (() => {
     if (!videoLink.includes("vimeo")) return;
@@ -30,6 +30,11 @@ const videoLink = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVide
         frame.id = "vimeoPlayer";
         // call the createPlayer function with the iframe's id
         createVimeoPlayer(frame.id);
+
+        const chat = document.querySelector("[data-easylms-video-chat]");
+        if (chat) {
+            const chatSrc = `https://vimeo.com/event/${videoId}/chat/`;
+        }
     }
 
     // setup the createPlayer function

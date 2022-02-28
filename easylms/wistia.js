@@ -1,4 +1,4 @@
-const videoLink = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVideo;
+let videoLink = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVideo || "";
 
 (() => {
     if (!videoLink.includes("wistia")) return;
