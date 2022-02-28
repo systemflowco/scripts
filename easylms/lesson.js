@@ -122,6 +122,9 @@
                     lesson.querySelector(".not-done").style.display = "none";
                     lesson.querySelector(".is-done").style.display = "block";
                     nOfFinished++;
+                } else {
+                    lesson.querySelector(".not-done").style.display = "block";
+                    lesson.querySelector(".is-done").style.display = "none";
                 }
             });
 
