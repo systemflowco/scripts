@@ -1,9 +1,7 @@
-if (typeof videoLink === "undefined") {
-    const videoLink = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVideo || "";
-}
+const videoLink1 = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVideo || "";
 
 (() => {
-    if (!videoLink.includes("youtu")) return;
+    if (!videoLink1.includes("youtu")) return;
 
     // inject the youube api script
     const tag = document.createElement("script");
@@ -20,7 +18,7 @@ function onYouTubeIframeAPIReady() {
     // get the video id
     var myregexp =
         /.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-    const videoId = videoLink.replace(myregexp, "$1");
+    const videoId = videoLink1.replace(myregexp, "$1");
 
     // create a new src & embed the enablejsapi=1 query string
     const src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&modestbranding=1&showinfo=0&rel=0`;
