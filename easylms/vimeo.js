@@ -19,7 +19,9 @@
         const videoId = window.easyLmsInfo.lessonVideo.replace(myregexp, "$1");
         const videoHash = window.easyLmsInfo.lessonVideo.replace(myregexp, "$2");
         // create a new src & embed the enablejsapi=1 query string
-        src = `https://player.vimeo.com/video/${videoId}${videoHash ? "?h=" + videoHash : ""}`;
+        const src = `https://player.vimeo.com/video/${videoId}${
+            videoHash ? "?h=" + videoHash : ""
+        }`;
         // set the recreated src as the iframe's src
         frame.setAttribute("src", src);
         // create a unique id for the iframe
