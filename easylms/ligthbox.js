@@ -25,8 +25,8 @@ function replaceVimeoLink(link) {
     var myregexp =
         /.*(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?\/?(.*)/i;
 
-    const videoId = videoLink2.replace(myregexp, "$1");
-    const videoHash = videoLink2.replace(myregexp, "$2");
+    const videoId = link.replace(myregexp, "$1");
+    const videoHash = link.replace(myregexp, "$2");
     // create a new src & embed the enablejsapi=1 query string
     const src = `https://player.vimeo.com/video/${videoId}${videoHash ? "?h=" + videoHash : ""}`;
     // set the recreated src as the iframe's src
