@@ -37,7 +37,7 @@ var Webflow = Webflow || [];
 Webflow.push(function () {
     var json = $(".w-json[data-lms-video-src]");
     json.each(function () {
-        json.closest(a).addClass("w-inline-block w-lightbox");
+        json.closest("a").addClass("w-lightbox");
         var src = replaceVideoLink($(this).attr("data-lms-video-src"));
         $(this).html($(this).html().replace("{SRC}", src));
     });
