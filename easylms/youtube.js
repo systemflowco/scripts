@@ -32,7 +32,7 @@ function onYouTubeIframeAPIReady() {
 
     const chat = document.querySelector("[data-easylms-video-chat]");
     if (chat) {
-        const chatSrc = `https://www.youtube.com/live_chat?v=${videoId}&embed_domain=${location.origin}`;
+        const chatSrc = `https://www.youtube.com/live_chat?v=${videoId}&embed_domain=${location.host}`;
         chat.setAttribute("src", chatSrc);
     }
 }
