@@ -35,13 +35,13 @@ function replaceVimeoLink(link) {
 
 var Webflow = Webflow || [];
 Webflow.push(function () {
-    var json = $(".w-json[data-lms-video-src]");
-    json.each(function () {
-        var lightboxLink = json.closest("a.lightbox-link");
+    var lightboxes = $(".w-json[data-lms-video-src]");
+    lightboxes.each(function () {
+        var lightboxLink = $(this).closest("a.lightbox-link");
         lightboxLink.addClass("w-lightbox");
         var src = replaceVideoLink($(this).attr("data-lms-video-src"));
         $(this).html($(this).html().replace("{SRC}", src));
-        json.appendTo(lightboxLink);
+        $(this).appendTo(lightboxLink);
     });
     $(".w-lightbox").webflowLightBox();
 });
