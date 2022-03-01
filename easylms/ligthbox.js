@@ -1,4 +1,5 @@
 function replaceVideoLink(link) {
+    console.log(link);
     let newLink = "";
     if (link.includes("youtu")) {
         newLink = replaceYoutubeLink(link);
@@ -6,6 +7,7 @@ function replaceVideoLink(link) {
     if (link.includes("viemo")) {
         newLink = replaceVimeoLink(link);
     }
+    return newLink;
 }
 
 function replaceYoutubeLink(link) {
