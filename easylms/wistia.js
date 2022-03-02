@@ -1,7 +1,5 @@
-const videoLink3 = window.easyLmsInfo.lessonVideo || window.easyLmsInfo.eventVideo || "";
-
 (() => {
-    if (!videoLink3.includes("wistia")) return;
+    if (!window.easyLmsInfo.lessonVideo.includes("wistia")) return;
 
     // inject the youube api script
     const tag = document.createElement("script");
@@ -17,7 +15,7 @@ function wistiaReady() {
     const frame = document.querySelector("[data-easylms-video]");
 
     // create a new src & embed the enablejsapi=1 query string
-    const src = videoLink3;
+    const src = window.easyLmsInfo.lessonVideo;
 
     // set the recreated src as the iframe's src
     frame.setAttribute("src", src);
