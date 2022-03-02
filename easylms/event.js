@@ -55,7 +55,7 @@
 
     const lmsChat = document.querySelector("[data-easylms-video-chat]");
     if (lmsChat) {
-        let videoLink = chat.getAttribute("data-easylms-video-chat");
+        let videoLink = lmsChat.getAttribute("data-easylms-video-chat");
         let chatSrc = "";
         if (videoLink.includes("youtu")) {
             let videoId = getYoutubeVideoId(videoLink);
