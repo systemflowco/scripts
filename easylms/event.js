@@ -29,7 +29,7 @@ lmsVideos.forEach((lmsVideo) => {
         let videoHash = getVimeoVideoHash(videoLink);
         videoSrc = `https://player.vimeo.com/video/${videoId}${videoHash ? "?h=" + videoHash : ""}`;
     }
-    lmsEvent.setAttribute("src", videoSrc);
+    lmsVideo.setAttribute("src", videoSrc);
 });
 
 const lmsEvent = document.querySelector("[data-easylms-video-event]");
