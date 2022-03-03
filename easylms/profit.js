@@ -25,7 +25,7 @@
         }
 
         updateProfitField(profit) {
-            this.summaryField.innerText = profit;
+            this.summaryField.innerText = `${profit} zł`;
         }
 
         updateCosts() {}
