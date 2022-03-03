@@ -1,5 +1,4 @@
 function replaceVideoLink(link) {
-    console.log(link);
     let newLink = "";
     if (link.includes("youtu")) {
         newLink = replaceYoutubeLink(link);
