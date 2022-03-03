@@ -10,6 +10,8 @@
         }
 
         assignEvents() {
+            this.incomeField.addEventListener("change", this.calculateProfit.bind(this));
+            this.studentsField.addEventListener("change", this.calculateProfit.bind(this));
             this.calculateProfit();
         }
 
