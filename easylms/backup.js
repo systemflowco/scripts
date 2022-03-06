@@ -100,3 +100,43 @@ https://vimeo.com/event/1897674/chat/interaction/
 <iframe data-easylms-video class="embedly-embed" src="" scrolling="no"></iframe>
 </div>
 
+
+
+
+
+<script>
+window.easyLmsInfo = {
+  eventName: "{{wf {&quot;path&quot;:&quot;name&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}",
+  eventSlug: "{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}",
+};
+</script>
+
+
+<script src="https://systemflowco.github.io/scripts/easylms/event.min.js"></script>
+
+Link do wydarzenia na żywo
+
+Podaj link do wydarzenia na YouTube lub Vimeo
+
+
+Link do wideo
+
+Przed wydarzeniem, będzie to teaser, który zastąpi obrazek na stronie wydarzenia. Po wydarzeniu, będzie to główne wideo, które wyświetla się w archiwum
+
+Live Video Embed
+<div style="padding:56.25% 0 0 0;position:relative;" class="w-video w-embed">
+<iframe data-easylms-video-event="{{wf {&quot;path&quot;:&quot;workshop-id&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;">
+</iframe>
+</div>
+
+Live Chat Embed
+<iframe data-easylms-video-chat="{{wf {&quot;path&quot;:&quot;workshop-id&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}" src="" width="100%" height="448px" frameborder="0"></iframe>
+
+Live Event Embed
+
+Video Trailer Embed
+
+<div style="padding:56.25% 0 0 0;position:relative;" class="w-video w-embed">
+<iframe data-easylms-video="{{wf {&quot;path&quot;:&quot;link-do-wideo&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;">
+</iframe>
+</div>

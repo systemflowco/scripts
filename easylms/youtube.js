@@ -38,6 +38,7 @@ function createYoutubePlayer(iframe) {
         events: {
             onReady: onYoutubePlayerReady,
             onStateChange: onYoutubePlayerStateChange,
+            onPlaybackRateChange: onYoutubePlaybackRateChange,
         },
     });
 
@@ -56,6 +57,14 @@ function createYoutubePlayer(iframe) {
         });
 
         $(document).trigger("playerReady");
+
+        $(document).on("setPlaybackRate", (event, playrate) => {
+            player.setPlaybackRate(playrate);
+        });
+    }
+
+    function onYoutubePlaybackRateChange(event) {
+        console.log(event);
     }
 
     function onYoutubePlayerStateChange(event) {
