@@ -53,7 +53,7 @@
                 this.updateLastLessonProgress(progress);
             });
             $(document).on("playerReady", this.checkLastLesson.bind(this));
-            $(document).on("playerReady", this.checkPlaybackRate.bind(this));
+            $(document).on("playerPlay", this.checkPlaybackRate.bind(this));
             $(document).on("playbackRate", (event, rate) => {
                 this.savePlaybackRate(rate);
             });

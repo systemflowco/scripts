@@ -46,6 +46,10 @@
 
         player.play();
 
+        player.on("play", function () {
+            $(document).trigger("playerPlay");
+        });
+
         $(document).on("goToVideoSecond", (event, progress) => {
             player.setCurrentTime(progress);
         });
@@ -57,7 +61,7 @@
         });
 
         player.on("playbackratechange", function (event) {
-            console.log(event);
+            $(document).trigger("playbackRate", event.playbackRate);
         });
 
         $(document).on("setPlaybackRate", (event, playrate) => {

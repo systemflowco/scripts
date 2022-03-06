@@ -72,5 +72,8 @@ function createYoutubePlayer(iframe) {
         if (event.data == YT.PlayerState.ENDED) {
             $(document).trigger("finishLesson");
         }
+        if (event.data == YT.PlayerState.PLAYING) {
+            $(document).trigger("playerPlay");
+        }
     }
 }
