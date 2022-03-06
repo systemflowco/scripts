@@ -95,6 +95,7 @@ class LogTost {
         this.logTost.querySelectorAll("[data-ec-toast-close]").forEach((closeBtn) => {
             closeBtn.addEventListener("click", this.removeTost.bind(this));
         });
+        this.saveTost();
     }
 
     removeTost() {
