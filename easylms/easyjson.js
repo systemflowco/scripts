@@ -73,12 +73,16 @@ class LogTost {
                     </div>
                 </div>
      `;
+        this.KEY_LOGIN = "LOGIN.TOAST";
 
         this.assignEvents();
     }
 
     assignEvents() {
-        this.appendTost();
+        const tostSaved = localStorage(getItem(this.KEY_LOGIN));
+        if (!tostSaved) {
+            this.appendTost();
+        }
     }
 
     appendTost() {
@@ -108,6 +112,10 @@ class LogTost {
     hideTost() {
         this.logTost.style.opacity = 0;
         this.logTost.style.bottom = "-20px";
+    }
+
+    saveTost() {
+        localStorage.setItem(this.KEY_LOGIN, true);
     }
 }
 
