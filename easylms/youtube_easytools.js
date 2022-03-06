@@ -68,7 +68,6 @@ function createYoutubePlayer(iframe) {
     }
 
     function onYoutubePlaybackRateChange(event) {
-        console.log(event.data);
         $(document).trigger("playbackRate", event.data);
     }
 
