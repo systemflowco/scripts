@@ -56,7 +56,7 @@ class LogTost {
         this.logTostHtml = `
                 <div class="toast-header">
                     <div class="popup-title">Jesteś niezalogowany</div>
-                    <div class="material-icons icon-close">close</div>
+                    <div data-ec-toast-close class="material-icons icon-close">close</div>
                 </div>
                 <div>
                     <div class="body-text m s-m-b-0">
@@ -68,7 +68,7 @@ class LogTost {
                         </a>
                         <div class="button-separator"></div>
                         <a href="#" class="button small outline w-inline-block">
-                            <div class="button-text">Anuluj</div>
+                            <div data-ec-toast-close class="button-text">Anuluj</div>
                         </a>
                     </div>
                 </div>
@@ -88,11 +88,26 @@ class LogTost {
             "position: fixed; bottom: -20px;  right: 0; opacity: 0; transition: all 0.3s;";
         document.body.append(this.logTost);
         setTimeout(this.showTost.bind(this), 100);
+        this.logTost.querySelectorAll("[data-ec-toast-close]").forEach((closeBtn) => {
+            closeBtn.addEventListener.on("click", this.removeTost.bind(this));
+        });
+    }
+
+    removeTost() {
+        this.hideTost();
+        setTimeout(() => {
+            this.logTost.remove();
+        }, 300);
     }
 
     showTost() {
         this.logTost.style.opacity = 1;
         this.logTost.style.bottom = "0px";
+    }
+
+    hideTost() {
+        this.logTost.style.opacity = 0;
+        this.logTost.style.bottom = "-20px";
     }
 }
 
