@@ -59,7 +59,6 @@ function createYoutubePlayer(iframe) {
         $(document).trigger("playerReady");
 
         $(document).on("setPlaybackRate", (event, playrate) => {
-            console.log(playrate);
             player.setPlaybackRate(playrate);
         });
     }

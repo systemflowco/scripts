@@ -17,10 +17,12 @@
             this.KEY_FINISH = "LESSON.FINISH";
             this.KEY_LAST = "LESSON.LAST";
             this.KEY_AUTOPLAY = "LESSON.AUTOPLAY";
+            this.KEY_PLAYRATE = "PLAYBACK.RATE";
 
             this.autoplayMode = false;
             this.finishedLessons = [];
             this.lastLesson = "";
+            this.playbackRate = 1;
 
             this.assignEvents();
         }
@@ -48,11 +50,20 @@
                 this.updateLastLessonProgress(progress);
             });
             $(document).on("playerReady", this.checkLastLesson.bind(this));
+            $(document).on("playerPlay", this.checkPlaybackRate.bind(this));
+            $(document).on("playbackRate", (event, rate) => {
+                this.savePlaybackRate(rate);
+            });
         }
         checking() {
             this.checkIfAutoplay();
             this.checkIfFinished();
             this.checkAllLessons();
+        }
+        checkPlaybackRate() {
+            this.playbackRate = this.readLsAndEj(this.KEY_PLAYRATE);
+            if (!this.playbackRate) return;
+            $(document).trigger("setPlaybackRate", this.playbackRate);
         }
         checkLastLesson() {
             this.lastLesson = this.readLsAndEj(this.KEY_LAST);
@@ -62,6 +73,10 @@
                     $(document).trigger("goToVideoSecond", this.lastLesson.progress);
                 }
             }
+        }
+        savePlaybackRate(rate) {
+            this.playbackRate = rate;
+            this.saveLsAndEj(this.KEY_PLAYRATE, this.playbackRate);
         }
         saveLastLesson() {
             this.saveLsAndEj(this.KEY_LAST, {

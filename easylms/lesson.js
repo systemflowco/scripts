@@ -64,9 +64,7 @@
             this.checkAllLessons();
         }
         checkPlaybackRate() {
-            console.log("checkPlaybackRate");
             this.playbackRate = this.readLsAndEj(this.KEY_PLAYRATE);
-            console.log(this.playbackRate);
             if (!this.playbackRate) return;
             $(document).trigger("setPlaybackRate", this.playbackRate);
         }

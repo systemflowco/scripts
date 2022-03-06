@@ -47,6 +47,10 @@
 
         player.play();
 
+        player.on("play", function () {
+            $(document).trigger("playerPlay");
+        });
+
         $(document).on("goToVideoSecond", (event, progress) => {
             player.setCurrentTime(progress);
         });
@@ -55,6 +59,14 @@
 
         player.on("ended", function () {
             $(document).trigger("finishLesson");
+        });
+
+        player.on("playbackratechange", function (event) {
+            $(document).trigger("playbackRate", event.playbackRate);
+        });
+
+        $(document).on("setPlaybackRate", (event, playrate) => {
+            player.setPlaybackRate(playrate);
         });
     }
 })();

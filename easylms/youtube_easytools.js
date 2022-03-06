@@ -42,6 +42,7 @@ function createYoutubePlayer(iframe) {
         events: {
             onReady: onYoutubePlayerReady,
             onStateChange: onYoutubePlayerStateChange,
+            onPlaybackRateChange: onYoutubePlaybackRateChange,
         },
     });
 
@@ -60,11 +61,22 @@ function createYoutubePlayer(iframe) {
         });
 
         $(document).trigger("playerReady");
+
+        $(document).on("setPlaybackRate", (event, playrate) => {
+            player.setPlaybackRate(playrate);
+        });
+    }
+
+    function onYoutubePlaybackRateChange(event) {
+        $(document).trigger("playbackRate", event.data);
     }
 
     function onYoutubePlayerStateChange(event) {
         if (event.data == YT.PlayerState.ENDED) {
             $(document).trigger("finishLesson");
+        }
+        if (event.data == YT.PlayerState.PLAYING) {
+            $(document).trigger("playerPlay");
         }
     }
 }
