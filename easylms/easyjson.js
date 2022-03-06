@@ -12,7 +12,6 @@ const easy_json = {
     async patch(json, override = false) {
         if (!easy_json.logged()) {
             window.easyJSON = {};
-            new LogTost();
             return;
         }
         const userId = window._EC_USER_ID;
@@ -34,6 +33,7 @@ const easy_json = {
     async get() {
         if (!easy_json.logged()) {
             window.easyJSON = {};
+            new LogTost();
             return;
         }
         const userId = window._EC_USER_ID;
