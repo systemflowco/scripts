@@ -33,7 +33,9 @@ const easy_json = {
     async get() {
         if (!easy_json.logged()) {
             window.easyJSON = {};
-            new LogTost();
+            document.addEventListener("DOMContentLoaded", function (event) {
+                new LogTost();
+            });
             return;
         }
         const userId = window._EC_USER_ID;
