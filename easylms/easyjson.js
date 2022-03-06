@@ -89,7 +89,7 @@ class LogTost {
         this.logTost.innerHTML = this.logTostHtml;
         this.logTost.classList.add("toast");
         this.logTost.style.cssText +=
-            "position: fixed; bottom: -20px;  right: 0; opacity: 0; transition: all 0.3s;";
+            "position: fixed; bottom: 28px;  right: 12px; opacity: 0; transition: all 0.3s;";
         document.body.append(this.logTost);
         setTimeout(this.showTost.bind(this), 100);
         this.logTost.querySelectorAll("[data-ec-toast-close]").forEach((closeBtn) => {
@@ -106,12 +106,12 @@ class LogTost {
 
     showTost() {
         this.logTost.style.opacity = 1;
-        this.logTost.style.bottom = "0px";
+        this.logTost.style.bottom = "48px";
     }
 
     hideTost() {
         this.logTost.style.opacity = 0;
-        this.logTost.style.bottom = "-20px";
+        this.logTost.style.bottom = "28px";
     }
 
     saveTost() {
