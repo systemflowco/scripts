@@ -48,16 +48,6 @@ const easy_json = {
     },
 };
 
-const newEvent = new Event("easyJsonReady");
-easy_json
-    .get()
-    .then(() => {
-        document.dispatchEvent(newEvent);
-    })
-    .catch(() => {
-        document.dispatchEvent(newEvent);
-    });
-
 class LogTost {
     constructor() {
         this.logTost = document.createElement("div");
@@ -91,7 +81,7 @@ class LogTost {
 
     appendTost() {
         this.logTost.innerHTML = this.logTostHtml;
-        this.logTost.classList.add("tost");
+        this.logTost.classList.add("toast");
         this.logTost.style.cssText +=
             "position: fixed; bottom: -20px;  right: 0; opacity: 0; transition: all 0.3s;";
         document.body.append(this.logTost);
@@ -103,3 +93,13 @@ class LogTost {
         this.logTost.style.bottom = "0px";
     }
 }
+
+const newEvent = new Event("easyJsonReady");
+easy_json
+    .get()
+    .then(() => {
+        document.dispatchEvent(newEvent);
+    })
+    .catch(() => {
+        document.dispatchEvent(newEvent);
+    });
