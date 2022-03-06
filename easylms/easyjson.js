@@ -79,7 +79,7 @@ class LogTost {
     }
 
     assignEvents() {
-        const tostSaved = localStorage(getItem(this.KEY_LOGIN));
+        const tostSaved = localStorage.getItem(this.KEY_LOGIN);
         if (!tostSaved) {
             this.appendTost();
         }
