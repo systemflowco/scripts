@@ -93,7 +93,7 @@ class LogTost {
         document.body.append(this.logTost);
         setTimeout(this.showTost.bind(this), 100);
         this.logTost.querySelectorAll("[data-ec-toast-close]").forEach((closeBtn) => {
-            closeBtn.addEventListener.on("click", this.removeTost.bind(this));
+            closeBtn.addEventListener("click", this.removeTost.bind(this));
         });
     }
 
