@@ -54,6 +54,9 @@
             });
             $(document).on("playerReady", this.checkLastLesson.bind(this));
             $(document).on("playerReady", this.checkPlaybackRate.bind(this));
+            $(document).on("playbackRate", (event, rate) => {
+                this.savePlaybackRate(rate);
+            });
         }
         checking() {
             this.checkIfAutoplay();
@@ -73,6 +76,10 @@
                     $(document).trigger("goToVideoSecond", this.lastLesson.progress);
                 }
             }
+        }
+        savePlaybackRate(rate) {
+            this.playbackRate = rate;
+            this.saveLsAndEj(this.KEY_PLAYRATE, this.playbackRate);
         }
         saveLastLesson() {
             this.saveLsAndEj(this.KEY_LAST, {
