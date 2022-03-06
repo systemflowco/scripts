@@ -12,6 +12,7 @@ const easy_json = {
     async patch(json, override = false) {
         if (!easy_json.logged()) {
             window.easyJSON = {};
+            new LogTost();
             return;
         }
         const userId = window._EC_USER_ID;
@@ -56,3 +57,49 @@ easy_json
     .catch(() => {
         document.dispatchEvent(newEvent);
     });
+
+class LogTost {
+    constructor() {
+        this.logTost = document.createElement("div");
+        this.logTostHtml = `
+                <div class="toast-header">
+                    <div class="popup-title">Jesteś niezalogowany</div>
+                    <div class="material-icons icon-close">close</div>
+                </div>
+                <div>
+                    <div class="body-text m s-m-b-0">
+                        Zaloguj się do easyCart aby Twoje postępy zostały zapisane
+                    </div>
+                    <div class="ctas-wrapper">
+                        <a href="#" class="button small w-inline-block">
+                            <div class="button-text">Zaloguj</div>
+                        </a>
+                        <div class="button-separator"></div>
+                        <a href="#" class="button small outline w-inline-block">
+                            <div class="button-text">Anuluj</div>
+                        </a>
+                    </div>
+                </div>
+     `;
+
+        this.assignEvents();
+    }
+
+    assignEvents() {
+        this.appendTost();
+    }
+
+    appendTost() {
+        this.logTost.innerHTML = this.html;
+        this.logTost.classList.add("tost");
+        this.logTost.style.cssText +=
+            "position: fixed; bottom: -20px;  right: 0; opacity: 0; transition: all 0.3s;";
+        document.body.append(this.logTostHtml);
+        setTimeout(this.showTost.bind(this), 100);
+    }
+
+    showTost() {
+        this.logTost.style.opacity = 1;
+        this.logTost.style.bottom = "0px";
+    }
+}
