@@ -55,5 +55,13 @@
         player.on("ended", function () {
             $(document).trigger("finishLesson");
         });
+
+        player.on("playbackratechange", function (event) {
+            console.log(event);
+        });
+
+        $(document).on("setPlaybackRate", (event, playrate) => {
+            player.setPlaybackRate(playrate);
+        });
     }
 })();
