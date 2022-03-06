@@ -90,7 +90,7 @@ class LogTost {
     }
 
     appendTost() {
-        this.logTost.innerHTML = this.html;
+        this.logTost.innerHTML = this.logTostHtml;
         this.logTost.classList.add("tost");
         this.logTost.style.cssText +=
             "position: fixed; bottom: -20px;  right: 0; opacity: 0; transition: all 0.3s;";
