@@ -61,6 +61,7 @@
         });
 
         $(document).on("setPlaybackRate", (event, playrate) => {
+            console.log(playrate);
             player.setPlaybackRate(playrate);
         });
     }
