@@ -63,7 +63,9 @@ class LogTost {
                     Abyśmy mogli zapisać Twoje postępy między sesjami, musisz być zalogowany do swojego konta EasyCart. Dane logowania znajdziesz w mailu który przesłaliśmy po uzyskaniu dostępu do kursu. Możesz także zresetować hasło.
                     </div>
                     <div class="ctas-wrapper">
-                        <a href="https://app.easycart.pl/logowanie" class="button small w-inline-block">
+                        <a href="https://app.easycart.pl/logowanie?redirect=${encodeURI(
+                            window.location
+                        )}" class="button small w-inline-block">
                             <div class="button-text">Zaloguj się</div>
                         </a>
                     </div>
@@ -75,7 +77,7 @@ class LogTost {
     }
 
     assignEvents() {
-        const tostSaved = localStorage.getItem(this.KEY_LOGIN);
+        const tostSaved = sessionStorage.getItem(this.KEY_LOGIN);
         if (!tostSaved) {
             this.appendTost();
         }
@@ -112,7 +114,7 @@ class LogTost {
     }
 
     saveTost() {
-        localStorage.setItem(this.KEY_LOGIN, true);
+        sessionStorage.setItem(this.KEY_LOGIN, true);
     }
 }
 
