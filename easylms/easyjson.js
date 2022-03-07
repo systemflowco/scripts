@@ -86,7 +86,7 @@ class LogTost {
         this.logTost.innerHTML = this.logTostHtml;
         this.logTost.classList.add("toast");
         this.logTost.style.cssText +=
-            "position: fixed; top: -12px;  left: 50%; transform: translateX(-50%); opacity: 0; transition: all 0.3s;";
+            "position: fixed; top: -12px;  left: 50%; bottom: auto; z-index: 1001; transform: translateX(-50%); opacity: 0; transition: all 0.3s;";
         document.body.append(this.logTost);
         setTimeout(this.showTost.bind(this), 100);
         this.logTost.querySelectorAll("[data-ec-toast-close]").forEach((closeBtn) => {
