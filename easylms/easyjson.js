@@ -1,7 +1,7 @@
 const ej_api = "https://app.easytools.pl/api/json";
 const easy_json = {
     logged() {
-        const stripeKey = easy_json.getProductId();
+        const stripeKey = easy_json.getProductId()[0];
         return window._EC_USER_ID && window[stripeKey];
     },
     getProductId() {
