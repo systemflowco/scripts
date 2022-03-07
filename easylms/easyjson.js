@@ -1,21 +1,20 @@
 const ej_api = "https://app.easytools.pl/api/json";
-const easy_json = {
+const easyJSON = {
     logged() {
         const stripeKey = easy_json.getProductId();
         return window._EC_USER_ID && window[stripeKey];
     },
     getProductId() {
-        return Object.keys(window).filter(function (prop) {
-            return ~prop.indexOf("_EC_") && !~prop.indexOf("_EC_USER_ID");
-        });
+        return "{{ids}}";
     },
     async patch(json, override = false) {
-        if (!easy_json.logged()) {
+        if (!easyJSON.logged()) {
             window.easyJSON = {};
             return;
         }
+        await easyJSON.get();
         const userId = window._EC_USER_ID;
-        const stripeId = easy_json.getProductId()[0];
+        const stripeId = easyJSON.getProductId();
         let userJSON = json;
         if (!override) {
             userJSON = { ...window.easyJSON, ...json };
@@ -31,7 +30,7 @@ const easy_json = {
         return data;
     },
     async get() {
-        if (!easy_json.logged()) {
+        if (!easyJSON.logged()) {
             window.easyJSON = {};
             document.addEventListener("DOMContentLoaded", function (event) {
                 new LogTost();
@@ -39,14 +38,16 @@ const easy_json = {
             return;
         }
         const userId = window._EC_USER_ID;
-        const stripeId = easy_json.getProductId()[0];
+        const stripeId = easyJSON.getProductId();
         const result = await fetch(`${ej_api}/${userId}?stripeId=${stripeId}`, {
             mode: "cors",
             method: "GET",
             headers: { "Content-Type": "application/json" },
         });
         const data = await result.json();
-        window.easyJSON = data || {};
+        if (data.statusCode !== 404 && data.statusCode !== 500) {
+            window.easyJSON = data || {};
+        }
     },
 };
 
