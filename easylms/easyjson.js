@@ -5,7 +5,10 @@ const easy_json = {
         return window._EC_USER_ID && window[stripeKey];
     },
     getProductId() {
-        return "{{ids}}";
+        return Object.keys(window).filter(function (prop) {
+            return ~prop.indexOf("_EC_") && !~prop.indexOf("_EC_USER_ID");
+        });
+        // return "{{ids}}";
     },
     async patch(json, override = false) {
         if (!easy_json.logged()) {
