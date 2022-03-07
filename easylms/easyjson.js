@@ -55,21 +55,18 @@ class LogTost {
         this.logTost = document.createElement("div");
         this.logTostHtml = `
                 <div class="toast-header">
-                    <div class="popup-title">Jesteś niezalogowany</div>
+                    <div class="popup-title">Zaloguj się aby nie utracić postępów!</div>
                     <div data-ec-toast-close class="material-icons icon-close">close</div>
                 </div>
                 <div>
                     <div class="body-text m s-m-b-0">
-                        Zaloguj się do easyCart aby Twoje postępy zostały zapisane
+                    Abyśmy mogli zapisać Twoje postępy między sesjami, musisz być zalogowany do swojego konta EasyCart. Dane logowania znajdziesz w mailu który przesłaliśmy po uzyskaniu dostępu do kursu. Możesz także zresetować hasło.
                     </div>
                     <div class="ctas-wrapper">
                         <a href="#" class="button small w-inline-block">
-                            <div class="button-text">Zaloguj</div>
+                            <div class="button-text">Zaloguj się</div>
                         </a>
                         <div class="button-separator"></div>
-                        <a href="#" class="button small outline w-inline-block">
-                            <div data-ec-toast-close class="button-text">Anuluj</div>
-                        </a>
                     </div>
                 </div>
      `;
@@ -89,7 +86,7 @@ class LogTost {
         this.logTost.innerHTML = this.logTostHtml;
         this.logTost.classList.add("toast");
         this.logTost.style.cssText +=
-            "position: fixed; bottom: 28px;  right: 12px; opacity: 0; transition: all 0.3s;";
+            "position: fixed; top: -12px;  left: 50%; transform: translateX(-50%); opacity: 0; transition: all 0.3s;";
         document.body.append(this.logTost);
         setTimeout(this.showTost.bind(this), 100);
         this.logTost.querySelectorAll("[data-ec-toast-close]").forEach((closeBtn) => {
@@ -107,12 +104,12 @@ class LogTost {
 
     showTost() {
         this.logTost.style.opacity = 1;
-        this.logTost.style.bottom = "48px";
+        this.logTost.style.top = "12px";
     }
 
     hideTost() {
         this.logTost.style.opacity = 0;
-        this.logTost.style.bottom = "28px";
+        this.logTost.style.top = "-12px";
     }
 
     saveTost() {
