@@ -24,7 +24,12 @@
             let students = this.studentsField ? +this.studentsField.value : 0;
             let singleCosts = 990;
             let monthlyCosts = 40;
-            let profit = income * students * 12 - singleCosts - monthlyCosts * 12;
+            let withImplementation = false;
+            let implementationCost = 1000;
+            let profit =
+                income * students * 12 - singleCosts - monthlyCosts * 12 - withImplementation
+                    ? implementationCost
+                    : 0;
             this.updateProfitField(profit);
         }
 
