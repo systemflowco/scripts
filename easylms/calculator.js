@@ -86,7 +86,9 @@
                             monthPrice * amount
                         );
                     }
-                    this.implementOptions.push(index + 1);
+                    for (i = 1; i <= amount; i++) {
+                        this.implementOptions.push(index + 1);
+                    }
                 }
             });
         }
