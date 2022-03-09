@@ -11,8 +11,8 @@
 
         assignEvents() {
             //starting values
-            this.incomeField.value = "50";
-            this.studentsField.value = "100";
+            this.incomeField.value = "100";
+            this.studentsField.value = "50";
 
             this.incomeField.addEventListener("change", this.calculateProfit.bind(this));
             this.studentsField.addEventListener("change", this.calculateProfit.bind(this));
