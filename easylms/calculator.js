@@ -86,7 +86,7 @@
                             monthPrice * amount
                         );
                     }
-                    for (i = 1; i <= amount; i++) {
+                    for (let i = 1; i <= amount; i++) {
                         this.implementOptions.push(index + 1);
                     }
                 }
