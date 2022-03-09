@@ -10,17 +10,21 @@
         }
 
         assignEvents() {
+            //starting values
+            this.incomeField.value = "50";
+            this.studentsField.value = "100";
+
             this.incomeField.addEventListener("change", this.calculateProfit.bind(this));
             this.studentsField.addEventListener("change", this.calculateProfit.bind(this));
             this.calculateProfit();
         }
 
         calculateProfit() {
-            let profit = 0;
-            let income = this.incomeField ? this.incomeField.value : 0;
+            let income = this.incomeField ? +this.incomeField.value : 0;
+            let students = this.studentsField ? +this.studentsField.value : 0;
             let singleCosts = 990;
             let monthlyCosts = 40;
-            profit = profit + income - singleCosts - monthlyCosts * 12;
+            let profit = income * students - singleCosts - monthlyCosts * 12;
             this.updateProfitField(profit);
         }
 
