@@ -27,9 +27,10 @@
             let withImplementation = false;
             let implementationCost = 1000;
             let profit =
-                income * students * 12 - singleCosts - monthlyCosts * 12 - withImplementation
-                    ? implementationCost
-                    : 0;
+                income * students * 12 -
+                singleCosts -
+                monthlyCosts * 12 -
+                (withImplementation ? implementationCost : 0);
             this.updateProfitField(profit);
         }
 
