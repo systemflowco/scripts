@@ -40,9 +40,9 @@
             this.priceTable.querySelector(
                 ".summary-item-price.big"
             ).innerText = `${this.totalPrice} zł netto`;
-            this.payButton.href = `https://hook.eu1.make.com/yzi0o4r9ar4zjmwomtih3oq2souuof5m?price=${Math.round(
-                this.totalPrice * 1.23
-            )}&prod=prod_LEYwjHjQyDzxxU`;
+            let brutto = Math.round(this.totalPrice * 1.23);
+            this.payButton.href = `https://hook.eu1.make.com/yzi0o4r9ar4zjmwomtih3oq2souuof5m?price=${brutto}&prod=prod_LEYwjHjQyDzxxU`;
+            this.payButton.querySelector(".button-text-2").innerText = `Płacę ${brutto} (brutto)`;
             //update total month Price
             this.monthPriceTable.querySelector(
                 ".summary-item-price.big"
