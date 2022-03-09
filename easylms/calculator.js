@@ -30,6 +30,7 @@
         }
 
         checkAllPrices() {
+            this.implementOptions = [];
             this.totalPrice = this.startPrice;
             this.clearPriceTable();
             this.totalMonthPrice = this.startMonthPrice;
