@@ -37,9 +37,9 @@
             let automation = noAutoImplement ? 40 : 200;
             document.getElementById("id-profit-automation").innerText = `${automation} zł`;
             let stripe = Math.round(0.016 * income * students * 100) / 100;
-            document.getElementById("id-profit-stripe").innerText = `${stripe} zł`;
+            document.getElementById("id-profit-stripe").innerText = `${stripe.toLocaleString()} zł`;
             let ec = Math.round(0.02 * income * students * 100) / 100;
-            document.getElementById("id-profit-ec").innerText = `${ec} zł`;
+            document.getElementById("id-profit-ec").innerText = `${ec.toLocaleString()} zł`;
 
             let monthlyCosts = 10 + hosting + mailing + automation + stripe + ec;
 
@@ -48,7 +48,7 @@
             let oldSingleCosts = noImplement ? 1980 : 19800;
             document.getElementById(
                 "id-profit-singlecost"
-            ).innerHTML = `<strike>${oldSingleCosts}</strike>  ${singleCosts} zł`;
+            ).innerHTML = `<strike>${oldSingleCosts.toLocaleString()}</strike>  ${singleCosts.toLocaleString()} zł`;
 
             let profit =
                 Math.round((income * students * 12 - singleCosts - monthlyCosts * 12) * 100) / 100;
@@ -57,10 +57,8 @@
         }
 
         updateProfitField(profit) {
-            this.summaryField.innerText = `${profit} zł`;
+            this.summaryField.innerText = `${profit.toLocaleString()} zł`;
         }
-
-        updateCosts() {}
     }
     document.addEventListener("DOMContentLoaded", function (event) {
         const estimate = document.querySelector(".estimate");
