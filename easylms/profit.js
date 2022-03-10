@@ -39,6 +39,10 @@
 
             let noImplement = document.querySelector("#id-profit-implementation input").checked;
             let singleCosts = noImplement ? 990 : 9900;
+            let oldSingleCosts = noImplement ? 1980 : 19800;
+            document.getElementById(
+                "id-profit-singlecost"
+            ).innerHTML = `<strike>${oldSingleCosts}</strike>  ${singleCosts} zł`;
 
             let profit = income * students * 12 - singleCosts - monthlyCosts * 12;
 
