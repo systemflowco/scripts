@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     const webhookUrl = window.easylmswebhook;
 
-    if (webhookUrl) {
+    if (webhookUrl && window._EC_USER_ID) {
         sendWebhook(webhookUrl, {
             type: "visitPage",
             location: window.location.href,

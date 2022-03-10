@@ -207,7 +207,7 @@
             return JSON.parse(localStorage.getItem(key));
         }
         sendWebhook(data) {
-            if (this.webhookUrl) {
+            if (this.webhookUrl && this.userId) {
                 const xhttp = new XMLHttpRequest();
                 xhttp.open("POST", this.webhookUrl, true);
                 xhttp.setRequestHeader("Content-type", "application/json");
