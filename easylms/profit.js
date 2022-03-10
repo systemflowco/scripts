@@ -51,10 +51,11 @@
 
             let noImplement = document.querySelector("#id-profit-implementation input").checked;
             let singleCosts = noImplement ? 990 : 9900;
+            let singleCostsString = noImplement ? "990" : "9 900";
             let oldSingleCosts = noImplement ? 1980 : 19800;
             document.getElementById(
                 "id-profit-singlecost"
-            ).innerHTML = `<strike>${oldSingleCosts.toLocaleString()}</strike>  <span>${singleCosts.toLocaleString()}</span> zł`;
+            ).innerHTML = `<strike>${oldSingleCosts.toLocaleString()}</strike>  ${singleCostsString} zł`;
 
             let profit =
                 Math.round((income * students * 12 - singleCosts - monthlyCosts * 12) * 100) / 100;
