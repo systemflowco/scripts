@@ -67,7 +67,7 @@
         }
     }
     document.addEventListener("DOMContentLoaded", function (event) {
-        const estimate = document.querySelector(".estimate");
+        const estimate = document.querySelector(".estimate-2");
         if (estimate) {
             new Profit(estimate);
         }
