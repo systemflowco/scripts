@@ -59,10 +59,11 @@
                 "id-profit-singlecost"
             ).innerHTML = `<strike>${oldSingleCostsString}</strike>  ${singleCostsString} zł`;
 
-            let profit =
-                Math.round((income * students * 12 - singleCosts - monthlyCosts * 12) * 100) / 100;
+            let profit = (
+                Math.round((income * students * 12 - singleCosts - monthlyCosts * 12) * 100) / 100
+            ).toFixed(2);
 
-            this.summaryField.innerText = `${profit.toFixed(2).toLocaleString()} zł`;
+            this.summaryField.innerText = `${profit.toLocaleString()} zł`;
         }
     }
     document.addEventListener("DOMContentLoaded", function (event) {
