@@ -16,6 +16,12 @@
 
             this.incomeField.addEventListener("change", this.calculateProfit.bind(this));
             this.studentsField.addEventListener("change", this.calculateProfit.bind(this));
+            document
+                .querySelector("#id-profit-autoimplement")
+                .addEventListener("click", this.calculateProfit.bind(this));
+            document
+                .querySelector("#id-profit-implementation")
+                .addEventListener("click", this.calculateProfit.bind(this));
             this.calculateProfit();
         }
 
@@ -30,9 +36,9 @@
             let noAutoImplement = document.querySelector("#id-profit-autoimplement input").checked;
             let automation = noAutoImplement ? 40 : 200;
             document.getElementById("id-profit-automation").innerText = `${automation} zł`;
-            let stripe = 0.016 * income * students;
+            let stripe = Math.round(0.016 * income * students * 100) / 100;
             document.getElementById("id-profit-stripe").innerText = `${stripe} zł`;
-            let ec = 0.02 * income * students;
+            let ec = Math.round(0.02 * income * students * 100) / 100;
             document.getElementById("id-profit-ec").innerText = `${ec} zł`;
 
             let monthlyCosts = 10 + hosting + mailing + automation + stripe + ec;
