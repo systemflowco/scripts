@@ -50,7 +50,8 @@
                 "id-profit-singlecost"
             ).innerHTML = `<strike>${oldSingleCosts}</strike>  ${singleCosts} zł`;
 
-            let profit = income * students * 12 - singleCosts - monthlyCosts * 12;
+            let profit =
+                Math.round((income * students * 12 - singleCosts - monthlyCosts * 12) * 100) / 100;
 
             this.updateProfitField(profit);
         }
