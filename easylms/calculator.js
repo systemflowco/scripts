@@ -43,7 +43,7 @@
                 ".summary-item-price.big"
             ).innerText = `${this.totalPrice} zł netto`;
             let brutto = Math.round(this.totalPrice * 1.23);
-            this.payButton.href = `https://hook.eu1.make.com/yzi0o4r9ar4zjmwomtih3oq2souuof5m?price=${brutto}&prod=prod_LEYwjHjQyDzxxU&options=${this.implementOptions.join()}&monthly=${
+            this.payButton.href = `https://hook.eu1.make.com/13mgu6xii6i38fzyi3a0528qoosjvqng?price=${brutto}&prod=prod_LEYwjHjQyDzxxU&options=${this.implementOptions.join()}&monthly=${
                 this.totalMonthPrice
             }`;
             this.payButton.querySelector(
@@ -66,6 +66,7 @@
                 let chosen = item.querySelector("input[type=checkbox]").checked;
                 if (chosen) {
                     let title = item.querySelector(".checkbox-custom-label").innerText;
+                    4;
                     let priceField = item.querySelector(".price-service");
                     let price = priceField ? +priceField.innerText : 0;
                     let monthPriceField = item.querySelector(".price-monthly");
