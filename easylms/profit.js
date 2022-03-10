@@ -22,15 +22,26 @@
         calculateProfit() {
             let income = this.incomeField ? +this.incomeField.value : 0;
             let students = this.studentsField ? +this.studentsField.value : 0;
-            let singleCosts = 990;
-            let monthlyCosts = 40;
-            let withImplementation = false;
-            let implementationCost = 1000;
-            let profit =
-                income * students * 12 -
-                singleCosts -
-                monthlyCosts * 12 -
-                (withImplementation ? implementationCost : 0);
+
+            let hosting = students > 200 ? 127.5 : students > 100 ? 48 : 17.25;
+            document.getElementById("id-profit-hosting").innerText = `${hosting} zł`;
+            let mailing = students > 350 ? 285 : students > 250 ? 160 : students > 100 ? 60 : 40;
+            document.getElementById("id-profit-mailing").innerText = `${mailing} zł`;
+            let noAutoImplement = document.querySelector("#id-profit-autoimplement input").checked;
+            let automation = noAutoImplement ? 40 : 200;
+            document.getElementById("id-profit-automation").innerText = `${automation} zł`;
+            let stripe = 0.016 * income * students;
+            document.getElementById("id-profit-stripe").innerText = `${stripe} zł`;
+            let ec = 0.02 * income * students;
+            document.getElementById("id-profit-ec").innerText = `${ec} zł`;
+
+            let monthlyCosts = 10 + hosting + mailing + automation + stripe + ec;
+
+            let noImplement = document.querySelector("#id-profit-implementation input").checked;
+            let singleCosts = noImplement ? 990 : 9900;
+
+            let profit = income * students * 12 - singleCosts - monthlyCosts * 12;
+
             this.updateProfitField(profit);
         }
 
