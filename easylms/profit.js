@@ -30,12 +30,18 @@
             let students = this.studentsField ? +this.studentsField.value : 0;
 
             let hosting = students > 200 ? 127.5 : students > 100 ? 48 : 17.25;
-            document.getElementById("id-profit-hosting").innerText = `${hosting} zł`;
+            document.getElementById(
+                "id-profit-hosting"
+            ).innerText = `${hosting.toLocaleString()} zł`;
             let mailing = students > 350 ? 285 : students > 250 ? 160 : students > 100 ? 60 : 40;
-            document.getElementById("id-profit-mailing").innerText = `${mailing} zł`;
+            document.getElementById(
+                "id-profit-mailing"
+            ).innerText = `${mailing.toLocaleString()} zł`;
             let noAutoImplement = document.querySelector("#id-profit-autoimplement input").checked;
             let automation = noAutoImplement ? 40 : 200;
-            document.getElementById("id-profit-automation").innerText = `${automation} zł`;
+            document.getElementById(
+                "id-profit-automation"
+            ).innerText = `${automation.toLocaleString()} zł`;
             let stripe = Math.round(0.016 * income * students * 100) / 100;
             document.getElementById("id-profit-stripe").innerText = `${stripe.toLocaleString()} zł`;
             let ec = Math.round(0.02 * income * students * 100) / 100;
