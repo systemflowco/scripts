@@ -53,10 +53,6 @@
             let profit =
                 Math.round((income * students * 12 - singleCosts - monthlyCosts * 12) * 100) / 100;
 
-            this.updateProfitField(profit);
-        }
-
-        updateProfitField(profit) {
             this.summaryField.innerText = `${profit.toLocaleString()} zł`;
         }
     }
