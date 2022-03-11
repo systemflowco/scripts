@@ -3,8 +3,6 @@
         constructor(elem) {
             this.incomeField = elem.querySelector("[data-name='estimate-income']");
             this.studentsField = elem.querySelector("[data-name='estimate-students']");
-            this.singleCostsFields = elem.querySelectorAll("static-expense-price");
-            this.monthlyCostsFields = elem.querySelectorAll("monthly-expense-price");
             this.summaryField = elem.querySelector("#estimate-total");
             this.assignEvents();
         }
@@ -48,8 +46,12 @@
             )} zł`;
             let ec = Math.round(0.02 * income * students * 100) / 100;
             document.getElementById("id-profit-ec").innerText = `${ec.toLocaleString("pl-PL")} zł`;
+            let inv = students * 2;
+            document.getElementById("id-profit-inv").innerText = `${inv.toLocaleString(
+                "pl-PL"
+            )} zł`;
 
-            let monthlyCosts = 10 + hosting + mailing + automation + stripe + ec;
+            let monthlyCosts = 10 + hosting + mailing + automation + stripe + ec + inv;
 
             let noImplement = document.querySelector("#id-profit-implementation input").checked;
             let singleCosts = noImplement ? 990 : 9900;
