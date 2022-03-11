@@ -1,4 +1,3 @@
-//SYSTEM FLOW Age Verification
 (() => {
     class SFLibrary {
         constructor() {

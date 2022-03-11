@@ -7,13 +7,13 @@
 
     function getVimeoVideoId(link) {
         var myregexp =
-            /.*(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|event\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?\/?(.*)/i;
+            /.*(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|event\/|webinars\/events\/|)([^\/]+)\/?(.*)/i;
         return link.replace(myregexp, "$1");
     }
 
     function getVimeoVideoHash(link) {
         var myregexp =
-            /.*(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|event\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?\/?(.*)/i;
+            /.*(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|event\/|webinars\/events\/|)([^\/]+)\/?(.*)/i;
         return link.replace(myregexp, "$2");
     }
 
@@ -31,6 +31,14 @@
             videoSrc = `https://player.vimeo.com/video/${videoId}${
                 videoHash ? "?h=" + videoHash : ""
             }`;
+            if (videoLink.includes("event")) {
+                eventSrc = `https://vimeo.com/event/${videoId}/embed${
+                    videoHash ? "/" + videoHash : ""
+                }`;
+            }
+            if (videoLink.includes("webinars")) {
+                eventSrc = `https://vimeo.com/webinars/events/${videoId}/embed`;
+            }
         }
         lmsVideo.setAttribute("src", videoSrc);
     });
@@ -49,9 +57,14 @@
             eventSrc = `https://player.vimeo.com/video/${videoId}${
                 videoHash ? "?h=" + videoHash : ""
             }/embed`;
-            // eventSrc = `https://vimeo.com/event/${videoId}${
-            //     videoHash ? "?h=" + videoHash : ""
-            // }/embed`;
+            if (videoLink.includes("event")) {
+                eventSrc = `https://vimeo.com/event/${videoId}/embed${
+                    videoHash ? "/" + videoHash : ""
+                }`;
+            }
+            if (videoLink.includes("webinars")) {
+                eventSrc = `https://vimeo.com/webinars/events/${videoId}/embed`;
+            }
         }
         lmsEvent.setAttribute("src", eventSrc);
     }
@@ -67,7 +80,9 @@
         if (videoLink.includes("vimeo")) {
             let videoId = getVimeoVideoId(videoLink);
             chatSrc = `https://vimeo.com/live-chat/${videoId}`;
-            // chatSrc = `https://vimeo.com/event/${videoId}/chat`;
+            if (videoLink.includes("event")) {
+                chatSrc = `https://vimeo.com/event/${videoId}/chat`;
+            }
         }
         lmsChat.setAttribute("src", chatSrc);
     }
