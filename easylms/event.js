@@ -46,9 +46,12 @@
         if (videoLink.includes("vimeo")) {
             let videoId = getVimeoVideoId(videoLink);
             let videoHash = getVimeoVideoHash(videoLink);
-            eventSrc = `https://vimeo.com/event/${videoId}${
+            eventSrc = `https://player.vimeo.com/video/${videoId}${
                 videoHash ? "?h=" + videoHash : ""
             }/embed`;
+            // eventSrc = `https://vimeo.com/event/${videoId}${
+            //     videoHash ? "?h=" + videoHash : ""
+            // }/embed`;
         }
         lmsEvent.setAttribute("src", eventSrc);
     }
@@ -63,7 +66,8 @@
         }
         if (videoLink.includes("vimeo")) {
             let videoId = getVimeoVideoId(videoLink);
-            chatSrc = `https://vimeo.com/event/${videoId}/chat`;
+            chatSrc = `https://vimeo.com/live-chat/${videoId}`;
+            // chatSrc = `https://vimeo.com/event/${videoId}/chat`;
         }
         lmsChat.setAttribute("src", chatSrc);
     }
