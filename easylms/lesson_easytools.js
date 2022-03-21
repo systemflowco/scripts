@@ -11,7 +11,7 @@
             this.finishBtn = document.querySelector("[data-lms-finish-btn]");
             this.finishedBtn = document.querySelector("[data-lms-finished-btn]");
             this.nextLessonBtn = document.querySelector("[data-lms-next-btn]");
-            this.autoplayBtn = document.querySelector("[data-lms-autoplay-btn] input");
+            this.autoplayBtn = document.querySelector("[data-lms-autoplay-btn]");
             this.lessons = document.querySelectorAll(".course-content-lesson");
 
             this.KEY_FINISH = "LESSON.FINISH";
