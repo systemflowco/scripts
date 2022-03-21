@@ -1,4 +1,6 @@
 const ej_api = "https://app.easytools.pl/api/json";
+const newEvent = new Event("easyJsonReady");
+
 const easy_json = {
     logged() {
         const stripeKey = easy_json.getProductId();
@@ -32,6 +34,7 @@ const easy_json = {
     async get() {
         if (!easy_json.logged()) {
             window.easyJSON = {};
+            document.dispatchEvent(newEvent);
             document.addEventListener("DOMContentLoaded", function (event) {
                 new LogTost();
             });
@@ -47,6 +50,8 @@ const easy_json = {
         const data = await result.json();
         if (data.statusCode !== 404 && data.statusCode !== 500) {
             window.easyJSON = data || {};
+            console.log("easyJson ready");
+            document.dispatchEvent(newEvent);
         }
     },
 };
@@ -119,14 +124,4 @@ class LogTost {
     }
 }
 
-const newEvent = new Event("easyJsonReady");
-easy_json
-    .get()
-    .then(() => {
-        document.dispatchEvent(newEvent);
-        console.log("easyJson ready");
-    })
-    .catch(() => {
-        document.dispatchEvent(newEvent);
-        console.log("easyJson ready");
-    });
+easy_json.get().then().catch();
