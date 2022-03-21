@@ -30,9 +30,12 @@
             this.saveLastLesson();
 
             //if no easyJson Script do not wait for data
+            console.log("start lesson");
+            console.log(easy_json);
             if (typeof easy_json === "undefined") {
                 this.checking();
             } else {
+                console.log(window.easyJSON);
                 //maybe they are already here available
                 if (window.easyJSON) {
                     this.checking();
