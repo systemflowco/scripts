@@ -57,6 +57,7 @@ function createYoutubePlayer(iframe) {
         }, 5000);
 
         document.querySelector(".progress-circle-embed").addEventListener("click", () => {
+            console.log("play Video");
             player.playVideo();
         });
 
