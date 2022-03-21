@@ -56,6 +56,7 @@
             });
         }
         checking() {
+            console.log("checking");
             this.checkIfAutoplay();
             this.checkIfFinished();
             this.checkAllLessons();
@@ -90,7 +91,7 @@
                 ecUserId: this.userId,
                 ecProductId: this.productId,
                 lessonName: this.lessonName,
-                lessonSlug: this.lessonSlug,
+                lessonSlug: this.slug,
                 courseName: this.courseName,
             });
         }
@@ -103,6 +104,7 @@
             });
         }
         checkIfAutoplay() {
+            console.log("checkIfAutoplay");
             this.autoplayMode = this.readLsAndEj(this.KEY_AUTOPLAY) || false;
             setTimeout(() => {
                 if (this.autoplayMode) {
@@ -112,6 +114,7 @@
             }, 500);
         }
         toggleAutoplayMode() {
+            console.log("toggleAutoplay");
             this.autoplayMode = !this.autoplayMode;
             this.saveLsAndEj(this.KEY_AUTOPLAY, this.autoplayMode);
         }
@@ -165,7 +168,7 @@
                 ecUserId: this.userId,
                 ecProductId: this.productId,
                 lessonName: this.lessonName,
-                lessonSlug: this.lessonSlug,
+                lessonSlug: this.slug,
                 courseName: this.courseName,
             });
             this.saveLsAndEj(this.KEY_FINISH, this.finishedLessons);
