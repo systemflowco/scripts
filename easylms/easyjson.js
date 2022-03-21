@@ -34,7 +34,6 @@ const easy_json = {
     async get() {
         if (!easy_json.logged()) {
             window.easyJSON = {};
-            document.dispatchEvent(newEvent);
             document.addEventListener("DOMContentLoaded", function (event) {
                 new LogTost();
             });
@@ -50,8 +49,6 @@ const easy_json = {
         const data = await result.json();
         if (data.statusCode !== 404 && data.statusCode !== 500) {
             window.easyJSON = data || {};
-            console.log("easyJson ready");
-            document.dispatchEvent(newEvent);
         }
     },
 };
@@ -124,4 +121,6 @@ class LogTost {
     }
 }
 
-easy_json.get().then().catch();
+await easy_json.get();
+console.log("easyJson ready");
+document.dispatchEvent(newEvent);
