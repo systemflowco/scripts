@@ -46,7 +46,7 @@
             // https://hook.eu1.make.com/13mgu6xii6i38fzyi3a0528qoosjvqng
             // https://hook.eu1.make.com/yzi0o4r9ar4zjmwomtih3oq2souuof5m
 
-            this.payButton.href = `https://hook.eu1.make.com/i83rf1pjlh445534lua4n1gr6aduqngk?price=${brutto}&prod=prod_LEYwjHjQyDzxxU&options=${this.implementOptions.join()}&monthly=${
+            this.payButton.href = `https://hook.eu1.make.com/vydbcv44aqwl14ojtgmlgmn182qgq36s?price=${brutto}&prod=prod_LEYwjHjQyDzxxU&options=${this.implementOptions.join()}&monthly=${
                 this.totalMonthPrice
             }`;
             this.payButton.querySelector(

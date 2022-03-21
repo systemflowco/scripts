@@ -93,7 +93,7 @@
                 ecUserId: this.userId,
                 ecProductId: this.productId,
                 lessonName: this.lessonName,
-                lessonSlug: this.lessonSlug,
+                lessonSlug: this.slug,
                 courseName: this.courseName,
             });
         }
