@@ -56,9 +56,9 @@ function createYoutubePlayer(iframe) {
             $(document).trigger("videoProgress", currentTime);
         }, 5000);
 
-        setTimeout(() => {
+        document.querySelector(".progress-circle-embed").addEventListener("click", () => {
             player.playVideo();
-        }, 1000);
+        });
 
         $(document).on("goToVideoSecond", (event, progress) => {
             player.seekTo(progress);
