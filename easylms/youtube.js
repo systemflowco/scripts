@@ -50,7 +50,7 @@ function createYoutubePlayer(iframe) {
             $(document).trigger("videoProgress", currentTime);
         }, 5000);
 
-        player.playVideo();
+        event.target.playVideo();
 
         $(document).on("goToVideoSecond", (event, progress) => {
             player.seekTo(progress);
