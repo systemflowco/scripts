@@ -30,12 +30,9 @@
             this.saveLastLesson();
 
             //if no easyJson Script do not wait for data
-            console.log("start lesson");
-            console.log(easy_json);
             if (typeof easy_json === "undefined") {
                 this.checking();
             } else {
-                console.log(window.easyJSON);
                 //maybe they are already here available
                 if (window.easyJSON) {
                     this.checking();
@@ -106,9 +103,7 @@
             });
         }
         checkIfAutoplay() {
-            console.log("checkIfAutoplay");
             this.autoplayMode = this.readLsAndEj(this.KEY_AUTOPLAY) || false;
-            console.log(this.autoplayMode);
             setTimeout(() => {
                 if (this.autoplayMode) {
                     this.autoplayBtn.click();
@@ -117,9 +112,7 @@
             }, 500);
         }
         toggleAutoplayMode() {
-            console.log("toggleAutoplay");
             this.autoplayMode = !this.autoplayMode;
-            console.log(this.autoplayMode);
             this.saveLsAndEj(this.KEY_AUTOPLAY, this.autoplayMode);
         }
         goToNextLesson() {

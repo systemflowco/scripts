@@ -48,6 +48,8 @@ function createYoutubePlayer(iframe) {
 
     // setup the onYoutubePlayerReady function
     function onYoutubePlayerReady(event) {
+        console.log("player ready");
+        console.log(player.playVideo);
         // play the video at the specified seconds
         setInterval(() => {
             const currentTime = player.getCurrentTime();
