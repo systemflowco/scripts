@@ -109,6 +109,7 @@
         checkIfAutoplay() {
             console.log("checkIfAutoplay");
             this.autoplayMode = this.readLsAndEj(this.KEY_AUTOPLAY) || false;
+            console.log(this.autoplayMode);
             setTimeout(() => {
                 if (this.autoplayMode) {
                     this.autoplayBtn.click();
@@ -119,6 +120,7 @@
         toggleAutoplayMode() {
             console.log("toggleAutoplay");
             this.autoplayMode = !this.autoplayMode;
+            console.log(this.autoplayMode);
             this.saveLsAndEj(this.KEY_AUTOPLAY, this.autoplayMode);
         }
         goToNextLesson() {
