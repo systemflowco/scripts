@@ -124,7 +124,9 @@ easy_json
     .get()
     .then(() => {
         document.dispatchEvent(newEvent);
+        console.log("easyJson ready");
     })
     .catch(() => {
         document.dispatchEvent(newEvent);
+        console.log("easyJson ready");
     });
