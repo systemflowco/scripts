@@ -22,7 +22,7 @@ function onYouTubeIframeAPIReady() {
         const videoId = window.easyLmsInfo.videoId;
 
         // create a new src & embed the enablejsapi=1 query string
-        src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&modestbranding=1&showinfo=0&rel=0&autoplay=1`;
+        src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}`;
 
         // set the recreated src as the iframe's src
         frame.setAttribute("src", src);
@@ -37,7 +37,7 @@ function onYouTubeIframeAPIReady() {
 function createYoutubePlayer(iframe) {
     // initialize YT.player with the specified iframe's id
     let player = new YT.Player(iframe, {
-        playerVars: { showInfo: 0, modestbranding: 1 },
+        playerVars: { showInfo: 0, modestbranding: 1, autoplay: 1, rel: 0, modestbranding: 1 },
         // setup the event function to be called when YT.player is ready
         events: {
             onReady: onYoutubePlayerReady,
@@ -56,10 +56,9 @@ function createYoutubePlayer(iframe) {
             $(document).trigger("videoProgress", currentTime);
         }, 5000);
 
-        document.querySelector(".progress-circle-embed").addEventListener("click", () => {
-            console.log("play Video");
-            player.playVideo();
-        });
+        console.log("play Video");
+        document.querySelector(".progress-circle-embed").click();
+        player.playVideo();
 
         $(document).on("goToVideoSecond", (event, progress) => {
             player.seekTo(progress);
