@@ -22,7 +22,7 @@ function onYouTubeIframeAPIReady() {
         const videoId = window.easyLmsInfo.videoId;
 
         // create a new src & embed the enablejsapi=1 query string
-        src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&modestbranding=1&showinfo=0&rel=0`;
+        src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&modestbranding=1&showinfo=0&rel=0&autoplay=1`;
 
         // set the recreated src as the iframe's src
         frame.setAttribute("src", src);
