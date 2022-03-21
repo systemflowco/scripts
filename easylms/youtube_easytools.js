@@ -22,12 +22,13 @@ function onYouTubeIframeAPIReady() {
         const videoId = window.easyLmsInfo.videoId;
 
         // create a new src & embed the enablejsapi=1 query string
-        src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}`;
+        src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&autoplay=1`;
 
         // set the recreated src as the iframe's src
         frame.setAttribute("src", src);
         // create a unique id for the iframe
         $(frame).attr("id", "dynamic" + i);
+        frame.setAttribute("allow", "autoplay");
         // call the createPlayer function with the iframe's id
         createYoutubePlayer(frame.id);
     });
@@ -57,7 +58,6 @@ function createYoutubePlayer(iframe) {
         }, 5000);
 
         console.log("play Video");
-        document.querySelector(".progress-circle-embed").click();
         player.playVideo();
 
         $(document).on("goToVideoSecond", (event, progress) => {
