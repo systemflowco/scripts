@@ -59,7 +59,6 @@
             });
         }
         checking() {
-            console.log("checking");
             this.checkIfAutoplay();
             this.checkIfFinished();
             this.checkAllLessons();
