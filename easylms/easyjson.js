@@ -121,6 +121,8 @@ class LogTost {
     }
 }
 
-await easy_json.get();
-console.log("easyJson ready");
-document.dispatchEvent(newEvent);
+async () => {
+    await easy_json.get();
+    console.log("easyJson ready");
+    document.dispatchEvent(newEvent);
+};
