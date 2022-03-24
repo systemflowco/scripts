@@ -7,7 +7,10 @@ const easy_json = {
         return window._EC_USER_ID && window[stripeKey];
     },
     getProductId() {
-        return window.easyLmsInfo.ecProductId ? "_EC_" + window.easyLmsInfo.ecProductId : "";
+        if (typeof window.easyLmsInfo.ecProductId === "undefined") {
+            return "";
+        }
+        return "_EC_" + window.easyLmsInfo.ecProductId;
     },
     async patch(json, override = false) {
         if (!easy_json.logged()) {
