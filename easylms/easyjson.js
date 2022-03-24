@@ -7,6 +7,9 @@ const easy_json = {
         return window._EC_USER_ID && window[stripeKey];
     },
     getProductId() {
+        if (!window.easyLmsInfo.ecProductId) {
+            return "";
+        }
         return "_EC_" + window.easyLmsInfo.ecProductId;
     },
     async patch(json, override = false) {
