@@ -58,7 +58,9 @@ function createYoutubePlayer(iframe) {
         }, 5000);
 
         console.log("play Video");
-        player.playVideo();
+        setTimeout(() => {
+            player.playVideo();
+        }, 3000);
 
         $(document).on("goToVideoSecond", (event, progress) => {
             player.seekTo(progress);
