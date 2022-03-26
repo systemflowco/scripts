@@ -25,12 +25,14 @@
             videoHash ? "?h=" + videoHash : ""
         }&autoplay=1`;
 
-        // set the recreated src as the iframe's src
-        frame.setAttribute("src", src);
-        // create a unique id for the iframe
-        frame.id = "vimeoPlayer";
-        // call the createPlayer function with the iframe's id
-        createVimeoPlayer(frame.id);
+        setTimeout(() => {
+            // set the recreated src as the iframe's src
+            frame.setAttribute("src", src);
+            // create a unique id for the iframe
+            frame.id = "vimeoPlayer";
+            // call the createPlayer function with the iframe's id
+            createVimeoPlayer(frame.id);
+        }, 500);
     }
 
     // setup the createPlayer function
