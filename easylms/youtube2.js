@@ -46,7 +46,9 @@ function createYoutubePlayer(iframe) {
 
     // setup the onYoutubePlayerReady function
     function onYoutubePlayerReady(event) {
-        event.target.playVideo();
+        event.target.playVideo().then(() => {
+            console.log("Played");
+        });
 
         // play the video at the specified seconds
         setInterval(() => {
@@ -54,8 +56,8 @@ function createYoutubePlayer(iframe) {
             $(document).trigger("videoProgress", currentTime);
         }, 5000);
 
-        console.log("play Video");
         setTimeout(() => {
+            console.log("play Video");
             player.playVideo();
         }, 3000);
 
