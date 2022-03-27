@@ -29,6 +29,7 @@
             frame.setAttribute("src", src);
             // create a unique id for the iframe
             frame.id = "vimeoPlayer";
+            frame.setAttribute("allow", "autoplay");
             // call the createPlayer function with the iframe's id
             createVimeoPlayer(frame.id);
         }, 500);
