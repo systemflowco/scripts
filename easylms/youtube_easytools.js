@@ -29,6 +29,7 @@ function onYouTubeIframeAPIReady() {
         // create a unique id for the iframe
         $(frame).attr("id", "dynamic" + i);
         frame.setAttribute("allow", "autoplay");
+        frame.setAttribute("allowFullScreen", "");
         // call the createPlayer function with the iframe's id
         createYoutubePlayer(frame.id);
     });

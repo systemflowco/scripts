@@ -26,6 +26,7 @@ function onYouTubeIframeAPIReady() {
     // create a unique id for the iframe
     frame.id = "youtubePlayer";
     frame.setAttribute("allow", "autoplay");
+    frame.setAttribute("allowFullScreen", "");
     // call the createPlayer function with the iframe's id
     createYoutubePlayer(frame.id);
 }
@@ -54,7 +55,9 @@ function createYoutubePlayer(iframe) {
         }, 5000);
 
         console.log("play Video");
-        player.playVideo();
+        setTimeout(() => {
+            player.playVideo();
+        }, 3000);
 
         $(document).on("goToVideoSecond", (event, progress) => {
             player.seekTo(progress);
