@@ -26,7 +26,6 @@ function onYouTubeIframeAPIReady() {
     // create a unique id for the iframe
     frame.id = "youtubePlayer";
     frame.setAttribute("allow", "autoplay");
-    frame.setAttribute("allowFullScreen", "");
     // call the createPlayer function with the iframe's id
     createYoutubePlayer(frame.id);
 }
@@ -35,7 +34,7 @@ function onYouTubeIframeAPIReady() {
 function createYoutubePlayer(iframe) {
     // initialize YT.player with the specified iframe's id
     let player = new YT.Player(iframe, {
-        playerVars: { showInfo: 0, modestbranding: 1 },
+        playerVars: { showInfo: 0, modestbranding: 1, autoplay: 1, rel: 0, modestbranding: 1 },
         // setup the event function to be called when YT.player is ready
         events: {
             onReady: onYoutubePlayerReady,
@@ -46,9 +45,7 @@ function createYoutubePlayer(iframe) {
 
     // setup the onYoutubePlayerReady function
     function onYoutubePlayerReady(event) {
-        event.target.playVideo().then(() => {
-            console.log("Played");
-        });
+        event.target.playVideo();
 
         // play the video at the specified seconds
         setInterval(() => {
