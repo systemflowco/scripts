@@ -14,7 +14,7 @@
         const frame = document.querySelector("[data-easylms-video] iframe");
 
         // get the video id from the webflow defined src attribute value
-        var myregexp = /.*vimeo.com.*\/(\d+)\/?(.*)/i;
+        var myregexp = /.*vimeo.com(?:\/video|\/event|\/webinars\/events)?\/(\d+)\/?(.*)/i;
 
         const videoId = window.easyLmsInfo.lessonVideo.replace(myregexp, "$1");
         const videoHash = window.easyLmsInfo.lessonVideo.replace(myregexp, "$2");

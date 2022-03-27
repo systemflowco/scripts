@@ -14,17 +14,20 @@ function onYouTubeIframeAPIReady() {
     const frame = document.querySelector("[data-easylms-video]");
 
     // get the video id
-    var myregexp =
-        /.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-    const videoId = window.easyLmsInfo.lessonVideo.replace(myregexp, "$1");
+    function YouTubeGetID(url) {
+        url = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+        return url[2] !== undefined ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0];
+    }
+    const videoId = YouTubeGetID(window.easyLmsInfo.lessonVideo);
 
     // create a new src & embed the enablejsapi=1 query string
-    const src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&modestbranding=1&showinfo=0&rel=0&autoplay=1`;
+    const src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&autoplay=1`;
 
     // set the recreated src as the iframe's src
     frame.setAttribute("src", src);
     // create a unique id for the iframe
     frame.id = "youtubePlayer";
+    frame.setAttribute("allow", "autoplay");
     // call the createPlayer function with the iframe's id
     createYoutubePlayer(frame.id);
 }
@@ -33,7 +36,7 @@ function onYouTubeIframeAPIReady() {
 function createYoutubePlayer(iframe) {
     // initialize YT.player with the specified iframe's id
     let player = new YT.Player(iframe, {
-        playerVars: { showInfo: 0, modestbranding: 1 },
+        playerVars: { showInfo: 0, modestbranding: 1, autoplay: 1, rel: 0, modestbranding: 1 },
         // setup the event function to be called when YT.player is ready
         events: {
             onReady: onYoutubePlayerReady,

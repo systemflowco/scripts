@@ -14,8 +14,7 @@
         const frame = document.querySelector("[data-easylms-video]");
 
         // get the video id from the webflow defined src attribute value
-        var myregexp =
-            /.*(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?\/?(.*)/i;
+        var myregexp = /.*vimeo.com(?:\/video|\/event|\/webinars\/events)?\/(\d+)\/?(.*)/i;
 
         const videoId = window.easyLmsInfo.lessonVideo.replace(myregexp, "$1");
         const videoHash = window.easyLmsInfo.lessonVideo.replace(myregexp, "$2");
@@ -29,6 +28,7 @@
         frame.setAttribute("src", src);
         // create a unique id for the iframe
         frame.id = "vimeoPlayer";
+        frame.setAttribute("allow", "autoplay");
         // call the createPlayer function with the iframe's id
         createVimeoPlayer(frame.id);
     }
