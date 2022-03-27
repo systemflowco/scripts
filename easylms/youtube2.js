@@ -13,11 +13,14 @@
 function onYouTubeIframeAPIReady() {
     const frame = document.querySelector("[data-easylms-video] iframe");
 
+    function YouTubeGetID(url){
+        url = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+        return (url[2] !== undefined) ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0];
+     }
+
     // get the video id
-    // var myregexp =
-    // /.*(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi;
-    // const videoId = window.easyLmsInfo.lessonVideo.replace(myregexp, "$1");
-    const videoId = "ZxxncwIlsvY";
+    const videoId = YouTubeGetID(window.easyLmsInfo.lessonVideo);
+
     // create a new src & embed the enablejsapi=1 query string
     const src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&autoplay=1`;
 
@@ -82,3 +85,8 @@ function createYoutubePlayer(iframe) {
         }
     }
 }
+
+<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="788.54" height="443" type="text/html" 
+src="https://www.youtube.com/embed/ZxxncwIlsvY?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com"><div><small><a href="https://youtubeembedcode.com/pl/">www.youtubeembedcode.com/pl/</a></small></div><div><small><a href="https://axelsons.se/massage/">massage utbildning</a></small></div><div><small><a href="https://youtubeembedcode.com/pl/">Discover More</a></small></div><div><small><a href="https://axelsonsspa.se/fransar-bryn/">fransar stockholm</a></small></div></iframe>
+<iframe class="embedly-embed" 
+src="https://www.youtube.com/embed/ZxxncwIlsvY?enablejsapi=1&amp;origin=https://easylms-1-0-8ccacfff705bf-0e633d6106fd0.webflow.io&amp;autoplay=1" scrolling="no" allowfullscreen="" title="Prezentacja EasyLMS" id="youtubePlayer" allow="autoplay"></iframe>
