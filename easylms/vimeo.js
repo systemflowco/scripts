@@ -21,8 +21,8 @@
 
         // create a new src & embed the enablejsapi=1 query string
         const src = `https://player.vimeo.com/video/${videoId}${
-            videoHash ? "?h=" + videoHash : ""
-        }&autoplay=1`;
+            videoHash ? "?h=" + videoHash + "&autoplay=1" : "?autoplay=1"
+        }`;
 
         // set the recreated src as the iframe's src
         frame.setAttribute("src", src);
