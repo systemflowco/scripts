@@ -27,7 +27,6 @@
             this.assignEvents();
         }
         assignEvents() {
-            //show autoPlay info tooltip
             this.showAutoPlayInfo();
             this.saveLastLesson();
 
