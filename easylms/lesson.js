@@ -30,6 +30,7 @@
             this.assignEvents();
         }
         assignEvents() {
+            this.showAutoPlayInfo();
             this.saveLastLesson();
 
             //if no easyJson Script do not wait for data
@@ -221,7 +222,7 @@
                 xhttp.send(JSON.stringify(data));
             }
         }
-        autoPlayInfo() {
+        showAutoPlayInfo() {
             const autoPlayTooltip = document.createElement("div");
             autoPlayTooltip.innerHTML = `<div class="tooltip-trigger" data-ix="tooltip-hover" style="display: inline-block;"><div class="tooltip-trigger-content"><div class="tooltip" style="display: none;"><div class="text-block c-t-neutral-10">Część przeglądarek, np. Safari, blokuje autoodtwarzanie. <br>Jeśli ta opcja nie działa poprawnie w Twojej przeglądarce, <a href="https://www.notion.so/Autoodtwarzanie-8a148c1cbb6c4091b67127554a3b8475">zobacz jak ją odblokować</a></div><div class="tooltip-arrow"></div></div><div class="material-icons">info</div></div></div>`;
             const autoPlayBtnLabel = document.querySelector("[data-lms-autoplay-btn]");
