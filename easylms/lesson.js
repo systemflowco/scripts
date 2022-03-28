@@ -225,6 +225,13 @@
         showAutoPlayInfo() {
             const autoPlayTooltip = document.createElement("div");
             autoPlayTooltip.innerHTML = `<div class="tooltip-trigger" data-ix="tooltip-hover" style="display: inline-block;"><div class="tooltip-trigger-content"><div class="tooltip" style="display: none;"><div class="text-block c-t-neutral-10">Część przeglądarek, np. Safari, blokuje autoodtwarzanie. <br>Jeśli ta opcja nie działa poprawnie w Twojej przeglądarce, <a href="https://www.notion.so/Autoodtwarzanie-8a148c1cbb6c4091b67127554a3b8475">zobacz jak ją odblokować</a></div><div class="tooltip-arrow"></div></div><div class="material-icons">info</div></div></div>`;
+            autoPlayTooltip.style.paddingLeft = "4px";
+            const tooltip = autoPlayTooltip.querySelector(".tooltip");
+            tooltip.style.top = "36px";
+            tooltip.style.bottom = "auto";
+            const arrow = autoPlayTooltip.querySelector(".tooltip-arrow");
+            arrow.style.top = "-6px";
+            arrow.style.bottom = "auto";
             const autoPlayBtnLabel = document.querySelector("[data-lms-autoplay-btn]");
             if (autoPlayBtnLabel) {
                 autoPlayBtnLabel.append(autoPlayTooltip);
