@@ -132,14 +132,18 @@
             let nOfFinished = 0;
 
             this.lessons.forEach((lesson) => {
-                lesson.slug = lesson.href.match(/(?<=lekcje\/).+/)[0];
-                if (this.finishedLessons.indexOf(lesson.slug) > -1) {
-                    lesson.querySelector(".not-done").style.display = "none";
-                    lesson.querySelector(".is-done").style.display = "block";
-                    nOfFinished++;
-                } else {
-                    lesson.querySelector(".not-done").style.display = "block";
-                    lesson.querySelector(".is-done").style.display = "none";
+                let lessonSlugMatcher = lesson.href.match(/lekcje\/(.+)/);
+                lesson.slug = lessonSlugMatcher ? lessonSlugMatcher[1] : "";
+
+                if (lesson.slug) {
+                    if (this.finishedLessons.indexOf(lesson.slug) > -1) {
+                        lesson.querySelector(".not-done").style.display = "none";
+                        lesson.querySelector(".is-done").style.display = "block";
+                        nOfFinished++;
+                    } else {
+                        lesson.querySelector(".not-done").style.display = "block";
+                        lesson.querySelector(".is-done").style.display = "none";
+                    }
                 }
             });
 
