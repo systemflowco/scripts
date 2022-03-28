@@ -228,6 +228,12 @@
             const autoPlayBtnLabel = document.querySelector("[data-lms-autoplay-btn]");
             if (autoPlayBtnLabel) {
                 autoPlayBtnLabel.append(autoPlayTooltip);
+                autoPlayTooltip.addEventListener("mouseenter", () => {
+                    autoPlayTooltip.querySelector(".tooltip").style.display = "block";
+                });
+                autoPlayTooltip.addEventListener("mouseleave", () => {
+                    autoPlayTooltip.querySelector(".tooltip").style.display = "none";
+                });
             }
         }
     }
