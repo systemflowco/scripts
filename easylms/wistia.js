@@ -22,10 +22,6 @@ function wistiaReady() {
     // create a new src & embed the enablejsapi=1 query string
     const src = `https://fast.wistia.net/embed/iframe/${videoId}`;
 
-    // set the recreated src as the iframe's src
-    frame.setAttribute("src", src);
-    // create a unique id for the iframe
-    frame.id = "wistiaPlayer";
     frame.setAttribute("allow", "autoplay");
 
     if (typeof window.autoplayMode !== "undefined") {
@@ -33,6 +29,11 @@ function wistiaReady() {
             frame.removeAttribute("allow");
         }
     }
+
+    // set the recreated src as the iframe's src
+    frame.setAttribute("src", src);
+    // create a unique id for the iframe
+    frame.id = "wistiaPlayer";
 
     frame.classList.add("wistia_embed");
     frame.setAttribute("name", "wistia_embed");
