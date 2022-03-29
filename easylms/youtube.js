@@ -54,7 +54,9 @@ function createYoutubePlayer(iframe) {
             $(document).trigger("videoProgress", currentTime);
         }, 5000);
 
-        event.target.playVideo();
+        if (typeof window.autoplayMode === "undefined" || window.autoplayMode) {
+            event.target.playVideo();
+        }
 
         $(document).on("goToVideoSecond", (event, progress) => {
             player.seekTo(progress);

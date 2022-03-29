@@ -44,7 +44,9 @@
             });
         }, 5000);
 
-        player.play();
+        if (typeof window.autoplayMode === "undefined" || window.autoplayMode) {
+            player.play();
+        }
 
         player.on("play", function () {
             $(document).trigger("playerPlay");
