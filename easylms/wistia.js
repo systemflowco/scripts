@@ -18,6 +18,7 @@ function wistiaReady() {
     var myregexp = /.*wistia.com(?:\/medias)?\/(.*)/i;
     const videoId = window.easyLmsInfo.lessonVideo.replace(myregexp, "$1");
 
+    console.log("Generate src");
     // create a new src & embed the enablejsapi=1 query string
     const src = `https://fast.wistia.net/embed/iframe/${videoId}`;
 
