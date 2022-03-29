@@ -15,7 +15,7 @@ function wistiaReady() {
     const frame = document.querySelector("[data-easylms-video]");
 
     // create a new src & embed the enablejsapi=1 query string
-    const src = window.easyLmsInfo.lessonVideo.replace("/medias/", "/embed/iframe");
+    const src = window.easyLmsInfo.lessonVideo.replace("/medias/", "/embed/iframe/");
 
     // set the recreated src as the iframe's src
     frame.setAttribute("src", src);
