@@ -24,12 +24,6 @@ function wistiaReady() {
 
     frame.setAttribute("allow", "autoplay");
 
-    if (typeof window.autoplayMode !== "undefined") {
-        if (!window.autoplayMode) {
-            frame.removeAttribute("allow");
-        }
-    }
-
     // set the recreated src as the iframe's src
     frame.setAttribute("src", src);
     // create a unique id for the iframe
@@ -53,7 +47,9 @@ function createWistiaPlayer(videoId) {
                 $(document).trigger("videoProgress", player.time());
             }, 5000);
 
-            player.play();
+            if (typeof window.autoplayMode === "undefined" || window.autoplayMode) {
+                player.play();
+            }
 
             player.bind("play", function () {
                 $(document).trigger("playerPlay");
