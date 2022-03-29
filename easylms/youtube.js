@@ -20,6 +20,7 @@ function onYouTubeIframeAPIReady() {
     }
     const videoId = YouTubeGetID(window.easyLmsInfo.lessonVideo);
 
+    console.log("Generate src");
     // create a new src & embed the enablejsapi=1 query string
     const src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&autoplay=1`;
 
