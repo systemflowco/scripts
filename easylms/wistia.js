@@ -27,6 +27,13 @@ function wistiaReady() {
     // create a unique id for the iframe
     frame.id = "wistiaPlayer";
     frame.setAttribute("allow", "autoplay");
+
+    if (typeof window.autoplayMode !== "undefined") {
+        if (!window.autoplayMode) {
+            frame.removeAttribute("allow");
+        }
+    }
+
     frame.classList.add("wistia_embed");
     frame.setAttribute("name", "wistia_embed");
     // call the createPlayer function with the iframe's id

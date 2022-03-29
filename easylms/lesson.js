@@ -108,7 +108,7 @@
         }
         checkIfAutoplay() {
             this.autoplayMode = this.readLsAndEj(this.KEY_AUTOPLAY) || false;
-            console.log("Check Autoplay");
+            window.autoplayMode = this.autoplayMode;
             setTimeout(() => {
                 if (this.autoplayMode) {
                     this.autoplayBtn.click();
