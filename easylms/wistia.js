@@ -25,7 +25,7 @@ function wistiaReady() {
     createWistiaPlayer(frame.id);
 }
 
-function createVimeoPlayer(iframe) {
+function createWistiaPlayer(iframe) {
     var player = Wistia.api(iframe);
     console.log("I got a handle to the video!", player);
 
