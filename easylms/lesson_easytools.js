@@ -27,6 +27,7 @@
             this.assignEvents();
         }
         assignEvents() {
+            //test
             this.showAutoPlayInfo();
             this.saveLastLesson();
 
