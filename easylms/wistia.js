@@ -41,29 +41,29 @@ function createWistiaPlayer(iframe) {
     //     $(document).trigger("videoProgress", player.time());
     // }, 5000);
 
-    // player.play();
+    player.play();
 
-    // player.bind("play", function () {
-    //     $(document).trigger("playerPlay");
-    // });
+    player.bind("play", function () {
+        $(document).trigger("playerPlay");
+    });
 
-    // $(document).on("goToVideoSecond", (event, progress) => {
-    //     player.time(progress);
-    // });
+    $(document).on("goToVideoSecond", (event, progress) => {
+        player.time(progress);
+    });
 
-    // $(document).trigger("playerReady");
+    $(document).trigger("playerReady");
 
-    // player.bind("end", function () {
-    //     $(document).trigger("finishLesson");
-    // });
+    player.bind("end", function () {
+        $(document).trigger("finishLesson");
+    });
 
-    // player.bind("playbackratechange", function (rate) {
-    //     $(document).trigger("playbackRate", rate);
-    // });
+    player.bind("playbackratechange", function (rate) {
+        $(document).trigger("playbackRate", rate);
+    });
 
-    // $(document).on("setPlaybackRate", (event, playrate) => {
-    //     player.playbackRate(playrate);
-    // });
+    $(document).on("setPlaybackRate", (event, playrate) => {
+        player.playbackRate(playrate);
+    });
 }
 
 /* <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
