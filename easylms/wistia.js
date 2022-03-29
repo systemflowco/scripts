@@ -19,7 +19,7 @@ function wistiaReady() {
     const videoId = window.easyLmsInfo.lessonVideo.replace(myregexp, "$1");
 
     // create a new src & embed the enablejsapi=1 query string
-    const src = `https://fast.wistia.net/embed/iframe/embed/iframe/${videoId}`;
+    const src = `https://fast.wistia.net/embed/iframe/${videoId}`;
 
     // set the recreated src as the iframe's src
     frame.setAttribute("src", src);
@@ -37,9 +37,9 @@ function createWistiaPlayer(iframe) {
     console.log("I got a handle to the video!", player);
 
     // play the video at the specified seconds
-    // setInterval(() => {
-    //     $(document).trigger("videoProgress", player.time());
-    // }, 5000);
+    setInterval(() => {
+        $(document).trigger("videoProgress", player.time());
+    }, 5000);
 
     player.play();
 
