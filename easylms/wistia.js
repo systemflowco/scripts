@@ -29,44 +29,44 @@ function wistiaReady() {
     frame.classList.add("wistia_embed");
     frame.setAttribute("name", "wistia_embed");
     // call the createPlayer function with the iframe's id
-    createWistiaPlayer(frame.id);
+    createWistiaPlayer(videoId);
 }
 
-function createWistiaPlayer(iframe) {
-    var player = Wistia.api(iframe);
-    console.log("I got a handle to the video!", player);
+function createWistiaPlayer(videoId) {
+    window._wq = window._wq || [];
+    _wq.push({
+        id: videoId,
+        onReady: function (video) {
+            var player = video;
 
-    // play the video at the specified seconds
-    setInterval(() => {
-        $(document).trigger("videoProgress", player.time());
-    }, 5000);
+            // play the video at the specified seconds
+            setInterval(() => {
+                $(document).trigger("videoProgress", player.time());
+            }, 5000);
 
-    player.play();
+            player.play();
 
-    player.bind("play", function () {
-        $(document).trigger("playerPlay");
-    });
+            player.bind("play", function () {
+                $(document).trigger("playerPlay");
+            });
 
-    $(document).on("goToVideoSecond", (event, progress) => {
-        player.time(progress);
-    });
+            $(document).on("goToVideoSecond", (event, progress) => {
+                player.time(progress);
+            });
 
-    $(document).trigger("playerReady");
+            $(document).trigger("playerReady");
 
-    player.bind("end", function () {
-        $(document).trigger("finishLesson");
-    });
+            player.bind("end", function () {
+                $(document).trigger("finishLesson");
+            });
 
-    player.bind("playbackratechange", function (rate) {
-        $(document).trigger("playbackRate", rate);
-    });
+            player.bind("playbackratechange", function (rate) {
+                $(document).trigger("playbackRate", rate);
+            });
 
-    $(document).on("setPlaybackRate", (event, playrate) => {
-        player.playbackRate(playrate);
+            $(document).on("setPlaybackRate", (event, playrate) => {
+                player.playbackRate(playrate);
+            });
+        },
     });
 }
-
-/* <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
-    <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-        <iframe src="https://fast.wistia.net/embed/iframe/3fml1o1h3e?videoFoam=true" title=" [Example Video] Wistia Video Essentials" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe></div></div>
-<script src="https://fast.wistia.net/assets/external/E-v1.js" async></script> */
