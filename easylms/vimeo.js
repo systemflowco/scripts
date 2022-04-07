@@ -38,11 +38,11 @@
         var player = new Vimeo.Player(iframe);
 
         // play the video at the specified seconds
-        setInterval(() => {
-            player.getCurrentTime().then(function (progress) {
-                $(document).trigger("videoProgress", progress);
-            });
-        }, 5000);
+        // setInterval(() => {
+        //     player.getCurrentTime().then(function (progress) {
+        //         $(document).trigger("videoProgress", progress);
+        //     });
+        // }, 5000);
 
         if (typeof window.autoplayMode === "undefined" || window.autoplayMode) {
             player.play();

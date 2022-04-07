@@ -49,10 +49,10 @@ function createYoutubePlayer(iframe) {
     // setup the onYoutubePlayerReady function
     function onYoutubePlayerReady(event) {
         // play the video at the specified seconds
-        setInterval(() => {
-            const currentTime = player.getCurrentTime();
-            $(document).trigger("videoProgress", currentTime);
-        }, 5000);
+        // setInterval(() => {
+        //     const currentTime = player.getCurrentTime();
+        //     $(document).trigger("videoProgress", currentTime);
+        // }, 60000);
 
         if (typeof window.autoplayMode === "undefined" || window.autoplayMode) {
             event.target.playVideo();

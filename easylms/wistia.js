@@ -42,9 +42,9 @@ function createWistiaPlayer(videoId) {
             var player = video;
 
             // play the video at the specified seconds
-            setInterval(() => {
-                $(document).trigger("videoProgress", player.time());
-            }, 5000);
+            // setInterval(() => {
+            //     $(document).trigger("videoProgress", player.time());
+            // }, 5000);
 
             if (typeof window.autoplayMode === "undefined" || window.autoplayMode) {
                 player.play();
