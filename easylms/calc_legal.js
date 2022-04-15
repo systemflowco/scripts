@@ -3,8 +3,8 @@
         constructor(elem) {
             this.items = document.querySelectorAll(".pricing-checkbox-header");
             this.countItems = document.querySelectorAll(".checkbox-counter-value");
-            this.startPrice = +document.querySelector(".price-big").innerText.split("zł")[0];
-            this.startMonthPrice = 0;
+            this.startPrice = 0;
+            this.startMonthPrice = +document.querySelector(".price-big").innerText.split("zł")[0];
             this.totalPrice = 0;
             this.totalMonthPrice = 0;
             this.priceTable = document.querySelector(".pricing-summary");
