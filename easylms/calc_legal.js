@@ -60,7 +60,7 @@
             if (!this.totalPrice) {
                 this.priceTable.style.display = "none";
             } else {
-                this.monthPriceTable.style.display = "block";
+                this.priceTable.style.display = "block";
             }
 
             if (!this.totalMonthPrice) {
