@@ -7,7 +7,7 @@
             this.startMonthPrice = +document.querySelector(".price-big").innerText.split("zł")[0];
             this.totalPrice = 0;
             this.totalMonthPrice = 0;
-            this.priceTable = document.querySelector(".pricing-summary");
+            this.priceTable = document.querySelector(".pricing-summary .single");
             this.monthPriceTable = document.querySelector(".monthly");
             this.payButton = document.querySelector("#payButton");
             this.implementOptions = [];
