@@ -5,7 +5,7 @@
             this.filter = elem;
             this.container = this.filter.closest(".container");
             this.collectionItems = this.container
-                ? this.container.querySelectorAll(".w-dyn-item")
+                ? this.container.querySelectorAll(".w-dyn-item .card")
                 : null;
             this.cards = this.container ? this.container.querySelectorAll(".card") : null;
             this.filterBy =
@@ -25,7 +25,10 @@
         assignEvents() {
             this.clearTags();
             if (this.collectionItems && this.collectionItems.length) {
-                this.cards = this.collectionItems;
+                this.cards = [];
+                this.collectionItems.forEach((item) =>
+                    this.cards.push(item.closest(".w-dyn-item"))
+                );
             }
             if (this.cards && this.taglines) {
                 this.createList();
