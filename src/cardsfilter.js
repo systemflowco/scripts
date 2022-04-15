@@ -116,8 +116,16 @@
         filterResults() {
             if (this.selected.length > 0) {
                 this.cards.forEach((card) => {
-                    const tagline = card.querySelector(this.filterBy).innerText;
-                    if (this.selected.indexOf(tagline) > -1) {
+                    const taglines = [...card.querySelectorAll(this.filterBy)].map(
+                        (x) => x.innerText
+                    );
+                    let tagFound = false;
+                    taglines.forEach((tag) => {
+                        if (this.selected.indexOf(tag) > -1) {
+                            tagFound = true;
+                        }
+                    });
+                    if (tagFound) {
                         delete card.dataset.filterHide;
                         if (!card.dataset.searchHide) card.style.display = "flex";
                     } else {
