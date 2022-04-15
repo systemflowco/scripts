@@ -5,7 +5,7 @@
             this.searchInput = elem;
             this.container = this.searchInput.closest(".container");
             this.collectionItems = this.container
-                ? this.container.querySelectorAll(".w-dyn-item")
+                ? this.container.querySelectorAll(".w-dyn-item .card")
                 : null;
             this.cards = this.container ? this.container.querySelectorAll(".card") : null;
             this.textSelectors = "h1, h2, h3, h4, h5, h6, p";
@@ -14,7 +14,10 @@
 
         assignEvents() {
             if (this.collectionItems && this.collectionItems.length) {
-                this.cards = this.collectionItems;
+                this.cards = [];
+                this.collectionItems.forEach((item) =>
+                    this.cards.push(item.closest(".w-dyn-item"))
+                );
             }
             if (this.cards) {
                 this.searchInput.addEventListener("keyup", this.searchResults.bind(this));
