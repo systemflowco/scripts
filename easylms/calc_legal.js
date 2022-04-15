@@ -57,6 +57,12 @@
                 ".summary-item-price.big"
             ).innerText = `${this.totalMonthPrice} zł`;
 
+            if (!this.totalPrice) {
+                this.priceTable.style.display = "none";
+            } else {
+                this.monthPriceTable.style.display = "block";
+            }
+
             if (!this.totalMonthPrice) {
                 this.monthPriceTable.style.display = "none";
             } else {
