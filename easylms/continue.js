@@ -12,14 +12,14 @@
 
         if (lastLesson) {
             if (continueBanner) {
-                continueBanner.href = `./lekcje/${lastLesson.lessonSlug}`;
+                continueBanner.href = `${location.origin}/lekcje/${lastLesson.lessonSlug}`;
                 continueBanner.querySelector(".continue-course-name-span").innerText =
                     lastLesson.course;
                 continueBanner.querySelector(".continue-lesson-name-span").innerText =
                     lastLesson.lesson;
             }
             continueButtons.forEach((btn) => {
-                btn.href = `./lekcje/${lastLesson.lessonSlug}`;
+                btn.href = `${location.origin}/lekcje/${lastLesson.lessonSlug}`;
             });
         } else {
             if (continueBanner) {
