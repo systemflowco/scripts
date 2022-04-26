@@ -1,6 +1,7 @@
 (() => {
     function checkLastLesson() {
         const continueBanner = document.querySelector(".continue-banner");
+        const continueButton = document.querySelector(".continue-button");
         const KEY_LAST = "LESSON.LAST";
         let lastLesson = "";
         if (window.easyJSON && window.easyJSON[KEY_LAST]) {
@@ -9,18 +10,22 @@
             lastLesson = JSON.parse(localStorage.getItem(KEY_LAST));
         }
 
-        if (!continueBanner) {
-            return;
-        }
-
         if (lastLesson) {
-            continueBanner.href = `./lekcje/${lastLesson.lessonSlug}`;
-            continueBanner.querySelector(".continue-course-name-span").innerText =
-                lastLesson.course;
-            continueBanner.querySelector(".continue-lesson-name-span").innerText =
-                lastLesson.lesson;
+            if (continueBanner) {
+                continueBanner.href = `./lekcje/${lastLesson.lessonSlug}`;
+                continueBanner.querySelector(".continue-course-name-span").innerText =
+                    lastLesson.course;
+                continueBanner.querySelector(".continue-lesson-name-span").innerText =
+                    lastLesson.lesson;
+            }
+
+            if (continueButton) {
+                continueButton.href = `./lekcje/${lastLesson.lessonSlug}`;
+            }
         } else {
-            continueBanner.style.display = "none";
+            if (continueBanner) {
+                continueBanner.style.display = "none";
+            }
         }
     }
     document.addEventListener("DOMContentLoaded", function (event) {
