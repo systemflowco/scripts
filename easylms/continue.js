@@ -19,7 +19,14 @@
                     lastLesson.lesson;
             }
             continueButtons.forEach((btn) => {
-                btn.href = `${location.origin}/lekcje/${lastLesson.lessonSlug}`;
+                if (window.easyLmsInfo && window.easyLmsInfo.courseName){
+                    if(window.easyLmsInfo.courseName===lastLesson.course){
+                        btn.href = `${location.origin}/lekcje/${lastLesson.lessonSlug}`;
+                    }
+                } else {
+                    btn.href = `${location.origin}/lekcje/${lastLesson.lessonSlug}`;
+                }
+                
             });
         } else {
             if (continueBanner) {
