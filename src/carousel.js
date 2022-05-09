@@ -15,9 +15,10 @@
             document.head.appendChild(sliderCss);
 
             const sliderLink = document.createElement("script");
-            sliderLink.src =
+            sliderLink.setAttribute("rel", "stylesheet");
+            sliderLink.setAttribute("as", "style");
+            sliderLink.href =
                 "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js";
-            sliderLink.id = "tiny-slider-script";
 
             document.head.appendChild(sliderLink);
 
