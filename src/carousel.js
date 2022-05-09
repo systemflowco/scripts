@@ -10,14 +10,14 @@
 
          
             const sliderCss = document.createElement("link");
-            sliderCss.src = "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css";
+            sliderCss.setAttribute("rel", "stylesheet");
+            sliderCss.setAttribute("as", "style");
+            sliderCss.href = "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css";
 
             document.head.appendChild(sliderCss);
 
             const sliderLink = document.createElement("script");
-            sliderLink.setAttribute("rel", "stylesheet");
-            sliderLink.setAttribute("as", "style");
-            sliderLink.href =
+            sliderLink.src =
                 "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js";
 
             document.head.appendChild(sliderLink);
