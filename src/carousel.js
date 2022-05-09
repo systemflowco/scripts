@@ -8,6 +8,12 @@
 
         assignEvents() {
 
+         
+            const sliderCss = document.createElement("link");
+            sliderCss.src = "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css";
+
+            document.head.appendChild(sliderCss);
+            
             const sliderLink = document.createElement("script");
             sliderLink.src =
                 "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js";
@@ -25,6 +31,7 @@
                     edgePadding: 50,
                     swipeAngle: false,
                     controls:false,
+                    nav:false,
                     autoplay:true,
                     autoplayTimeout: 1000,
                     autoplayHoverPause: true,
