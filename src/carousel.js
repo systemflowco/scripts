@@ -7,7 +7,6 @@
         }
 
         assignEvents() {
-            console.log(this.cards);
 
             const sliderLink = document.createElement("script");
             sliderLink.src =
@@ -17,17 +16,16 @@
             document.head.appendChild(sliderLink);
 
             sliderLink.onload = ()=>{
-                loveSlider=tns({
+                tns({
                     container:this.cards,
                     items:1,
                     slideBy:"page",
                     gutter:10,
-                    nextButton:document.querySelector(".slider-arrow-right"),
-                    prevButton:document.querySelector(".slider-arrow-left"),
                     loop:true,
+                    "edgePadding": 50,
+                    "swipeAngle": false,
                     autoplay:true,
-                    navPosition:"bottom",
-                    responsive:{640:{items:2},1020:{items:3}}
+                    responsive:{640:{items:2},1020:{items:6}}
                 })
             }
           
