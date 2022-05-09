@@ -27,7 +27,6 @@
                     nav:false,
                     autoplay:true,
                     autoplayTimeout: 1000,
-                    responsive:{640:{items:2},1020:{items:6}}
                 })
             }
 
