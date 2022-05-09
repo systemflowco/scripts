@@ -18,7 +18,7 @@
             sliderLink.onload = ()=>{
                 tns({
                     container:this.cards,
-                    fixedWidth: 280,
+                    fixedWidth: 304,
                     slideBy: 1,
                     gutter:24,
                     loop:true,
