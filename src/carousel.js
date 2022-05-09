@@ -32,7 +32,7 @@
                     nav:false,
                     controls:false,
                     autoplay:true,
-                    speed: 500,
+                    speed: 2000,
                     autoplayTimeout: 1000,
                     autoplayHoverPause: true,
                 })
