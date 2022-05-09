@@ -34,9 +34,10 @@
                     nav:false,
                     controls:false,
                     autoplay:true,
-                    speed: 1000,
+                    speed: 500,
                     autoplayTimeout: 1000,
                     autoplayHoverPause: true,
+                    center: true,
                 })
             }
 
