@@ -1,4 +1,4 @@
-
+(() => {
     class Carousels {
         constructor(elem) {
             this.cards = elem;
@@ -16,23 +16,20 @@
             document.head.appendChild(sliderLink);
 
             sliderLink.onload = ()=>{
-                var sysflowSlider = tns({
+                tns({
                     container:this.cards,
-                    items:1,
-                    slideBy:1,
-                    gutter:10,
+                    fixedWidth: 280,
+                    slideBy: 1,
+                    gutter:24,
                     loop:true,
-                    "edgePadding": 50,
-                    "swipeAngle": false,
+                    edgePadding: 50,
+                    swipeAngle: false,
                     nav:false,
                     autoplay:true,
                     autoplayTimeout: 1000,
                     responsive:{640:{items:2},1020:{items:6}}
                 })
             }
-          
-
-
 
         }
 
@@ -47,3 +44,4 @@
         });
     }
 
+})();
