@@ -35,6 +35,7 @@
                     speed: 2000,
                     autoplayTimeout: 1000,
                     autoplayHoverPause: true,
+                    autoplayText: ["",""],
                 })
 
             }
