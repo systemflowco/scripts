@@ -30,9 +30,10 @@
                     loop:true,
                     edgePadding: 50,
                     swipeAngle: false,
-                    controls:false,
                     nav:false,
+                    controls:false,
                     autoplay:true,
+                    speed: 1000,
                     autoplayTimeout: 1000,
                     autoplayHoverPause: true,
                 })
