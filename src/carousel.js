@@ -24,7 +24,9 @@
                     loop:true,
                     "edgePadding": 50,
                     "swipeAngle": false,
+                    nav:false,
                     autoplay:true,
+                    autoplayTimeout: 300,
                     responsive:{640:{items:2},1020:{items:6}}
                 })
             }
