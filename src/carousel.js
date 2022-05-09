@@ -24,9 +24,10 @@
                     loop:true,
                     edgePadding: 50,
                     swipeAngle: false,
-                    nav:false,
+                    controls:false,
                     autoplay:true,
                     autoplayTimeout: 1000,
+                    autoplayHoverPause: true,
                 })
             }
 
