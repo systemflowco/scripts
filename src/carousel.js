@@ -13,7 +13,7 @@
             sliderCss.src = "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css";
 
             document.head.appendChild(sliderCss);
-            
+
             const sliderLink = document.createElement("script");
             sliderLink.src =
                 "https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js";
@@ -24,7 +24,7 @@
             sliderLink.onload = ()=>{
                 tns({
                     container:this.cards,
-                    fixedWidth: 304,
+                    fixedWidth: 280,
                     slideBy: 1,
                     gutter:24,
                     loop:true,
