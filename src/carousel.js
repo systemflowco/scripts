@@ -35,7 +35,6 @@
                     speed: 500,
                     autoplayTimeout: 1000,
                     autoplayHoverPause: true,
-                    center: true,
                 })
 
             }
