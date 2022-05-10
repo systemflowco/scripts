@@ -36,6 +36,7 @@
                     autoplayTimeout: 1000,
                     autoplayHoverPause: true,
                     autoplayText: ["",""],
+                    center: true
                 })
 
             }
