@@ -30,7 +30,7 @@
             console.log(this.slidesNumber);
 
             // count slides to determine animation speed
-            if (slidesVisible >= this.slidesNumber) {
+            if (slidesVisible > this.slidesNumber) {
                 if(this.carouselOn){
                     this.clearSmoothScrolling();
                 }
