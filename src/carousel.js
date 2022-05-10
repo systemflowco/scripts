@@ -24,6 +24,11 @@
             var slidesVisible = $(this.cards).width() / this.firstSlide.outerWidth(false);
             slidesVisible = Math.ceil(slidesVisible);
 
+            console.log('Slides Visible');
+            console.log(slidesVisible);
+            console.log('Total Slides');
+            console.log(this.slidesNumber);
+
             // count slides to determine animation speed
             if (slidesVisible >= this.slidesNumber) {
                 if(this.carouselOn){
