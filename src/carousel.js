@@ -7,6 +7,7 @@
             this.slides = $(">div>div", this.cards);
             this.firstSlide = $(">div>div:first-of-type", this.cards);
             this.slidesNumber = this.slides.length;
+            this.animationWidth = this.firstSlide.outerWidth(false)*(this.slidesNumber);
             this.speed = this.slidesNumber * this.animationSpeed;
             this.animationStyle = document.createElement("style");
             this.carouselOn = false;
@@ -17,8 +18,8 @@
             // Please run it with window.onload, not with document.ready
             this.checkSmoothScrolling();
             $(window).on("resize", this.checkSmoothScrolling.bind(this));
-            $(this.cards).on("mouseenter", this.stopScrolling.bind(this));
-            $(this.cards).on("mouseleave", this.checkSmoothScrolling.bind(this));
+            $(this.cards).on("mouseenter", this.pauseScrolling.bind(this));
+            $(this.cards).on("mouseleave", this.returnToScrolling.bind(this));
         }
 
         checkSmoothScrolling() {
@@ -38,8 +39,6 @@
         }
 
         initScrolling(n) {
-            var animationWidth = this.firstSlide.outerWidth(false)*(this.slidesNumber);
-
             // append the tail
             this.slides.slice(0, n).clone().appendTo(this.container);
 
@@ -52,7 +51,7 @@
             this.container.css({ width: sliderWidth, height: sliderHeight });
 
             this.animationStyle.innerHTML = `
-            @keyframes smoothscroll { 0% { margin-left: 0px; } 100% { margin-left: -${animationWidth}px; } } 
+            @keyframes smoothscroll { 0% { margin-left: -24px; } 100% { margin-left: -${this.animationWidth+24}px; } } 
             
             [data-sysflow-carousel]>div>div:first-of-type {-webkit-animation: smoothscroll ${this.speed}s linear infinite; -moz-animation: smoothscroll ${this.speed}s linear infinite; -ms-animation: smoothscroll ${this.speed}s linear infinite; -o-animation: smoothscroll ${this.speed}s linear infinite; animation: smoothscroll ${this.speed}s linear infinite; }`;
 
@@ -82,14 +81,18 @@
         }
 
         pauseScrolling(){
-            var animationWidth = this.firstSlide.outerWidth(false)*(this.slidesNumber);
-
-            this.animationStyle.innerHTML = `
-            @keyframes smoothscroll { 0% { margin-left: 0px; } 100% { margin-left: -${animationWidth}px; } } 
-            
-            [data-sysflow-carousel]>div>div:first-of-type {-webkit-animation: smoothscroll ${10*this.speed}s linear infinite; -moz-animation: smoothscroll ${10*this.speed}s linear infinite; -ms-animation: smoothscroll ${10*this.speed}s linear infinite; -o-animation: smoothscroll ${10*this.speed}s linear infinite; animation: smoothscroll ${10*this.speed}s linear infinite; }`;
+            if (this.animationStyle.innerHTML.indexOf('running')!==-1){
+                this.animationStyle.innerHTML = this.animationStyle.innerHTML.replace('running','paused');
+            } else {
+                this.animationStyle.innerHTML += `[data-sysflow-carousel]>div>div:first-of-type {animation-play-state: paused;}`;
+            }
 
         }
+
+        returnToScrolling(){
+            this.animationStyle.innerHTML = this.animationStyle.innerHTML.replace('paused','running');
+        }
+        
 
         stopScrolling() {
             this.animationStyle.remove();
