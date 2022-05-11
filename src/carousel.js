@@ -28,10 +28,12 @@
             }
 
             // check width of slides
-            this.slides.forEach((slide)=> {
-                this.animationWidth += $(slide).outerWidth(false);
+            var calcWidth = 0;
+            $(this.slides).each(function () {
+                calcWidth += $(this).outerWidth(false);
             });
-
+            this.animationWidth = calcWidth;
+            
             // if slides out of container start scrolling
             if (this.animationWidth > $(this.cards).width()) {
                 this.initScrolling();
