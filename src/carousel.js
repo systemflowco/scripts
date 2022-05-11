@@ -87,6 +87,10 @@
                 });
         }
 
+        pauseScrolling(){
+            
+        }
+
         stopScrolling() {
             this.animationStyle.remove();
         }
