@@ -28,7 +28,7 @@
             }
 
             // check width of slides
-            $(this.slides).each((slide)=> {
+            this.slides.forEach((slide)=> {
                 this.animationWidth += $(slide).outerWidth(false);
             });
 
