@@ -33,7 +33,7 @@
             });
 
             // if slides out of container start scrolling
-            if (animationWidth > $(this.cards).width()) {
+            if (this.animationWidth > $(this.cards).width()) {
                 this.initScrolling();
             }
         }
