@@ -7,53 +7,60 @@
             this.slides = $(">div>div", this.cards);
             this.firstSlide = $(">div>div:first-of-type", this.cards);
             this.slidesNumber = this.slides.length;
-            this.animationWidth = this.firstSlide.outerWidth(false)*(this.slidesNumber);
             this.speed = this.slidesNumber * this.animationSpeed;
             this.animationStyle = document.createElement("style");
+            this.animationWidth = 0;
             this.carouselOn = false;
             this.assignEvents();
         }
 
         assignEvents() {
-            // Please run it with window.onload, not with document.ready
-            this.checkSmoothScrolling();
-            $(window).on("resize", this.checkSmoothScrolling.bind(this));
+            this.checkScrolling();
+            $(window).on("resize", this.checkScrolling.bind(this));
             $(this.cards).on("mouseenter", this.pauseScrolling.bind(this));
             $(this.cards).on("mouseleave", this.returnToScrolling.bind(this));
         }
 
-        checkSmoothScrolling() {
-            // detect number of visible slides
-            var slidesVisible = $(this.cards).width() / this.firstSlide.outerWidth(false);
-            slidesVisible = Math.ceil(slidesVisible);
-
-            console.log(slidesVisible);
+        checkScrolling() {
+            //if carousel was attached, remove it
             if (this.carouselOn) {
                 this.clearScrolling();
             }
 
-            // count slides to determine animation speed
-            if (slidesVisible <= this.slidesNumber) {   
-                this.initScrolling(slidesVisible);
+            // check width of slides
+            $(this.slides).each(function () {
+                this.animationWidth += $(this).outerWidth(false);
+            });
+
+            // if slides out of container start scrolling
+            if (animationWidth > $(this.cards).width()) {
+                this.initScrolling();
             }
         }
 
-        initScrolling(n) {
+        initScrolling() {
             // append the tail
-            this.slides.slice(0, n).clone().appendTo(this.container);
+            this.slides.slice(0, this.slidesNumber).clone().appendTo(this.container);
 
-            // Detect the slider width with appended tail
-            var sliderWidth = this.firstSlide.outerWidth(false)*(this.slidesNumber + n);
-
-            var sliderHeight = this.firstSlide.outerHeight(false);
+            var sliderHeight = $(this.cards).outerHeight(false);
 
             // set slider dimensions
-            this.container.css({ width: sliderWidth, height: sliderHeight });
+            this.container.css({ width: this.animationWidth*2, height: sliderHeight });
 
             this.animationStyle.innerHTML = `
-            @keyframes smoothscroll { 0% { margin-left: -24px; } 100% { margin-left: -${this.animationWidth+24}px; } } 
+            @keyframes smoothscroll { 0% { margin-left: -24px; } 100% { margin-left: -${
+                this.animationWidth + 24
+            }px; } } 
             
-            [data-sysflow-carousel]>div>div:first-of-type {-webkit-animation: smoothscroll ${this.speed}s linear infinite; -moz-animation: smoothscroll ${this.speed}s linear infinite; -ms-animation: smoothscroll ${this.speed}s linear infinite; -o-animation: smoothscroll ${this.speed}s linear infinite; animation: smoothscroll ${this.speed}s linear infinite; }`;
+            [data-sysflow-carousel]>div>div:first-of-type {-webkit-animation: smoothscroll ${
+                this.speed
+            }s linear infinite; -moz-animation: smoothscroll ${
+                this.speed
+            }s linear infinite; -ms-animation: smoothscroll ${
+                this.speed
+            }s linear infinite; -o-animation: smoothscroll ${
+                this.speed
+            }s linear infinite; animation: smoothscroll ${this.speed}s linear infinite; }`;
 
             // Insert styles to html
             this.startScrolling();
@@ -62,14 +69,14 @@
         }
 
         clearScrolling() {
-            $(this.cards).css('justify-content','center');
+            $(this.cards).css("justify-content", "center");
             this.stopScrolling();
             var allSlides = $(this.container).children();
             allSlides.slice(this.slidesNumber, allSlides.length).detach();
         }
 
         startScrolling() {
-            $(this.cards).css('justify-content','flex-start');
+            $(this.cards).css("justify-content", "flex-start");
             document.head.append(this.animationStyle);
             // restart the animation (e.g. for safari & ie)
             var cl = $(this.cards).attr("class");
@@ -80,19 +87,23 @@
                 });
         }
 
-        pauseScrolling(){
-            if (this.animationStyle.innerHTML.indexOf('running')!==-1){
-                this.animationStyle.innerHTML = this.animationStyle.innerHTML.replace('running','paused');
+        pauseScrolling() {
+            if (this.animationStyle.innerHTML.indexOf("running") !== -1) {
+                this.animationStyle.innerHTML = this.animationStyle.innerHTML.replace(
+                    "running",
+                    "paused"
+                );
             } else {
                 this.animationStyle.innerHTML += `[data-sysflow-carousel]>div>div:first-of-type {animation-play-state: paused;}`;
             }
-
         }
 
-        returnToScrolling(){
-            this.animationStyle.innerHTML = this.animationStyle.innerHTML.replace('paused','running');
+        returnToScrolling() {
+            this.animationStyle.innerHTML = this.animationStyle.innerHTML.replace(
+                "paused",
+                "running"
+            );
         }
-        
 
         stopScrolling() {
             this.animationStyle.remove();
