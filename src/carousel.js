@@ -28,8 +28,8 @@
             }
 
             // check width of slides
-            $(this.slides).each(function () {
-                this.animationWidth += $(this).outerWidth(false);
+            $(this.slides).each((slide)=> {
+                this.animationWidth += $(slide).outerWidth(false);
             });
 
             // if slides out of container start scrolling
