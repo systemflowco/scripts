@@ -38,10 +38,7 @@
         }
 
         initScrolling(n) {
-            var animationWidth = 0;
-            this.slides.each(function () {
-                animationWidth += $(this).outerWidth(false);
-            });
+            var animationWidth = this.firstSlide.outerWidth(false)*(this.slidesNumber);
 
             // append the tail
             this.slides.slice(0, n).clone().appendTo(this.container);
@@ -54,11 +51,8 @@
             // set slider dimensions
             this.container.css({ width: sliderWidth, height: sliderHeight });
 
-            var animationStart = 0;
-            var animationEnd = -animationWidth;
-
             this.animationStyle.innerHTML = `
-            @keyframes smoothscroll { 0% { margin-left: ${animationStart}px; } 100% { margin-left: ${animationEnd}px; } } 
+            @keyframes smoothscroll { 0% { margin-left: 0px; } 100% { margin-left: -${animationWidth}px; } } 
             
             [data-sysflow-carousel]>div>div:first-of-type {-webkit-animation: smoothscroll ${this.speed}s linear infinite; -moz-animation: smoothscroll ${this.speed}s linear infinite; -ms-animation: smoothscroll ${this.speed}s linear infinite; -o-animation: smoothscroll ${this.speed}s linear infinite; animation: smoothscroll ${this.speed}s linear infinite; }`;
 
@@ -88,7 +82,13 @@
         }
 
         pauseScrolling(){
+            var animationWidth = this.firstSlide.outerWidth(false)*(this.slidesNumber);
+
+            this.animationStyle.innerHTML = `
+            @keyframes smoothscroll { 0% { margin-left: 0px; } 100% { margin-left: -${animationWidth}px; } } 
             
+            [data-sysflow-carousel]>div>div:first-of-type {-webkit-animation: smoothscroll ${10*this.speed}s linear infinite; -moz-animation: smoothscroll ${10*this.speed}s linear infinite; -ms-animation: smoothscroll ${10*this.speed}s linear infinite; -o-animation: smoothscroll ${10*this.speed}s linear infinite; animation: smoothscroll ${10*this.speed}s linear infinite; }`;
+
         }
 
         stopScrolling() {
