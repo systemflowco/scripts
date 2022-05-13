@@ -16,7 +16,15 @@
 
         assignEvents() {
             this.checkScrolling();
-            $(window).on("resize", this.checkScrolling.bind(this));
+            var lastWidth = $(window).width();
+
+            $(window).on("resize", ()=>{
+                if($(window).width()!=lastWidth){
+                    this.checkScrolling();
+                }
+                lastWidth = $(window).width();
+            });
+
             $(this.cards).on("mouseenter", this.pauseScrolling.bind(this));
             $(this.cards).on("mouseleave", this.returnToScrolling.bind(this));
         }
