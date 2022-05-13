@@ -52,7 +52,7 @@
             $(document).on("videoProgress", (event, progress) => {
                 this.updateLastLessonProgress(progress);
             });
-            $(document).on("playerReady", this.checkLastLesson.bind(this));
+            // $(document).on("playerReady", this.checkLastLesson.bind(this));
             $(document).on("playerPlay", this.checkPlaybackRate.bind(this));
             $(document).on("playbackRate", (event, rate) => {
                 this.savePlaybackRate(rate);
@@ -69,15 +69,15 @@
             if (!this.playbackRate) return;
             $(document).trigger("setPlaybackRate", this.playbackRate);
         }
-        checkLastLesson() {
-            this.lastLesson = this.readLsAndEj(this.KEY_LAST);
-            if (!this.lastLesson) return;
-            if (this.lastLesson.lessonSlug == this.slug) {
-                if (this.lastLesson.progress) {
-                    $(document).trigger("goToVideoSecond", this.lastLesson.progress);
-                }
-            }
-        }
+        // checkLastLesson() {
+        //     this.lastLesson = this.readLsAndEj(this.KEY_LAST);
+        //     if (!this.lastLesson) return;
+        //     if (this.lastLesson.lessonSlug == this.slug) {
+        //         if (this.lastLesson.progress) {
+        //             $(document).trigger("goToVideoSecond", this.lastLesson.progress);
+        //         }
+        //     }
+        // }
         savePlaybackRate(rate) {
             this.playbackRate = rate;
             this.saveLsAndEj(this.KEY_PLAYRATE, this.playbackRate);
