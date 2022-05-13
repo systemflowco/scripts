@@ -221,9 +221,11 @@
                 console.log(value);
                 localStorage.setItem(key, value);
                 return JSON.parse(value);
+            } else {
+                console.log('No EasyJSON')
+                console.log(key);
+                return JSON.parse(localStorage.getItem(key));
             }
-            console.log('No EasyJSON')
-            return JSON.parse(localStorage.getItem(key));
         }
         sendWebhook(data) {
             if (this.webhookUrl && this.userId && !this.webhookUrl.includes("Zamień ten tekst")) {
