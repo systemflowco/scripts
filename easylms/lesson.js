@@ -83,8 +83,6 @@
             this.saveLsAndEj(this.KEY_PLAYRATE, this.playbackRate);
         }
         saveLastLesson() {
-            console.log('Save Last Lesson');
-            console.log(this.lessonName);
             this.saveLsAndEj(this.KEY_LAST, {
                 lesson: this.lessonName,
                 lessonSlug: this.slug,
@@ -204,26 +202,17 @@
             const obj = {};
             obj[key] = JSON.stringify(value);
             localStorage.setItem(key, obj[key]);
-            console.log(localStorage.getItem(key));
             if (typeof easy_json !== "undefined") {
                 easy_json.patch(obj);
-                setTimeout(()=>{
-                    console.log(localStorage.getItem(key));
-                },1000);
             }
         }
         readLsAndEj(key) {
             if (window.easyJSON && window.easyJSON[key]) {
                 let value = window.easyJSON[key];
                 //update localStorage in case they are different
-                console.log('Read');
-                console.log(key);
-                console.log(value);
                 localStorage.setItem(key, value);
                 return JSON.parse(value);
             } else {
-                console.log('No EasyJSON')
-                console.log(key);
                 return JSON.parse(localStorage.getItem(key));
             }
         }

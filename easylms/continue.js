@@ -7,13 +7,8 @@
 
         if (window.easyJSON && window.easyJSON[KEY_LAST]) {
             lastLesson = JSON.parse(window.easyJSON[KEY_LAST]);
-            console.log("Easy JSON");
-            console.log(lastLesson);
-            console.log(JSON.parse(localStorage.getItem(KEY_LAST)));
         } else {
             lastLesson = JSON.parse(localStorage.getItem(KEY_LAST));
-            console.log("Local Storage");
-            console.log(lastLesson);
         }
 
         if (lastLesson) {
