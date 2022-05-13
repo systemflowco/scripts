@@ -11,6 +11,7 @@
             lastLesson = JSON.parse(localStorage.getItem(KEY_LAST));
         }
 
+        console.log(lastLesson)
         if (lastLesson) {
             if (continueBanner) {
                 continueBanner.href = `${location.origin}/lekcje/${lastLesson.lessonSlug}`;
