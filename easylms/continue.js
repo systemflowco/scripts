@@ -6,9 +6,10 @@
         let lastLesson = "";
 
         if (window.easyJSON && window.easyJSON[KEY_LAST]) {
+            lastLesson = JSON.parse(window.easyJSON[KEY_LAST]);
             console.log("Easy JSON");
             console.log(lastLesson);
-            lastLesson = JSON.parse(window.easyJSON[KEY_LAST]);
+            console.log(JSON.parse(localStorage.getItem(KEY_LAST)));
         } else {
             lastLesson = JSON.parse(localStorage.getItem(KEY_LAST));
             console.log("Local Storage");

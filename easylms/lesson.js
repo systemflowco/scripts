@@ -84,6 +84,7 @@
         }
         saveLastLesson() {
             console.log('Save Last Lesson');
+            console.log(this.lessonName);
             this.saveLsAndEj(this.KEY_LAST, {
                 lesson: this.lessonName,
                 lessonSlug: this.slug,
@@ -203,8 +204,12 @@
             const obj = {};
             obj[key] = JSON.stringify(value);
             localStorage.setItem(key, obj[key]);
+            console.log(localStorage.getItem(key));
             if (typeof easy_json !== "undefined") {
                 easy_json.patch(obj);
+                setTimeout(()=>{
+                    console.log(localStorage.getItem(key));
+                },1000);
             }
         }
         readLsAndEj(key) {
