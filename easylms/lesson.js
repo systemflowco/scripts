@@ -83,6 +83,7 @@
             this.saveLsAndEj(this.KEY_PLAYRATE, this.playbackRate);
         }
         saveLastLesson() {
+            console.log('Save Last Lesson');
             this.saveLsAndEj(this.KEY_LAST, {
                 lesson: this.lessonName,
                 lessonSlug: this.slug,
