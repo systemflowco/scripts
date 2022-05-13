@@ -216,9 +216,13 @@
             if (window.easyJSON && window.easyJSON[key]) {
                 let value = window.easyJSON[key];
                 //update localStorage in case they are different
+                console.log('Read');
+                console.log(key);
+                console.log(value);
                 localStorage.setItem(key, value);
                 return JSON.parse(value);
             }
+            console.log('No EasyJSON')
             return JSON.parse(localStorage.getItem(key));
         }
         sendWebhook(data) {
