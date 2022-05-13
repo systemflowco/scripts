@@ -31,7 +31,6 @@
         }
         assignEvents() {
             this.showAutoPlayInfo();
-            this.saveLastLesson();
 
             //if no easyJson Script do not wait for data
             if (typeof easy_json === "undefined") {
@@ -60,6 +59,7 @@
             });
         }
         checking() {
+            this.saveLastLesson();
             this.checkIfAutoplay();
             this.checkIfFinished();
             this.checkAllLessons();

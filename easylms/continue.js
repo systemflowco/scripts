@@ -4,6 +4,7 @@
         const continueButtons = document.querySelectorAll(".continue-button");
         const KEY_LAST = "LESSON.LAST";
         let lastLesson = "";
+
         if (window.easyJSON && window.easyJSON[KEY_LAST]) {
             lastLesson = JSON.parse(window.easyJSON[KEY_LAST]);
         } else {
