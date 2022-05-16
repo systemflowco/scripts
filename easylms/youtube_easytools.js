@@ -22,13 +22,14 @@ function onYouTubeIframeAPIReady() {
         const videoId = window.easyLmsInfo.videoId;
 
         // create a new src & embed the enablejsapi=1 query string
-        src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&autoplay=1`;
+        src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&autoplay=1&playsinline=1`;
 
         // set the recreated src as the iframe's src
         frame.setAttribute("src", src);
         // create a unique id for the iframe
         $(frame).attr("id", "dynamic" + i);
         frame.setAttribute("allow", "autoplay");
+        frame.setAttribute("playsinline","true");
         // call the createPlayer function with the iframe's id
         createYoutubePlayer(frame.id);
     });
