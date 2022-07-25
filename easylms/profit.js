@@ -56,12 +56,12 @@
             let noImplement = document.querySelector("#id-profit-implementation input").checked;
             let singleCosts = noImplement ? 1980 : 9900;
             //FIXME
-            let singleCostsString = noImplement ? "990" : "9 900";
-            let oldSingleCosts = noImplement ? 1980 : 19800;
-            let oldSingleCostsString = noImplement ? "1 980" : "19 800";
-            document.getElementById(
-                "id-profit-singlecost"
-            ).innerHTML = `<strike>${oldSingleCostsString}</strike>  ${singleCostsString} zł`;
+            let singleCostsString = noImplement ? "1 980" : "9 900";
+            // let oldSingleCosts = noImplement ? 1980 : 19800;
+            // let oldSingleCostsString = noImplement ? "1 980" : "19 800";
+            // document.getElementById(
+            //     "id-profit-singlecost"
+            // ).innerHTML = `<strike>${oldSingleCostsString}</strike>  ${singleCostsString} zł`;
 
             let profit =
                 Math.round((income * students * 12 - singleCosts - monthlyCosts * 12) * 100) / 100;
