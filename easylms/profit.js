@@ -51,7 +51,7 @@
                 "pl-PL"
             )} zł`;
 
-            let monthlyCosts = 10 + hosting + mailing + automation + stripe + ec + inv;
+            let monthlyCosts = 10 + 68 + hosting + mailing + automation + stripe + ec + inv;
 
             let noImplement = document.querySelector("#id-profit-implementation input").checked;
             let singleCosts = noImplement ? 1980 : 9900;
