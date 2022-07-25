@@ -62,6 +62,7 @@
             // document.getElementById(
             //     "id-profit-singlecost"
             // ).innerHTML = `<strike>${oldSingleCostsString}</strike>  ${singleCostsString} zł`;
+            document.getElementById("id-profit-singlecost").innerHTML = `${singleCostsString} zł`;
 
             let profit =
                 Math.round((income * students * 12 - singleCosts - monthlyCosts * 12) * 100) / 100;
