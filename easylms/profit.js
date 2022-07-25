@@ -54,7 +54,7 @@
             let monthlyCosts = 10 + hosting + mailing + automation + stripe + ec + inv;
 
             let noImplement = document.querySelector("#id-profit-implementation input").checked;
-            let singleCosts = noImplement ? 990 : 9900;
+            let singleCosts = noImplement ? 1980 : 9900;
             //FIXME
             let singleCostsString = noImplement ? "990" : "9 900";
             let oldSingleCosts = noImplement ? 1980 : 19800;
