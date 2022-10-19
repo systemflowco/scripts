@@ -46,10 +46,16 @@ const easy_json = {
             method: "GET",
             headers: { "Content-Type": "application/json" },
         });
-        const data = await result.json();
-        if (data.statusCode !== 404 && data.statusCode !== 500) {
-            window.easyJSON = data || {};
+        let data = {};
+        try {
+            data = await result.json();
+            if (data.statusCode !== 404 && data.statusCode !== 500) {
+                window.easyJSON = data;
+            }
         }
+        catch {window.easyJSON = data;}
+        
+
     },
 };
 
