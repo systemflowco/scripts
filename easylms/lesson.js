@@ -80,9 +80,11 @@
         // }
         savePlaybackRate(rate) {
             this.playbackRate = rate;
+            console.log('zapisuje predkosc playera');
             this.saveLsAndEj(this.KEY_PLAYRATE, this.playbackRate);
         }
         saveLastLesson() {
+            console.log('zapisuje ostatnią lekcję');
             this.saveLsAndEj(this.KEY_LAST, {
                 lesson: this.lessonName,
                 lessonSlug: this.slug,
@@ -99,6 +101,7 @@
             });
         }
         updateLastLessonProgress(progress) {
+            console.log('zapisuje progress');
             this.saveLsAndEj(this.KEY_LAST, {
                 lesson: this.lessonName,
                 lessonSlug: this.slug,
@@ -118,6 +121,7 @@
         }
         toggleAutoplayMode() {
             this.autoplayMode = !this.autoplayMode;
+            console.log('zapisuje autoplayer');
             this.saveLsAndEj(this.KEY_AUTOPLAY, this.autoplayMode);
         }
         goToNextLesson() {
