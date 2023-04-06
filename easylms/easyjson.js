@@ -14,7 +14,7 @@ const easy_json = {
             window.easyJSON = {};
             return;
         }
-        await easy_json.get();
+        // await easy_json.get();
         const userId = window._EC_USER_ID;
         const stripeId = easy_json.getProductId();
         let userJSON = json;
