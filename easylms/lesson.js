@@ -79,9 +79,11 @@
         //     }
         // }
         savePlaybackRate(rate) {
-            this.playbackRate = rate;
-            console.log('zapisuje predkosc playera');
-            this.saveLsAndEj(this.KEY_PLAYRATE, this.playbackRate);
+            if (this.playbackRate !== rate) {
+                this.playbackRate = rate;
+                console.log('zapisuje predkosc playera');
+                this.saveLsAndEj(this.KEY_PLAYRATE, this.playbackRate);
+            }
         }
         saveLastLesson() {
             console.log('zapisuje ostatnią lekcję');
