@@ -54,8 +54,6 @@ const easy_json = {
             }
         }
         catch {window.easyJSON = data;}
-        console.log('dane pobrane')
-
     },
 };
 
@@ -130,5 +128,4 @@ class LogTost {
 (async () => {
     await easy_json.get();
     document.dispatchEvent(newEvent);
-    console.log('new event')
 })();
