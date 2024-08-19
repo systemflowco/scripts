@@ -7,7 +7,7 @@ const easy_json = {
         return window._EC_USER_ID && window[stripeKey];
     },
     getProductId() {
-        return window.easyLmsInfo ? "_EC_" + window.easyLmsInfo.ecProductId.split(",").filter((id) => id.indexOf('prod_') > -1 || id.indexOf('price_')>-1)[0] : "";
+        return window.easyLmsInfo ? "_EC_" + window.easyLmsInfo.ecProductId.split(",").filter((id) => id.indexOf('prod_') > -1 || id.indexOf('price_')>-1)[0].trim(): "";
     },
     async patch(json, override = false) {
         if (!easy_json.logged()) {
@@ -62,18 +62,16 @@ class LogTost {
         this.logTost = document.createElement("div");
         this.logTostHtml = `
                 <div class="toast-header">
-                    <div class="popup-title">Zaloguj się aby nie utracić postępów!</div>
+                    <div class="popup-title">Wystąpił problem z zapisem postępów!</div>
                     <div data-ec-toast-close class="material-icons icon-close">close</div>
                 </div>
                 <div>
                     <div class="body-text m s-m-b-0">
-                    Abyśmy mogli zapisać Twoje postępy między sesjami, musisz być zalogowany do swojego konta EasyCart. Dane logowania znajdziesz w mailu który przesłaliśmy po uzyskaniu dostępu do kursu. Możesz także zresetować hasło.
+                    Wystąpił problem z zapisem Twoich postępów, ale możesz oglądać kurs normalnie. Jeśli po odświeżeniu problem nadal występuje, skontaktuj się z nami.
                     </div>
                     <div class="ctas-wrapper">
-                        <a href="https://app.easycart.pl/logowanie?redirect=${encodeURI(
-                            window.location
-                        )}" class="button small w-inline-block">
-                            <div class="button-text">Zaloguj się</div>
+                        <a href="mailto:mailto:hello@easycart.pl" class="button small w-inline-block">
+                            <div class="button-text">Napisz do nas</div>
                         </a>
                     </div>
                 </div>
