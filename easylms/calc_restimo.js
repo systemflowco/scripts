@@ -3,6 +3,7 @@
         constructor(elem) {
             this.items = document.querySelectorAll(".pricing-checkbox-header");
             this.startPrice = 199;
+            this.startLabel = "Wdrożenie online";
             this.startMonthPrice = 0;
             this.totalPrice = 199;
             this.totalMonthPrice = 0;
@@ -84,6 +85,7 @@
         }
 
         checkSinglePrices() {
+            this.addPriceToTable(this.startLabel, this.startPrice);
             this.items.forEach((item, index) => {
                 let chosen =
                     item.querySelector("input[type=radio]")?.checked;
