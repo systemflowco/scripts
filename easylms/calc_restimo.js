@@ -34,6 +34,8 @@
             this.totalMonthPrice = this.startMonthPrice;
             this.clearMonthPriceTable();
 
+            this.implementOptions = [];
+
             this.checkSinglePrices();
 
             this.showSelect();
@@ -54,7 +56,6 @@
         }
 
         hideSelects() {
-            this.implementOptions = [];
             document.querySelectorAll(".checkbox-select").forEach((select) => {
                 select.style.opacity = "0";
                 select.style.display = "none";
