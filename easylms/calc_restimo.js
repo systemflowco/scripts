@@ -19,7 +19,7 @@
             this.items.forEach((item) => {
                 item.querySelector(".w-checkbox")?.addEventListener(
                     "click",
-                    this.showSelect.bind(this)
+                    this.checkAllPrices.bind(this)
                 );
                 item.querySelector(".w-radio")?.addEventListener(
                     "click",
