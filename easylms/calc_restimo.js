@@ -50,18 +50,7 @@
             //update total month Price
             this.monthPriceTable.querySelector(".summary-item-price.big").innerText =
                 `${this.totalMonthPrice} zł`;
-
-            if (!this.totalPrice) {
-                this.priceTable.style.display = "none";
-            } else {
-                this.priceTable.style.display = "block";
-            }
-
-            if (!this.totalMonthPrice) {
-                this.monthPriceTable.style.display = "none";
-            } else {
-                this.monthPriceTable.style.display = "block";
-            }
+          
         }
 
         hideSelects() {
@@ -107,6 +96,8 @@
                         this.totalMonthPrice += monthPrice;
                         this.addMonthPriceToTable(title, monthPrice);
                     }
+                    let value = item.querySelector("input[type=radio]").id;
+                    this.implementOptions.push(value);
                 }
             });
         }
@@ -122,7 +113,7 @@
         }
 
         clearPriceTable() {
-            const firstItem = this.monthPriceTable.querySelector("ol").children[0].outerHTML;
+            const firstItem = this.priceTable.querySelector("ol").children[0].outerHTML;
             this.priceTable.querySelector("ol").innerHTML = firstItem;
         }
 
