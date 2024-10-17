@@ -68,6 +68,7 @@
             this.implementOptions = [];
             document.querySelectorAll(".checkbox-select").forEach((select) => {
                 select.style.opacity = "0";
+                select.style.display = "none";
             });
         }
 
@@ -79,6 +80,7 @@
                 if (chosen) {
                     let select = item.querySelector(".checkbox-select");
                     select.style.opacity = "1";
+                    select.style.display = "block";
                     const name = select.querySelector("select").id;
                     const value = select.querySelector("select").value;
                     this.implementOptions.push(name + "=" + value);
