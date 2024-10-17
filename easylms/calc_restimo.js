@@ -96,8 +96,8 @@
                     let monthPrice = monthPriceField ? +monthPriceField.innerText : 0;
                     if (price) {
                         this.totalPrice += price;
-                        this.addPriceToTable(title,price);
                     }
+                    this.addPriceToTable(title,price);
                     if (monthPrice) {
                         this.totalMonthPrice += monthPrice;
                         this.addMonthPriceToTable(title, monthPrice);
