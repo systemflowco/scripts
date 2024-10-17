@@ -36,6 +36,8 @@
 
             this.checkSinglePrices();
 
+            this.showSelect();
+
             //update total Price
             this.priceTable.querySelector(".summary-item-price.big").innerText =
                 `${this.totalPrice} zł netto`;
@@ -66,9 +68,6 @@
             this.implementOptions = [];
             document.querySelectorAll(".checkbox-select").forEach((select) => {
                 select.style.opacity = "0";
-                const name = select.querySelector("select").id;
-                const value = select.querySelector("select").value;
-                this.implementOptions.push(name + "=" + value);
             });
         }
 
@@ -80,6 +79,9 @@
                 if (chosen) {
                     let select = item.querySelector(".checkbox-select");
                     select.style.opacity = "1";
+                    const name = select.querySelector("select").id;
+                    const value = select.querySelector("select").value;
+                    this.implementOptions.push(name + "=" + value);
                 }
             });
         }
