@@ -17,7 +17,7 @@
             this.checkAllPrices();
             
             this.items.forEach((item) => {
-                item.querySelector(".w-check")?.addEventListener(
+                item.querySelector(".w-checkbox")?.addEventListener(
                     "click",
                     this.showSelect.bind(this)
                 );
