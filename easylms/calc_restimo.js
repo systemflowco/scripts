@@ -17,11 +17,11 @@
             this.checkAllPrices();
             
             this.items.forEach((item) => {
-                item.querySelector(".w-check").addEventListener(
+                item.querySelector(".w-check")?.addEventListener(
                     "click",
                     this.showSelect.bind(this)
                 );
-                item.querySelector(".w-radio").addEventListener(
+                item.querySelector(".w-radio")?.addEventListener(
                     "click",
                     this.checkAllPrices.bind(this)
                 );
