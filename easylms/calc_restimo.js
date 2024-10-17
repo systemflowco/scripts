@@ -2,7 +2,6 @@
     class Calculator {
         constructor(elem) {
             this.items = document.querySelectorAll(".pricing-checkbox-header");
-            this.countItems = document.querySelectorAll(".checkbox-counter-value");
             this.startPrice = 199;
             this.startMonthPrice = 0;
             this.totalPrice = 199;
@@ -17,15 +16,10 @@
         assignEvents() {
             this.checkAllPrices();
             this.items.forEach((item) => {
-                item.querySelector(".w-checkbox").addEventListener(
+                item.querySelector(".w-radio").addEventListener(
                     "click",
                     this.checkAllPrices.bind(this)
                 );
-            });
-            this.countItems.forEach((item) => {
-                let toggles = item.parentElement.querySelectorAll("a");
-                toggles[0].addEventListener("click", this.changeAmount.bind(this, item, -1));
-                toggles[1].addEventListener("click", this.changeAmount.bind(this, item, 1));
             });
         }
 
@@ -139,39 +133,7 @@
             this.monthPriceTable.querySelector("ol").innerHTML = firstItem;
         }
 
-        changeAmount(counter, value) {
-            let oldValue = +counter.innerText;
-            let newValue = oldValue + value;
 
-            if (newValue > -1) {
-                counter.innerText = newValue;
-            } else {
-                counter.innerText = 0;
-            }
-
-            if (newValue > 0) {
-                counter.parentElement.querySelector("a").classList.remove("disabled");
-            } else {
-                counter.parentElement.querySelector("a").classList.add("disabled");
-            }
-
-            this.updateCheckboxState(counter);
-            this.checkAllPrices();
-        }
-
-        updateCheckboxState(counter) {
-            let chosenField = counter
-                .closest(".pricing-checkbox-header")
-                .querySelector("input[type=checkbox]");
-            let chosen = chosenField.checked;
-
-            if (+counter.innerText > 0 && !chosen) {
-                chosenField.click();
-            }
-            if (+counter.innerText <= 0 && chosen) {
-                chosenField.click();
-            }
-        }
     }
     document.addEventListener("DOMContentLoaded", function (event) {
         new Calculator();
