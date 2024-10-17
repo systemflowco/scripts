@@ -36,26 +36,24 @@
             this.totalMonthPrice = this.startMonthPrice;
             this.clearMonthPriceTable();
 
+            this.showSelect();
+
             this.checkSinglePrices();
 
             //update total Price
-            this.priceTable.querySelector(
-                ".summary-item-price.big"
-            ).innerText = `${this.totalPrice} zł netto`;
+            this.priceTable.querySelector(".summary-item-price.big").innerText =
+                `${this.totalPrice} zł netto`;
             let brutto = Math.round(this.totalPrice * 1.23);
             // https://hook.eu1.make.com/13mgu6xii6i38fzyi3a0528qoosjvqng
             // https://hook.eu1.make.com/yzi0o4r9ar4zjmwomtih3oq2souuof5m
 
-            this.payButton.href = `https://hook.eu1.make.com/vydbcv44aqwl14ojtgmlgmn182qgq36s?price=${brutto}&prod=prod_LEYwjHjQyDzxxU&options=${this.implementOptions.join()}&monthly=${
-                this.totalMonthPrice
-            }`;
-            this.payButton.querySelector(
-                ".button-text-2"
-            ).innerText = `Płacę ${brutto} zł (brutto)`;
+            this.payButton.href = `https://hook.eu1.make.com/vydbcv44aqwl14ojtgmlgmn182qgq36s?price=${brutto}&prod=prod_LEYwjHjQyDzxxU&options=${this.implementOptions.join()}&monthly=${this.totalMonthPrice
+                }`;
+            this.payButton.querySelector(".button-text-2").innerText =
+                `Płacę ${brutto} zł (brutto)`;
             //update total month Price
-            this.monthPriceTable.querySelector(
-                ".summary-item-price.big"
-            ).innerText = `${this.totalMonthPrice} zł`;
+            this.monthPriceTable.querySelector(".summary-item-price.big").innerText =
+                `${this.totalMonthPrice} zł`;
 
             if (!this.totalPrice) {
                 this.priceTable.style.display = "none";
@@ -70,9 +68,28 @@
             }
         }
 
+        hideSelects() {
+            document.querySelectorAll(".checkbox-select").forEach((select) => {
+                select.style.opacity = "0";
+            });
+        }
+
+        showSelect() {
+            this.hideSelects();
+            this.items.forEach((item, index) => {
+                let chosen =
+                    item.querySelector("input[type=checkbox]")?.checked ;
+                if (chosen) {
+                    let select = item.querySelector(".checkbox-select");
+                    select.style.opacity = "1";
+                }
+            });
+        }
+
         checkSinglePrices() {
             this.items.forEach((item, index) => {
-                let chosen = item.querySelector("input[type=checkbox]").checked || item.querySelector("input[type=radio]").checked;
+                let chosen =
+                    item.querySelector("input[type=radio]")?.checked;
                 if (chosen) {
                     let title = item.querySelector(".checkbox-custom-label").innerText;
                     4;
