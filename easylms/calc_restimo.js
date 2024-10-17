@@ -15,7 +15,12 @@
 
         assignEvents() {
             this.checkAllPrices();
+            
             this.items.forEach((item) => {
+                item.querySelector(".w-check").addEventListener(
+                    "click",
+                    this.showSelect.bind(this)
+                );
                 item.querySelector(".w-radio").addEventListener(
                     "click",
                     this.checkAllPrices.bind(this)
@@ -29,8 +34,6 @@
             this.clearPriceTable();
             this.totalMonthPrice = this.startMonthPrice;
             this.clearMonthPriceTable();
-
-            this.showSelect();
 
             this.checkSinglePrices();
 
@@ -91,24 +94,13 @@
                     let price = priceField ? +priceField.innerText : 0;
                     let monthPriceField = item.querySelector(".price-monthly");
                     let monthPrice = monthPriceField ? +monthPriceField.innerText : 0;
-                    let amountField = item.querySelector(".checkbox-counter-value");
-                    let amount = amountField ? +amountField.innerText : 1;
                     if (price) {
-                        this.totalPrice += price * amount;
-                        this.addPriceToTable(
-                            amount > 1 ? title + " x " + amount : title,
-                            price * amount
-                        );
+                        this.totalPrice += price;
+                        this.addPriceToTable(title,price);
                     }
                     if (monthPrice) {
-                        this.totalMonthPrice += monthPrice * amount;
-                        this.addMonthPriceToTable(
-                            amount > 1 ? title + " x " + amount : title,
-                            monthPrice * amount
-                        );
-                    }
-                    for (let i = 1; i <= amount; i++) {
-                        this.implementOptions.push(index + 1);
+                        this.totalMonthPrice += monthPrice;
+                        this.addMonthPriceToTable(title, monthPrice);
                     }
                 }
             });
